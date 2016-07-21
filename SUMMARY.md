@@ -7,4 +7,5 @@
    * [Overfitting](1_2_overfitting.md)
    * [Regularized Risk Minimization](1_3_rlm.md)
    * [Hàm mất mát](1_4_loss_function.md)
+   * Thuật toán supervised learning hoàn chỉnh
 
