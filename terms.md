@@ -1,6 +1,5 @@
-# Thuật ngữ
+# Các khái niệm cơ bản
 
-Mình sẽ cố gắng thuần Việt nhất có thể, trừ những từ mình thấy không thoải mái. Suy cho cùng, mình nghĩ là khi đã bắt đầu làm việc gì một cách chuyên nghiệp thì đừng nên nghĩ đến ranh giới ngôn ngữ. Nếu đã đam mê môn này, chúng ta đều là thần dân của vương quốc machine learning và đều nói ngôn ngữ machine learning. Sau đây là các thuật ngữ:
 
 **Model** (mô hình): trong bài này các bạn chỉ cần hiểu là nó là một hàm số $$f(x)$$, nhận vào một input $$x$$ và trả về một output $$y = f(x)$$. Ta thường gọi input $$x = (x_1, \cdots, x_d)$$ là observation (lưu ý là đây là một vector nhiều chiều). Output $$y$$ được gọi là label, là thứ mà ta muốn dự đoán.
 
