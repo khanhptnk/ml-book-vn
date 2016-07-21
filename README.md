@@ -1,12 +1,12 @@
 # Lời tựa 
 
 
-Xin chào, mình là Nguyễn Xuân Khánh một người đang học và nghiên cứu về Machine Learning. Lĩnh vực mình chuyên sâu cho đến bây giờ là Natural Language Processing (gọi tắt là NLP), tức là làm cho máy tính có khả năng hiểu được ngôn ngữ của con người. Mình không phải là một chuyên gia, kinh nghiệm còn khá non nếu so với các giáo sư đầu ngành nhưng mình rất muốn đem bộ môn này về giới thiệu với các bạn, nhất là các bạn còn đang loay hoay tìm câu trả lời cho câu hỏi: học Tin học sau này làm được gì?
+Xin chào, mình là Nguyễn Xuân Khánh, một người đang học và nghiên cứu về Machine Learning. Lĩnh vực mình chuyên sâu cho đến bây giờ là Natural Language Processing (gọi tắt là NLP), tức là làm cho máy tính có khả năng hiểu được ngôn ngữ của con người. Mình không phải là một chuyên gia, kinh nghiệm còn khá non nếu so với các giáo sư đầu ngành nhưng mình rất muốn đem bộ môn này về giới thiệu với mọi người, nhất là các bạn còn đang loay hoay tìm câu trả lời cho câu hỏi: học Tin học sau này làm được gì?
 
 Vào năm 2014, mình có thuyết trình trước lớp một bài giới thiệu về Machine Learning. Nội dung bài viết này phần lớn dựa vào đó. Để giới thiệu về Machine Learning, mình xin dựa vào mối quan hệ của nó với ba khái niệm sau:
-1. Machine Learning và trí tuệ nhân tạo (Artificial Intelligence hay AI)
-2. Machine Learning và Big Data.
-3. Machine Learning và dự đoán tương lai.
+1. Machine Learning và **trí tuệ nhân tạo** (Artificial Intelligence hay AI)
+2. Machine Learning và **Big Data**.
+3. Machine Learning và **dự đoán tương lai**.
 
 Trí tuệ nhân tạo, AI, một cụm từ vừa gần gũi vừa xa lạ đối với chúng ta. Gần gũi bởi vì thế giới đang phát sốt với những công nghệ được dán nhãn AI. Xa lạ bởi vì một AI thực thụ vẫn còn nằm ngoài tầm với của chúng ta. Nói đến AI, hẳn mỗi người sẽ liên tưởng đến một hình ảnh khác nhau. Các bạn có để ý rằng vài thập niên gần đây có một sự thay đổi về diên mạo của AI trong các bộ phim quốc tế. Trước đây, các nhà sản xuất phim thường xuyên đưa hình ảnh robot hoặc terminator vào phim, nhằm gieo vào đầu người xem suy nghĩ rằng trí tuệ nhân tạo như một phương thức nhân bản con người bằng máy móc. Tuy nhiên, trong những bộ phim gần đây nhất về đề tài này, ví dụ như Transcendence do Johny Depp vào vai chính, ta không thấy hình ảnh của một con robot nào cả. Thay vào đó là một bộ não điện toán khổng lồ chỉ huy hàng vạn con Nanobot, được gọi là Singularity. Tất nhiên cả hai hình ảnh đều là hư cấu và giả tưởng, nhưng sự thay đổi như vậy cũng một phần nào phản ánh sự thay đổi ý niệm của con người về AI. AI bây giờ được xem như vô hình vô dạng, hay nói các khác có thể mang bất cứ hình dạng nào.
 
@@ -40,7 +40,9 @@ Sơ lược quy trình phân loại thư được mô tả sau. Trước hết, 
 
 Những điểm tam giác và vuông đại diện cho những email chúng ta đã biết nhãn trước. Chúng được dùng để "huấn luyện" (train) Perceptron. Sau khi vẽ đường thẳng chia hai tập điểm, ta nhận thêm các điểm chưa được dán nhãn, đại diện cho các email cần được phân loại (điểm tròn). Ta dán nhãn của một điểm theo nhãn của các điểm cùng nửa mặt phẳng với điểm đó. Vì là một thuật toán khá đơn giản, có rất nhiều vấn đề có thể nảy sinh với Perceptron, ví dụ như điểm cần phân loại nằm ngay trên đường thẳng phân chia. Hoặc tệ hơn là với một tập dữ liệu phức tạp hơn, đường thẳng phân chia không tồn tại:
 
-Clasification (hard)Lúc này, ta cần các loại đường phân chia "không thẳng". Nhưng đó lại là một câu chuyện khác.
+![](http://khanhxnguyen.com/wp-content/uploads/2015/08/Clasification-hard.png)
+
+Lúc này, ta cần các loại đường phân chia "không thẳng". Nhưng đó lại là một câu chuyện khác.
 
 Perceptron là một thuật toán "học có hướng dẫn" (supervised learning): ta đưa cho máy tính hàng loạt các ví dụ cùng câu trả lời mẫu với hy vọng máy tính sẽ tìm được những đặc điểm cần thiết để đưa ra dự đoán cho những ví dụ khác chưa có câu trả lời trong tương lai. Ngoài ra, cũng có những thuật toán Machine Learning "không cần hướng dẫn" (unsupervised learning): máy tính cố gắng khai thác ra cấu trúc ẩn của một tập dữ liệu mà không cần câu trả lời mẫu. Một loại Machine Learning khác được gọi là "học củng cố" (reinforcement learning). Trong dạng này, cũng không hề có câu trả lời mẫu, nhưng thay vì đó máy tính nhận được phản hồi cho mỗi hành động. Dựa vào phản hồi tích cực hay tiêu cực mà máy tính sẽ điều chỉnh hoạt động cho phù hợp. Sau đây là một ví dụ minh họa:
 
