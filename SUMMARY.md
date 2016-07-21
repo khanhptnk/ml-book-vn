@@ -2,7 +2,7 @@
 
 * [Lời tựa](README.md)
 * [Supervised Learning](chapter1.md)
-   * [Thuật ngữ](terms.md)
+   * [Các khái niệm cơ bản](terms.md)
    * [Hai góc nhìn về supervised learning](1_1_two_views.md)
    * [Overfitting](1_2_overfitting.md)
    * [Hàm mất mát](1_4_loss_function.md)
