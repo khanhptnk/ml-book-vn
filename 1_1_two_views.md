@@ -15,9 +15,8 @@ Tuy nhiên trong thực tế thì mọi chuyện không đơn giản như vậy.
 
 Cho đến giờ, người ta vẫn phải làm thí nghiệm trong thực tế để kiểm chứng lại các lý thuyết của Einstein cho đến khi nó sai thì thôi. Trong  supervised learning, ta cũng làm một điều tương tự như vậy. Cho dù không biết hình dạng của $$f^{*}$$ ra sao, thì vẫn còn đó các cặp observation-label sinh ra từ hàm này. Ta sẽ đánh giá độ tốt của model $$f_w$$ trên các dữ liệu thực tế này. Ví dụ, nếu nhận được 100 cặp observation-label, ta chỉ dùng khoảng 80 cặp để xây dựng ra $$f_w$$. Còn lại 20 cặp, ta sẽ cho các observation của chúng vào $$f_w$$ để tạo ra các label dự đoán, rồi so sánh chúng với các label thật do $$f^*$$ sinh ra. 80 cặp được dùng để xây dựng ra model gọi là tập huấn luyện (training set), còn 20 cặp dùng để đánh giá model gọi là tập kiểm tra (testing set).
 
+![](http://khanhxnguyen.com/wp-content/uploads/2016/05/ML101-accuracy.png)
 
-
-[ML101] accuracy
 
 **Câu hỏi 2**: *Tại sao không dùng tất cả dữ liệu để tìm ra $$f_w$$ rồi đánh giá $$f_w$$ trên đó luôn?*
 
