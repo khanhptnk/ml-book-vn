@@ -67,6 +67,7 @@ Hàm $$L$$, gọi là hàm mất mát. Với độ sai sót, thì $$L \left( f_w
 
 Làm sao để tìm ra được một model tốt từ tập huấn luyện? --> tìm model cực tiểu hóa giá trị hàm mục tiêu trên tập huấn luyện.
 Thế nào là một model tốt trên tập kiểm tra? --> model cho giá trị hàm mục tiêu trên tập kiểm tra càng nhỏ thì càng tốt.
+
 Cụ thể hơn, sau khi định nghĩa được hàm mục tiêu, supervised learning có thể được gói gọn trong 2 bước sau:
 
 1. Tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
