@@ -1,32 +1,34 @@
 # Regularized Risk Minimization 
 
-Xin chào các bạn, hôm nay chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra một thuật toán supervised learning hiệu quả hơn ERM để chống lại overfitting. Nhưng trước khi đó ta cùng ôn lại những gì đã học ở bài viết trước bằng một số câu hỏi ngắn như sau:
+Trong phần này, chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra một thuật toán supervised learning hiệu quả hơn ERM để chống lại overfitting. Nhưng trước khi đó ta cùng ôn lại những gì đã học ở phần trước bằng một số câu hỏi ngắn như sau:
 
-Q1: Overfitting là gì?
+**Q1** *: Overfitting là gì?*
 
-A1: Là khi model không có khả năng tổng quát từ những gì đã học được: độ sai sót trên tập huấn luyện nhỏ, trên tập kiểm tra to.
+**A1** *: Là khi model không có khả năng tổng quát từ những gì đã học được: độ sai sót trên tập huấn luyện nhỏ, trên tập kiểm tra to.*
 
-Q2: Tại sao overfitting lại có hại?
+**Q2** *: Tại sao overfitting lại có hại?*
 
-A2: Vì dữ liệu lúc nào cũng chứa noise, mà model bị overfitting rất nhạy cảm với noise. Noise làm cho model tìm được phức tạp quá mức cần thiết.
+**A2** *: Vì dữ liệu lúc nào cũng chứa noise, mà model bị overfitting rất nhạy cảm với noise. Noise làm cho model tìm được phức tạp quá mức cần thiết.*
 
-Q3: Làm sao để biết được model có bị overfitting hay không?
+**Q3** *: Làm sao để biết được model có bị overfitting hay không?*
 
-A3: Theo dõi learning curve.
+**A3** *: Theo dõi learning curve.*
 
-Q4: Làm sao để không bị overfitting?
+**Q4** *: Làm sao để không bị overfitting?*
 
-A4: Đây không phải là một câu hỏi đúng vì overfitting là một khái niệm tương đối, tùy theo "cảm giác" của bạn. Nếu bạn đang nói về chuyện làm sao để $$\mathcal{L}_{D_{train}}$$ trùng với $$\mathcal{L}_{\mathcal{D}}$$ thì câu trả lời là không thể, trừ phi có vô hạn dữ liệu.
+**A4** *: Đây không phải là một câu hỏi đúng vì overfitting là một khái niệm tương đối, tùy theo "cảm giác" của bạn. Nếu bạn đang nói về chuyện làm sao để $$\mathcal{L}_{D_{train}}$$ trùng với $$\mathcal{L}_{\mathcal{D}}$$ thì câu trả lời là không thể, trừ phi có vô hạn dữ liệu.*
 
-Trong bài viết này, chúng ta sẽ tìm hiểu sâu hơn về nguyên nhân gây ra overfitting. Như chúng ta đã biết, noise không phải là nguyên nhân trực tiếp gây ra overfitting. Vậy những yếu tố nào gây ra overfitting?
+Chúng ta sẽ tìm hiểu sâu hơn về nguyên nhân gây ra overfitting. Như chúng ta đã biết, noise không phải là nguyên nhân trực tiếp gây ra overfitting. Vậy những yếu tố nào gây ra overfitting?
+
+### Nguyên nhân gây ra overfitting
 
 Overfitting là sản phẩm của sự cộng hưởng giữa các yếu tố sau:
 
-Thứ nhất, áp dụng ERM.
+1. **Áp dụng ERM**.
 
-Thứ hai, giới hạn về dữ liệu: khi có thêm các cặp observation-label, hiển nhiên ta có thêm thông tin về mối quan hệ giữa chúng. Cụ thể hơn, ta thấy rằng $$\mathcal{L}_{D_{train}}$$ sẽ hội tụ về $$\mathcal{L}_{\mathcal{D}}$$ khi độ lớn của $$D_{train}$$ tiến đến vô cực. Khi hai đại lượng này trùng nhau thì overfitting hoàn toàn biến mất (theo định nghĩa). Vì thế, càng có nhiều dữ liệu huấn luyện thì càng ít bị overfitting.
+2. **Giới hạn về dữ liệu**: khi có thêm các cặp observation-label, hiển nhiên ta có thêm thông tin về mối quan hệ giữa chúng. Cụ thể hơn, ta thấy rằng $$\mathcal{L}_{D_{train}}$$ sẽ hội tụ về $$\mathcal{L}_{\mathcal{D}}$$ khi độ lớn của $$D_{train}$$ tiến đến vô cực. Khi hai đại lượng này trùng nhau thì overfitting hoàn toàn biến mất (theo định nghĩa). Vì thế, càng có nhiều dữ liệu huấn luyện thì càng ít bị overfitting.
 
-Thứ ba, tập model quá "mạnh": khi chọn một dạng model $$f_w$$ và thay đổi $$w$$, ta được một tập model. Ví dụ nếu $$f_w$$ là một đa thức bậc một, thì tập model là tập hợp tất cả các đa thức bậc một (có dạng $$y = f_w(x) = w_1x + w_2$$). Dù có vô số đa thức như vậy, nhưng mà đây được xem như một tập model "yếu" bởi vì nó không biểu diễu được các hàm phi tuyến tính. Vì bản chất machine learning là ước lượng hàm số, sử dụng một tập model mạnh hơn, thậm chí có khả năng mô phỏng tất cả dạng hàm số tưởng chừng như là một ý hay. Nhưng thực tế đây lại là một ý tưởng này rất tồi. Vì sao?
+3. **Tập model quá "mạnh"**: khi chọn một dạng model $$f_w$$ và thay đổi $$w$$, ta được một **tập model** (model family). Ví dụ nếu $$f_w$$ là một đa thức bậc một, thì tập model là tập hợp tất cả các đa thức bậc một (có dạng $$y = f_w(x) = w_1x + w_2$$). Dù có vô số đa thức như vậy, nhưng mà đây được xem như một tập model "yếu" bởi vì nó không biểu diễu được các hàm phi tuyến tính. Vì bản chất machine learning là ước lượng hàm số, sử dụng một tập model mạnh hơn, thậm chí có khả năng mô phỏng tất cả dạng hàm số tưởng chừng như là một ý hay. Nhưng thực tế đây lại là một ý tưởng này rất tồi. Vì sao?
 
 Giả sử có một cuộc thi trong đó ta yêu cầu mỗi thí sinh phải vẽ được một đường đi qua nhiều nhất các điểm cho trước. Thí sinh tham dự có 2 người: một người là họa sĩ, anh ta rất khéo tay và có thể vẽ tất cả các loại đường cong thẳng; người còn lại là một anh chàng vụng về với cây thước kẻ, anh ta chỉ có thể vẽ đường thẳng. Dĩ nhiên là anh họa sĩ sẽ thắng trong trò chơi này.
 
