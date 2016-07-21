@@ -63,7 +63,8 @@ Nếu đoán đúng hết tất cả cặp dữ liệu, ta đạt được độ
 Ta có thể định nghĩa độ tốt theo rất nhiều cách khác nữa. Một cách tổng quát, model sẽ được xác định độ tốt dựa trên một hàm mục tiêu có dạng như sau:
 
 $$
-\mathcal{L}_D(f_w) = \frac{1}{|D|} \sum_{(x, y) \in D} L \left( f_w(x), y \right)$$
+\mathcal{L}_D(f_w) = \frac{1}{|D|} \sum_{(x, y) \in D} L \left( f_w(x), y \right)
+$$
 
 Hàm mục tiêu được định nghĩa dựa trên 3 yếu tố:
 
