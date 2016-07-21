@@ -14,7 +14,8 @@ $$
 \begin{equation}
 w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w') \ \ \ \ (1)
 \end{equation}
-$$Có 2 thay đổi đáng chú ý ở đây:
+$$
+Có 2 thay đổi đáng chú ý ở đây:
 
 1. Kí hiệu $$\arg\min_x f(x)$$ có nghĩa là giá trị của $$x$$ để hàm $$f(x)$$ đạt được giá trị cực tiểu. Ví dụ,  $$\arg\min_x x^2 + 1 = 0$$ bởi vì $$ x^2 + 1$$ đạt giá trị cực tiểu (bằng 1) tại $$x = 0$$.
 2. Mình đang giả sử rằng cấu trúc model đã xác định, tức là hai model nếu khác nhau thì chỉ khác nhau về tham số. Khi đó, mình dùng vector tham số $$w$$ để chỉ model thay cho $$f_w$$ (nhưng về bản chất, model vẫn là một hàm số nhé).
@@ -61,7 +62,8 @@ Với mỗi bài toán supervised learning, cho dù có tồn tại một hàm b
 Với một cặp dữ liệu $$(x, y)$$, ta có thể mô tả quá trình biến dạng của nó như sau:
 
 $$
-\tilde{x} = x + \epsilon_x \\ \tilde{y} = f(\tilde{x}) + \epsilon_y$$
+\tilde{x} = x + \epsilon_x \\ \tilde{y} = f(\tilde{x}) + \epsilon_y
+$$
 
 Cuối cùng, dữ liệu thật sự ta nhận được để huấn luyện và kiểm tra model là $$(\tilde{x}, \tilde{y})$$, phiên bản lỗi của $$(x, y)$$. $$\epsilon_x$$ và $$\epsilon_y$$ được gọi là **noise** của $$x$$ và $$y$$. Noise thường được xem là một biến số ngẫu nhiên (random variable), thay đổi tùy theo từng cặp $$(x, y)$$.
 
@@ -86,7 +88,8 @@ Qua ví dụ này, ta thấy là khi áp dụng Occam's razor vào machine learn
 Qua phân tích ở phần trên, chắc các bạn cũng hiểu nôm na overfitting là khi ta quá cố gắng tối thiểu hóa $$\mathcal{L}_{D_{train}}(w)$$ nhưng điều đó lại làm cho $$\mathcal{L}_{D_{test}}(w)$$ lớn. Có nhiều định nghĩa về overfitting. Trong phần này, mình sẽ giới thiệu định nghĩa về overfitting mà mình quen thuộc nhất. Nhưng trước hết, ta cần một định nghĩa về hàm mục tiêu trên một tập dữ liệu vô hạn:
 
 $$
-\mathcal{L}_{\mathcal{D}}(w) = \mathbb{E}_{(x, y) \sim \mathcal{D}} \left[ L \left( f_w(x), y \right)  \right] =\sum_{(x, y)} L \left( f_w(x), y \right) \mathcal{D}(x, y) $$
+\mathcal{L}_{\mathcal{D}}(w) = \mathbb{E}_{(x, y) \sim \mathcal{D}} \left[ L \left( f_w(x), y \right)  \right] =\sum_{(x, y)} L \left( f_w(x), y \right) \mathcal{D}(x, y) 
+$$
 
 $$\mathcal{D}$$ ở đây không phải là một tập dữ liệu mà là một phân bố xác suất lên các cặp dữ liệu $$(x, y)$$, với $$\mathcal{D}(x, y)$$ là xác suất xuất hiện của cặp $$(x, y)$$. Khi nói về một tập dữ liệu "vô hạn", ta ám chỉ đến việc liên tục lấy các mẫu $$(x, y)$$ từ phân bố $$\mathcal{D}$$. Với các bạn chưa quen thuộc khái niệm này, mình sẽ minh họa bằng ví dụ đơn giản sau:
 
