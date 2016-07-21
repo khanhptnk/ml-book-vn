@@ -1,7 +1,7 @@
 # Lời tựa 
 
 
-Xin chào, mình là khanhptnk. Mình là một người đang học và nghiên cứu về Machine Learning. Lĩnh vực mình chuyên sâu cho đến bây giờ là Natural Language Processing (gọi tắt là NLP), tức là làm cho máy tính có khả năng hiểu được ngôn ngữ của con người. Mình không phải là một chuyên gia, kinh nghiệm còn khá non nếu so với các giáo sư đầu ngành nhưng mình rất muốn đem bộ môn này về giới thiệu với các bạn, nhất là các bạn còn đang loay hoay tìm câu trả lời cho câu hỏi: học Tin học sau này làm được gì?
+Xin chào, mình là Nguyễn Xuân Khánh một người đang học và nghiên cứu về Machine Learning. Lĩnh vực mình chuyên sâu cho đến bây giờ là Natural Language Processing (gọi tắt là NLP), tức là làm cho máy tính có khả năng hiểu được ngôn ngữ của con người. Mình không phải là một chuyên gia, kinh nghiệm còn khá non nếu so với các giáo sư đầu ngành nhưng mình rất muốn đem bộ môn này về giới thiệu với các bạn, nhất là các bạn còn đang loay hoay tìm câu trả lời cho câu hỏi: học Tin học sau này làm được gì?
 
 Vào năm 2014, mình có thuyết trình trước lớp một bài giới thiệu về Machine Learning. Nội dung bài viết này phần lớn dựa vào đó. Để giới thiệu về Machine Learning, mình xin dựa vào mối quan hệ của nó với ba khái niệm sau:
 1. Machine Learning và trí tuệ nhân tạo (Artificial Intelligence hay AI)
