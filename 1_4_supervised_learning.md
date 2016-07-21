@@ -2,6 +2,8 @@
 
 Sau khi đi qua RLM, ta đi được phần lớn quãng đường để xây dựng một thuật toán supervised learning hoàn chỉnh. Bài viết này sẽ đưa các bạn đi nốt phần đường còn lại. 
 
+---
+
 ### Tập phát triển
 
 Khi bình thường hóa tham số xuất hiện trong hàm mục tiêu, vấn đề đặt ra là ta không nhất thiết phải đặt giá trị của hằng số bình thường hóa $$\lambda$$ giống nhau cho mọi bài toán. Hơn nữa, ngoài $$\lambda$$, còn có nhiều hyperparameter khác ta cần phải lựa chọn (như bậc của đa thức). Làm sao để chọn được tập giá trị tối ưu cho các hyperparameter với từng bài toán?
@@ -18,9 +20,9 @@ Trong nghiên cứu, tỉ lệ train:dev:test thường được dùng đó là 
 
 ---
 
-Và phút giây được mong chờ đã đến, ta đã tìm được một thuật toán hiệu quả cho supervised learning:
+Và cuối cùng, ta đã tìm được một thuật toán tổng quát cho supervised learning:
 
-1. **Sử dụng tập phát triển để tinh chỉnh hyperameter của model**: với mỗi tập giá trị của các hyperparameter (bao gồm cả $$\lambda$$):
-2. **Huấn luyện**: tìm $$w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(w) + \lambda R(w)$$. Trong quá trình huấn luyện, theo dõi learning curve để áp dụng early stopping. 
-Đánh giá trên tập phát triển: thông báo độ tốt trên tập phát triển là $$\mathcal{L}_{D_{dev}}(w)$$. 
-3. **Đánh giá trên tập kiểm tra**: với model $$w^*$$ cho kết quả tốt nhất ở bước 1, thông báo độ tốt cuối cùng trên tập kiểm tra là $$\mathcal{L}_{D_{test}}(w^*)$$.
+####1. Sử dụng tập phát triển để tinh chỉnh hyperameter của model: với mỗi tập giá trị của các hyperparameter (bao gồm cả $$\lambda$$):
+####a. Huấn luyện: tìm $$w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(w) + \lambda R(w)$$. Trong quá trình huấn luyện, theo dõi learning curve để áp dụng early stopping. 
+####b. Đánh giá trên tập phát triển: thông báo độ tốt trên tập phát triển là $$\mathcal{L}_{D_{dev}}(w)$$. 
+####2. Đánh giá trên tập kiểm tra: với model $$w^*$$ cho kết quả tốt nhất ở bước 1, thông báo độ tốt cuối cùng trên tập kiểm tra là $$\mathcal{L}_{D_{test}}(w^*)$$.
