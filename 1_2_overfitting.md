@@ -62,7 +62,7 @@ Với một cặp dữ liệu $$(x, y)$$, ta có thể mô tả quá trình bi�
 $$
 \tilde{x} = x + \epsilon_x
 $$$$
-\\ \tilde{y} = f(\tilde{x}) + \epsilon_y
+\tilde{y} = f(\tilde{x}) + \epsilon_y
 $$
 
 Cuối cùng, dữ liệu thật sự ta nhận được để huấn luyện và kiểm tra model là $$(\tilde{x}, \tilde{y})$$, phiên bản lỗi của $$(x, y)$$. $$\epsilon_x$$ và $$\epsilon_y$$ được gọi là **noise** của $$x$$ và $$y$$. Noise thường được xem là một biến số ngẫu nhiên (random variable), thay đổi tùy theo từng cặp $$(x, y)$$.
