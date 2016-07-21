@@ -14,41 +14,41 @@ $$
 \begin{equation}
 w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w') \ \ \ \ (1)
 \end{equation}
-$$
+$$Có 2 thay đổi đáng chú ý ở đây:
 
-Có 2 thay đổi đáng chú ý ở đây:
+1. Kí hiệu $$\arg\min_x f(x)$$ có nghĩa là giá trị của $$x$$ để hàm $$f(x)$$ đạt được giá trị cực tiểu. Ví dụ,  $$\arg\min_x x^2 + 1 = 0$$ bởi vì $$ x^2 + 1$$ đạt giá trị cực tiểu (bằng 1) tại $$x = 0$$.
+2. Mình đang giả sử rằng cấu trúc model đã xác định, tức là hai model nếu khác nhau thì chỉ khác nhau về tham số. Khi đó, mình dùng vector tham số $$w$$ để chỉ model thay cho $$f_w$$ (nhưng về bản chất, model vẫn là một hàm số nhé).
 
-Kí hiệu $$\arg\min_x f(x)$$ có nghĩa là giá trị của $$x$$ để hàm $$f(x)$$ đạt được giá trị cực tiểu. Ví dụ,  $$\arg\min_x x^2 + 1 = 0$$ bởi vì $$ x^2 + 1$$ đạt giá trị cực tiểu (bằng 1) tại $$x = 0$$.
-Mình đang giả sử rằng cấu trúc model đã xác định, tức là hai model nếu khác nhau thì chỉ khác nhau về tham số. Khi đó, mình dùng vector tham số $$w$$ để chỉ model thay cho $$f_w$$ (nhưng về bản chất, model vẫn là một hàm số nhé).
-Sử dụng phương trình (1) để tìm ra model được gọi là quy tắc empirical risk minimization (ERM). Mình sẽ giải thích vì sao nó được gọi như vậy. Hàm mục tiêu $$\mathcal{L}_D(w)$$ còn được gọi là hàm rủi ro (risk function) vì nó thể hiện độ sai lệch của một model trên một tập dữ liệu. Chữ "empirical" được thêm vào bởi vì hàm rủi ro này được tính trên một tập dữ liệu hữu hạn. Vì vậy, giá trị của hàm thay đổi tùy theo tập dữ liệu thu thập được. Vậy empirical risk minimization tức là tối thiểu hóa rủi ro trên một tập dữ liệu hữu hạn. Đó chính là những điều mình giới thiệu ở bài trước.
+Sử dụng phương trình (1) để tìm ra model được gọi là quy tắc empirical risk minimization (ERM). Mình sẽ giải thích vì sao nó được gọi như vậy. Hàm mục tiêu $$\mathcal{L}_D(w)$$ còn được gọi là **hàm rủi ro** (risk function) vì nó thể hiện độ sai lệch của một model trên một tập dữ liệu. Chữ *empirical* được thêm vào bởi vì hàm rủi ro này được tính trên một tập dữ liệu hữu hạn. Vì vậy, giá trị của hàm thay đổi tùy theo tập dữ liệu thu thập được. Vậy empirical risk minimization tức là **tối thiểu hóa rủi ro trên một tập dữ liệu hữu hạn**. Đó chính là những điều mình giới thiệu ở bài trước.
 
 ERM không phải là cách duy nhất để tìm ra model từ tập huấn luyện. Trong thực tế, nếu ta ngây thơ áp dụng ERM thì sẽ thường không thu được model có độ tốt cao trên tập kiểm tra. Bài viết này giới thiệu những kiến thức cần thiết để ta đưa ra được một thuật toán supervised learning tốt hơn ERM. Mình sẽ nói kỹ về vấn đề lớn nhất thường gặp phải khi sử dụng ERM, overfitting, và cách khắc phục nó. Overfitting là một trong những khái niệm quan trọng bậc nhất trong machine learning. Vì lượng kiến thức trong bài này khá nhiều, để tránh bị ngộp, mình ra chia làm hai phần. Trong phần này chúng ta sẽ định nghĩa overfitting và tìm hiểu tại sao nó lại được gọi là "bóng ma ám lấy machine learning".
 
-Nào chúng ta lên đường...
+### Occam's razor
 
 Albert Einstein từng có một câu nói nổi tiếng là:
 
-Everything should be made as simple as possible, but no simpler.
+> Everything should be made as simple as possible, but no simpler.
 
 Nghĩa là "mọi thứ nên được tối giản hóa hết mức có thể, nhưng không nên quá mức có thể". Trong machine learning, người ta thường nhắc đến một nguyên tắc gần tương tự gọi là Occam's razor:
 
-Entities must not be multiplied beyond necessity. (Wikipedia)
+> Entities must not be multiplied beyond necessity. ([Wikipedia](https://en.wikipedia.org/wiki/Occam%27s_razor))
 
 Áp dụng vào machine learning, nguyên tắc này được hiểu là:
 
-Trong tất cả các giả thiết có thể giải thích được một hiện tượng, ta nên chọn giả thiết đơn giản nhất. 
+**Trong tất cả các giả thiết có thể giải thích được một hiện tượng, ta nên chọn giả thiết đơn giản nhất. **
 
 Hoặc thậm chí đơn giản hơn:
 
-Trong tất cả các model "đúng", chọn model đơn giản nhất. 
+**Trong tất cả các model "đúng", chọn model đơn giản nhất. 
+**
 
-Lưu ý là ở đây có đến hai điều kiện cần được đảm bảo: giả thiết phải đơn giản nhất nhưng vẫn phải thích được hiện tượng. Rất dễ để áp dụng Occam's razor một cách sai lầm. Ta xét bài toán phân loại thư vào hai loại, spam và không spam. Model đơn giản nhất có thể nghĩ ra đó là random một trong hai lựa chọn với mỗi bức thư. Model này dù tối giản nhưng lại vô dụng và vi phạm Occam's razor vì nó không thể giải thích tính chất spam. Trong một ví dụ khác như sau,
+Lưu ý là ở đây có đến hai điều kiện cần được đảm bảo: giả thiết phải *đơn giản nhất* nhưng vẫn phải *giải thích được hiện tượng*. Rất dễ để áp dụng Occam's razor một cách sai lầm. Ta xét bài toán phân loại thư vào hai loại, spam và không spam. Model đơn giản nhất có thể nghĩ ra đó là random một trong hai lựa chọn với mỗi bức thư. Model này dù tối giản nhưng lại vô dụng và vi phạm Occam's razor vì nó không thể giải thích tính chất spam. Trong một ví dụ khác như trong hình sau,
 
-Overly complicated hypothesis
+![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Overly-complicated-hypothesis.png)
 
 Chọn một đa thức bậc cao phức tạp để "giải thích" (đi qua hết) các điểm màu đen cũng vi phạm Occam's razor bởi vì thực chất ta chỉ cần một đa thức bậc một đơn giản (đường thẳng đỏ) để làm điều đó.
 
-Nhưng vì sao nên tuân thủ Occam's razor?
+### Vì sao nên tuân thủ Occam's razor?
 
 Với mỗi bài toán supervised learning, cho dù có tồn tại một hàm bí ẩn $$f$$ sao cho mối quan hệ giữa label và observation là $$y = f(x)$$, thì dữ liệu trong thực tế cũng không bao giờ phản ánh chính xác được mối quan hệ này. Một trong những nguyên nhân gây ra điều này là do sai số trong dụng cụ đo. Dưới đây là một ví dụ minh họa cho thấy thay vì thu được dữ liệu tuyến tính hoàn hảo ($$y = ax$$) như hình bên trái thì thường tọa độ của các điểm dữ liệu sẽ bị sai lệch như hình bên phải.
 
@@ -56,7 +56,9 @@ Noisy data
 
 Với một cặp dữ liệu $$(x, y)$$, ta có thể mô tả quá trình biến dạng của nó như sau:
 
-$$\tilde{x} = x + \epsilon_x \\ \tilde{y} = f(\tilde{x}) + \epsilon_y$$
+$$
+\tilde{x} = x + \epsilon_x \\ \tilde{y} = f(\tilde{x}) + \epsilon_y
+$$
 
 Cuối cùng, dữ liệu thật sự ta nhận được để huấn luyện và kiểm tra model là $$(\tilde{x}, \tilde{y})$$, phiên bản lỗi của $$(x, y)$$. $$\epsilon_x$$ và $$\epsilon_y$$ được gọi là noise của $$x$$ và $$y$$. Noise thường được xem là một biến số ngẫu nhiên (random variable), thay đổi tùy theo từng cặp $$(x, y)$$.
 
