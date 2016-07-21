@@ -14,11 +14,13 @@ Trong bài viết trước, vì chưa nhắc giới thiệu khái niệm tập p
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/early-stopping-2.png)
 
-Trong nghiên cứu, tỉ lệ train:dev:test thường được dùng đó là 7:1:2.
+Trong nghiên cứu, tỉ lệ train:dev:test thường được dùng đó là **7:1:2**.
+
+---
 
 Và phút giây được mong chờ đã đến, ta đã tìm được một thuật toán hiệu quả cho supervised learning:
 
-Sử dụng tập phát triển để tinh chỉnh hyperameter của model: với mỗi tập giá trị của các hyperparameter (bao gồm cả $$\lambda$$):
-Huấn luyện: tìm $$w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(w) + \lambda R(w)$$. Trong quá trình huấn luyện, theo dõi learning curve để áp dụng early stopping. 
+1. **Sử dụng tập phát triển để tinh chỉnh hyperameter của model**: với mỗi tập giá trị của các hyperparameter (bao gồm cả $$\lambda$$):
+2. **Huấn luyện**: tìm $$w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(w) + \lambda R(w)$$. Trong quá trình huấn luyện, theo dõi learning curve để áp dụng early stopping. 
 Đánh giá trên tập phát triển: thông báo độ tốt trên tập phát triển là $$\mathcal{L}_{D_{dev}}(w)$$. 
-Đánh giá trên tập kiểm tra: với model $$w^*$$ cho kết quả tốt nhất ở bước 1, thông báo độ tốt cuối cùng trên tập kiểm tra là $$\mathcal{L}_{D_{test}}(w^*)$$.
+3. **Đánh giá trên tập kiểm tra**: với model $$w^*$$ cho kết quả tốt nhất ở bước 1, thông báo độ tốt cuối cùng trên tập kiểm tra là $$\mathcal{L}_{D_{test}}(w^*)$$.
