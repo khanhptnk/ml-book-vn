@@ -34,11 +34,14 @@ Tuy đã biết cách để làm cho trò chơi supervised learning trở nên h
 
 Đầu tiên, ta tập trung vào vấn đề thứ hai: giả sử đã tìm được một model $$f_w$$, làm thế nào để thể hiện được độ tốt của nó trên tập kiểm tra bằng một con số cụ thể? Một trong những cách đơn giản nhất đó là đếm xem nó đoán sai bao nhiêu label thật trên tập kiểm tra. Cụ thể hơn, ta giả sử model bị phạt 1 điểm với mỗi lần label dự đoán khác với label thật. Số điểm bị phạt trung bình được gọi là độ sai sót của model (error rate), là một số thực trong đoạn [0, 1]. Theo ngôn ngữ toán học, độ sai sót trên một tập dữ liệu $$D$$ của model $$f_w$$ được tính như sau:
 
-$$ e_D = \frac{1}{|D|} \sum_{(x, y) \in D} \mathbb{I}\{ f_w(x) \neq y \}$$ trong đó:
+$$ e_D = \frac{1}{|D|} \sum_{(x, y) \in D} \mathbb{I}\{ f_w(x) \neq y \}$$ 
 
-$$D$$ là một tập dữ liệu gồm các cặp observation-label $$(x, y)$$.
-$$|D|$$ là lực lượng của tập dữ liệu (số lượng phần tử).
-$$\mathbb{I}\{.\}$$ sẽ trả về 1 nếu logic trong dấu ngoặc nhọn là đúng, 0 nếu sai.
+trong đó:
+
+* $$D$$ là một tập dữ liệu gồm các cặp observation-label $$(x, y)$$.
+* $$|D|$$ là lực lượng của tập dữ liệu (số lượng phần tử).
+* $$\mathbb{I}\{.\}$$ sẽ trả về 1 nếu logic trong dấu ngoặc nhọn là đúng, 0 nếu sai.
+
 Theo ngôn ngữ lập trình, thì pseudocode sẽ trông giống thế này:
 
 ```
