@@ -20,6 +20,8 @@ Trong phần này, chúng ta sẽ hoàn tất những hiểu biết về overfit
 
 Chúng ta sẽ tìm hiểu sâu hơn về nguyên nhân gây ra overfitting. Như chúng ta đã biết, noise không phải là nguyên nhân trực tiếp gây ra overfitting. Vậy những yếu tố nào gây ra overfitting?
 
+---
+
 ### Nguyên nhân gây ra overfitting
 
 Overfitting là sản phẩm của sự cộng hưởng giữa các yếu tố sau:
@@ -30,7 +32,9 @@ Overfitting là sản phẩm của sự cộng hưởng giữa các yếu tố s
 
 3. **Tập model quá "mạnh"**: khi chọn một dạng model $$f_w$$ và thay đổi parameter $$w$$ và các hyperparameter khác, ta được một **tập model** (model family). Ví dụ nếu $$f_w$$ là một đa thức bậc một, thì tập model là tập hợp tất cả các đa thức bậc một (có dạng $$y = f_w(x) = w_1x + w_2$$). Dù có vô số đa thức như vậy, nhưng mà đây được xem như một tập model "yếu" bởi vì nó không biểu diễu được các hàm phi tuyến tính. Vì bản chất machine learning là ước lượng hàm số, sử dụng một tập model mạnh hơn, thậm chí có khả năng mô phỏng tất cả dạng hàm số tưởng chừng như là một ý hay. Nhưng thực tế đây lại là một ý tưởng này rất tồi. Vì sao?
 
-### Vì sao dùngtập model quá mạnh lại không tốt?
+---
+
+### Vì sao dùng tập model quá mạnh lại không tốt?
 
 Giả sử có một cuộc thi trong đó ta yêu cầu mỗi thí sinh phải vẽ được một đường đi qua nhiều nhất các điểm cho trước. Thí sinh tham dự có 2 người: một người là họa sĩ, anh ta rất khéo tay và có thể vẽ tất cả các loại đường cong thẳng; người còn lại là một anh chàng vụng về với cây thước kẻ, anh ta chỉ có thể vẽ đường thẳng. Dĩ nhiên là anh họa sĩ sẽ thắng trong trò chơi này.
 
@@ -39,6 +43,8 @@ Nhưng hãy phân tích phản xạ của hai thí sinh trong tình huống sau 
 Nếu như đây không phải là một cuộc thi vẽ qua nhiều điểm mà là một bài toán machine learning, có lẽ anh họa sĩ đã thua rồi. Bởi vì điểm bị dịch chuyển có thể là do tác động của noise để hòng đánh lừa anh. Anh họa sĩ đại diện cho một tập model cực mạnh, có khả năng mô phỏng mọi hàm số. Một tập model mạnh như vậy rất nhạy cảm với noise và dễ dàng bị overfitting.
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Model-quá-mạnh.png)
+
+---
 
 ### Sự kết hợp giữa các yếu tố gây overfitting 
 
@@ -49,6 +55,8 @@ Các yếu tố gây ra overfitting phải phối hợp với nhau thì mới đ
 2. Làm việc với tập model yếu: các model thường ít bị overfitting mà bị một hội chứng chị em ngược lại với nó, gọi là **underfitting**. Đây là khi model quá đơn giản so với quan hệ cần tìm. Lúc này, dù có tăng thêm dữ liệu cũng không giúp cho model chính xác thêm. Điều cần làm đó là tăng sức mạnh (tăng số lượng tham số hoặc thay đổi dạng) của tập model.
 
 Mình cũng xin dành ra vài dòng để nói về hiện tượng "cuồng" deep learning và áp dụng deep learning lên mọi bài toán. Các model của deep learning là các model mạng neuron cực mạnh nên cần rất nhiều dữ liệu để không bị overfitting. Đó là lý do mà dù các model deep learning này không mới, thậm chí là những model đầu tiên của machine learning, nhưng phải chờ đến kỷ nguyên Big Data hiện tại chúng mới phát huy sức mạnh. Nếu không am hiểu về overfitting và áp dụng deep learning vô tội vạ lên những tập dữ liệu chỉ có vài trăm cặp dữ liệu thì thường đạt đượt kết quả không cao. Khi gặp những điều kiện dữ liệu eo hẹp như vậy, nên bắt đầu từ những model đơn giản hơn trước.  Trong machine learning có một định lý gọi là "no free lunch" nói rằng không có một model nào tốt nhất cho tất cả các loại dữ liệu. Vì thế, tùy vào bài toán, vào tính chất và số lượng dữ liệu sẵn có, ta mới xác định được model phù hợp.
+
+---
 
 ### Regularized risk minimization
 
@@ -67,6 +75,8 @@ $$
 Quy tắc này được gọi là **regularized loss minimization** (RLM), một mở mộng của ERM. Chú ý là đối với hàm mục tiêu của RLM, không nhất thiết là $$\mathcal{L}_{D_{train}}$$ phải đạt giá trị tối thiểu để cho tổng $$\mathcal{L}_{D_{train}} + \lambda R$$ trở nên tối thiểu. Nếu một model tối thiểu hóa $$\mathcal{L}_{D_{train}}$$ nhưng lại làm cho $$R$$ đạt giá trị lớn thì vẫn có cơ hội để chọn một model khác, dù có $$\mathcal{L}_{D_{train}}$$ lớn hơn nhưng lại cho giá trị của $$R$$ nhỏ hơn nhiều. Nói cách khác, ta có thể lựa chọn được một model đơn giản, dù nó không dự đoán hoàn hảo tập huấn luyện. Hàm mục tiêu của RLM đang đưa model đi gần đến Occam's razor hết mức có thể. Ta chấp nhận hy sinh độ chính xác trên tập huấn luyện để giảm độ phức tạp của model, miễn là giảm được hàm mục tiêu tổng. Tuy nhiên, đây là sự đánh đổi hoàn toàn có lợi cho ta.
 
 Hằng số $$\lambda$$ trong hàm mục tiêu được gọi là **hằng số bình thường hóa**, là một hyperparameter của model. Sự xuất hiện của $$\lambda$$ trong hàm mục tiêu làm cho vai trò của $$\mathcal{L}_{D_{train}}$$ và $$R$$ trở nên *bất đối xứng*: nếu ta tăng $$\mathcal{L}_{D_{train}}$$ lên $$1$$ đơn vị thì hàm mục tiêu tăng lên $$1$$ đơn vị; trong khi đó nếu tăng $$R$$ lên $$1$$ đơn vị thì hàm mục tiêu tăng lên thêm $$\lambda$$ đơn vị. Tức là $$1$$ đơn vị của $$\mathcal{L}_{D_{train}}$$ có giá trị bằng $$1 / \lambda$$ đơn vị của $$R$$. Thông thường, ta thường đặt $$\lambda$$ rất nhỏ, ví dụ $$\lambda = 10^{-6}$$. Lúc này, $$1$$ đơn vị của $$\mathcal{L}_{D_{train}}$$ bằng đến $$10^6$$ đơn vị của $$R$$. Điều này thể hiện rằng ta muốn ưu tiên vào tối thiểu hóa $$\mathcal{L}_{D_{train}}$$ hơn là $$R$$.
+
+---
 
 ### Các hàm bình thường hóa thường gặp
 
