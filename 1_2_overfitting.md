@@ -1,17 +1,20 @@
 # Overfitting
 
 
-Trong phần trước, nhằm mục đích đơn giản hóa vấn đề, mình đã phát biểu như sau:
+Trong phần trước, ta đã phát biểu như sau:
 
-Cụ thể hơn, sau khi định nghĩa được hàm mục tiêu, supervised learning có thể được gói gọn trong 2 bước sau:
+> Cụ thể hơn, sau khi định nghĩa được hàm mục tiêu, supervised learning có thể được gói gọn trong 2 bước sau:
 
-Tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
-Thông báo độ tốt của $$f_w$$ là $$\mathcal{L}_{D_{test}}(f_w)$$. 
-Phát biểu này chưa thật tổng quát. Điều mình đã giản lược nằm ở bước 1 của thuật toán. Trước khi biết đó là gì, mình sẽ giới thiệu một cách viết khác ngắn gọn và mang tính toán học hơn của bước 1:
+> 1. Tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
+> 2. Thông báo độ tốt của $$f_w$$ là $$\mathcal{L}_{D_{test}}(f_w)$$. 
 
-$$\begin{equation}
+Phát biểu này không sai nhưng chưa thật tổng quát. Điều mình đã giản lược nằm ở bước 1. Trước khi biết đó là gì, ta hãy xem xét một cách viết khác ngắn gọn và mang tính toán học hơn của bước 1:
+
+$$
+\begin{equation}
 w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w') \ \ \ \ (1)
-\end{equation}$$
+\end{equation}
+$$
 
 Có 2 thay đổi đáng chú ý ở đây:
 
