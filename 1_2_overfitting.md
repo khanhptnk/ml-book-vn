@@ -8,7 +8,7 @@
 > 1. Tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
 > 2. Thông báo độ tốt của $$f_w$$ là $$\mathcal{L}_{D_{test}}(f_w)$$. 
 
-Phát biểu này không sai nhưng chưa thật tổng quát. Điều mình đã giản lược nằm ở bước 1. Trước khi biết đó là gì, ta hãy xem xét một cách viết khác ngắn gọn và mang tính toán học hơn của bước 1:
+Phát biểu này không sai nhưng chưa thật tổng quát. Điều ta đã giản lược nằm ở bước 1. Trước khi biết đó là gì, ta hãy xem xét một cách viết khác ngắn gọn và mang tính toán học hơn của bước 1:
 
 $$
 w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w') \ \ \ \ (1)
@@ -16,11 +16,11 @@ $$
 Có 2 thay đổi đáng chú ý ở đây:
 
 1. Kí hiệu $$\arg\min_x f(x)$$ có nghĩa là giá trị của $$x$$ để hàm $$f(x)$$ đạt được giá trị cực tiểu. Ví dụ,  $$\arg\min_x x^2 + 1 = 0$$ bởi vì $$ x^2 + 1$$ đạt giá trị cực tiểu (bằng 1) tại $$x = 0$$.
-2. Mình đang giả sử rằng cấu trúc model đã xác định, tức là hai model nếu khác nhau thì chỉ khác nhau về tham số. Khi đó, mình dùng vector tham số $$w$$ để chỉ model thay cho $$f_w$$ (nhưng về bản chất, model vẫn là một hàm số nhé).
+2. Ta đang giả sử rằng cấu trúc model đã xác định, tức là hai model nếu khác nhau thì chỉ khác nhau về tham số. Khi đó, ta dùng vector tham số $$w$$ để chỉ model thay cho $$f_w$$ (nhưng về bản chất, model vẫn là một hàm số nhé).
 
-Sử dụng phương trình (1) để tìm ra model được gọi là quy tắc empirical risk minimization (ERM). Mình sẽ giải thích vì sao nó được gọi như vậy. Hàm mục tiêu $$\mathcal{L}_D(w)$$ còn được gọi là **hàm rủi ro** (risk function) vì nó thể hiện độ sai lệch của một model trên một tập dữ liệu. Chữ *empirical* được thêm vào bởi vì hàm rủi ro này được tính trên một tập dữ liệu hữu hạn. Vì vậy, giá trị của hàm thay đổi tùy theo tập dữ liệu thu thập được. Vậy empirical risk minimization tức là **tối thiểu hóa rủi ro trên một tập dữ liệu hữu hạn**. Đó chính là những điều mình giới thiệu ở bài trước.
+Sử dụng phương trình (1) để tìm ra model được gọi là quy tắc empirical risk minimization (ERM). Ta sẽ giải thích vì sao nó được gọi như vậy. Hàm mục tiêu $$\mathcal{L}_D(w)$$ còn được gọi là **hàm rủi ro** (risk function) vì nó thể hiện độ sai lệch của một model trên một tập dữ liệu. Chữ *empirical* được thêm vào bởi vì hàm rủi ro này được tính trên một tập dữ liệu hữu hạn. Vì vậy, giá trị của hàm thay đổi tùy theo tập dữ liệu thu thập được. Vậy empirical risk minimization tức là **tối thiểu hóa rủi ro trên một tập dữ liệu hữu hạn**. Đó chính là những điều ta giới thiệu ở bài trước.
 
-ERM không phải là cách duy nhất để tìm ra model từ tập huấn luyện. Trong thực tế, nếu ta ngây thơ áp dụng ERM thì sẽ thường không thu được model có độ tốt cao trên tập kiểm tra. Bài viết này giới thiệu những kiến thức cần thiết để ta đưa ra được một thuật toán supervised learning tốt hơn ERM. Mình sẽ nói kỹ về vấn đề lớn nhất thường gặp phải khi sử dụng ERM, overfitting, và cách khắc phục nó. Overfitting là một trong những khái niệm quan trọng bậc nhất trong machine learning. Vì lượng kiến thức trong bài này khá nhiều, để tránh bị ngộp, mình ra chia làm hai phần. Trong phần này chúng ta sẽ định nghĩa overfitting và tìm hiểu tại sao nó lại được gọi là "bóng ma ám lấy machine learning".
+ERM không phải là cách duy nhất để tìm ra model từ tập huấn luyện. Trong thực tế, nếu ta ngây thơ áp dụng ERM thì sẽ thường không thu được model có độ tốt cao trên tập kiểm tra. Bài viết này giới thiệu những kiến thức cần thiết để ta đưa ra được một thuật toán supervised learning tốt hơn ERM. Ta sẽ nói kỹ về vấn đề lớn nhất thường gặp phải khi sử dụng ERM, overfitting, và cách khắc phục nó. Overfitting là một trong những khái niệm quan trọng bậc nhất trong machine learning. Trong phần này chúng ta sẽ định nghĩa overfitting và tìm hiểu tại sao nó lại được gọi là "bóng ma ám lấy machine learning".
 
 ---
 
