@@ -1,3 +1,7 @@
 # Chương 1: Supervised Learning
 
-GitBook allows you to organize your book into chapters, each chapter is stored in a separate file like this one.
+Supervised learning là một phương pháp tiếp cận của machine learning đối với việc huấn luyện máy tính. Trong phương pháp này, việc huấn luyện máy tính được dựa trên những quan sát có dán nhãn. Ta có thể hình dung những quan sát này như là những câu hỏi, và nhãn của chúng là những câu trả lời. Ý tưởng của supervised learning là: bằng việc ghi nhớ và tổng quát hóa một số quy tắc từ một tập câu hỏi có đáp án trước, máy tính sẽ có thể trả lời được những câu hỏi chưa từng gặp phải. Điều này mô phỏng việc con người học bằng cách đưa ra dự đoán của mình cho một câu hỏi, sau đó so sánh với đáp án để tìm ra phương pháp để trả lời đúng không chỉ câu hỏi đó, mà cho những câu hỏi khác có liên quan.
+
+Việc các quan sát dùng để huấn luyện máy tính được dán nhãn trước là đòi hỏi bắt buộc của supervised learning. Đây chính là một trong những nhược điểm của phương pháp này, bởi vì không phải lúc nào việc dán nhãn chính xác cho quan sát cũng dễ dàng. Tuy nhiên, đây cũng lại chính là ưu điểm của supervised learning bởi vì một khi đã thu thập được một bộ dữ liệu được dán nhãn lớn, thì việc huấn luyện trở nên dễ dàng hơn rất nhiều so với khi dữ liệu không được dán nhãn. 
+
+Trong chương này, chúng ta sẽ quy supervised learning thành một phương trình toán học đơn giản, thậm chí có thể giải được bằng kiến thức phổ thông. Tuy nhiên, ta sẽ chỉ ra những điểm bất cập khi sử dụng các phương pháp thông thường để tìm lời giải và đưa ra những phương pháp để hạn chế chúng. Từ đó, ta xây dựng được một thuật toán supervised learning tổng quát và hiệu quả. Sau cùng, ta xém xét các biến thể của thuật toán này. 
