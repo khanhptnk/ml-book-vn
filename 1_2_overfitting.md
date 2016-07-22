@@ -1,7 +1,7 @@
 # Overfitting
 
 
-Trong phần trước, ta đã phát biểu như sau:
+Ở cuối phần trước, ta đã phát biểu như sau:
 
 > Cụ thể hơn, sau khi định nghĩa được hàm mục tiêu, supervised learning có thể được gói gọn trong 2 bước sau:
 
