@@ -4,7 +4,7 @@ Tiếp cận supervised learning thực chất không đòi hỏi quá nhiều k
 
 ### Góc nhìn thứ nhất: ước lượng hàm số
 
-Bạn hãy tưởng tượng rằng mình đang chơi một trò chơi với thiên nhiên (là một sức mạnh vô hình điều khiển mọi sự việc của vũ trụ). Đầu tiên, thiên nhiên viết ra một hàm bí ẩn $$f^*$$ nào đó. Sau đó thiên nhiên đưa vào hàm số này một loạt các observation $$x^{(1)}, \cdots, x^{(N)}$$ để tạo ra một loạt các label $$y^{(1)}, \cdots, y^{(N)}$$ tương ứng. Sau đó, thiên nhiên đem giấu hàm $$f^*$$ đi và chỉ chừa lại các cặp observation-label $$(x^{(i)}, y^{(i)})$$ cho chúng ta nhìn thấy. Nhiệm vụ của chúng ta là khôi phục lại được hàm $$f^*$$ bằng một model $$f_w$$ một cách chính xác nhất có thể. Ta gọi đây là **trò chơi supervised learning**.
+Bạn hãy tưởng tượng rằng đang chơi một trò chơi với thiên nhiên (là một sức mạnh vô hình điều khiển mọi sự việc của vũ trụ). Đầu tiên, thiên nhiên viết ra một hàm bí ẩn $$f^*$$ nào đó. Sau đó thiên nhiên đưa vào hàm số này một loạt các observation $$x^{(1)}, \cdots, x^{(N)}$$ để tạo ra một loạt các label $$y^{(1)}, \cdots, y^{(N)}$$ tương ứng. Sau đó, thiên nhiên đem giấu hàm $$f^*$$ đi và chỉ chừa lại các cặp observation-label $$(x^{(i)}, y^{(i)})$$ cho chúng ta nhìn thấy. Nhiệm vụ của chúng ta là khôi phục lại được hàm $$f^*$$ bằng một model $$f_w$$ một cách chính xác nhất có thể. Ta gọi đây là **trò chơi supervised learning**.
 
 Mọi bài toán supervised learning đều có thể được định nghĩa theo cách này. Ví dụ trong bài toán phân loại văn bản, $$x$$ có thể là một văn bản, $$y$$ là chủ đề của văn bản đó, còn $$f^*$$ là một chuyên gia đọc văn bản và tìm ra chủ đề của chúng.
 
