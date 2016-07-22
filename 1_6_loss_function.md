@@ -118,7 +118,7 @@ $$
 
 
 
-Ta thấy rằng hàm perceptron loss là một cách đơn giản nhất để sửa sao cho hàm $$g$$ ở câu hỏi trên trở thành không âm (thỏa điều kiện của một hàm mát). Đối với perceptron loss, khi model đoán đúng ($$\hat{y}$$ cùng dấu với $$y$$), $$- y \cdot \hat{y}$$ sẽ mang dấu âm. Tức là, khi đó $$L_{perceptron}(\hat{y}, y) = \max(0,  negative) = 0$$. Nói cách khác, perceptron loss không phân biệt gì giữa các dự đoán đúng. Chúng đều không bị phạt. Đối với các dự đoán sai, thì perceptron vẫn tuân thủ theo nguyên tắc là model càng thích thì phạt càng nặng. Perceptron loss là hàm mất mát của Perceptron model.
+Ta thấy rằng hàm perceptron loss là một cách đơn giản nhất để sửa sao cho hàm $$g$$ ở câu hỏi trên trở thành không âm (thỏa điều kiện của một hàm mát). Đối với perceptron loss, khi model đoán đúng ($$\hat{y}$$ cùng dấu với $$y$$), $$- y \cdot \hat{y}$$ sẽ mang dấu âm. Tức là, khi đó $$L_{perceptron}(\hat{y}, y) = \max(0,  negative) = 0$$. Nói cách khác, perceptron loss không phân biệt gì giữa các dự đoán đúng. Chúng đều không bị phạt. Đối với các dự đoán sai, thì perceptron vẫn tuân thủ theo nguyên tắc là model càng thích thì phạt càng nặng. Perceptron loss là hàm mất mát của **perceptron model**.
 
 ####Hàm hinge loss
 
@@ -132,7 +132,7 @@ $$
 
 Hinge loss chẳng qua chỉ là một biến thể từ perceptron loss. Ta chỉ thêm 1 đơn vị vào đại lượng $$- y \cdot \hat{y}$$. Số 1 này có một ý nghĩa rất đặt biệt, được gọi là margin (lề). Các bạn sẽ thấy là hinge loss hoạt động gần như tương tự như perceptron loss chỉ trừ các dự đoán mà $$y \cdot \hat{y}$$ nằm trong khoảng $$[0, 1]$$. Chú ý là các dự đoán mà $$y \cdot \hat{y}$$ rơi vào khoảng này thì đều đúng. Hinge loss phân biệt các dự đoán đúng này theo nguyên tắc là model càng thích thì càng phạt nhẹ. Còn khi $$y \cdot \hat{y}$$ vượt quá 1 thì hinge loss lại không phân biệt nữa.
 
-Vì sao lại làm như vậy? Những dự đoán ở trong margin $$[0, 1]$$ là những dự đoán gần ranh giới, là những lúc mà model lưỡng lự. Ý tưởng của hinge loss là muốn model phải thật rõ ràng và tự tin với những quyết định của mình. Do khi vẫn còn trong margin thì model vẫn bị phạt, nên model sẽ được khuyến khích để đưa ra những quyết định đúng và có tính chắc chắn cao, nằm ngoài margin để không bị phạt nữa. Đây chính là ý tưởng của Support Vector Machines model.
+Vì sao lại làm như vậy? Những dự đoán ở trong margin $$[0, 1]$$ là những dự đoán gần ranh giới, là những lúc mà model lưỡng lự. Ý tưởng của hinge loss là muốn model phải thật rõ ràng và tự tin với những quyết định của mình. Do khi vẫn còn trong margin thì model vẫn bị phạt, nên model sẽ được khuyến khích để đưa ra những quyết định đúng và có tính chắc chắn cao, nằm ngoài margin để không bị phạt nữa. Đây chính là ý tưởng của **support vector machines model**.
 
 ####Hàm logistic loss (hay log loss):
 
@@ -144,7 +144,7 @@ $$
 
 
 
-Trong công thức trên, hàm $$\exp(\cdot)$$ là hàm lũy thừa theo cơ số tự nhiên $$e$$. Thoạt nhìn log loss trông có vẻ khá phức tạp, và trông không có vẻ gì là họ hàng của hai hàm còn lại. Tuy nhiên, khi nhìn vào đồ thị của hàm số này, ta lại thấy rất dễ hiểu bởi vì nó thỏa tất cả mọi tính chất của hàm mất mát mà ta đã nói ở phần trước. Đây là một hàm liên tục, không âm và không tăng. Không những không tăng, log loss còn luôn giảm, có nghĩa là nó luôn phân biệt giữa các dự đoán có độ tự tin khác nhau bất kể đúng hay sai. Đây là điểm khác biệt chính của log loss với perceptron loss và hinge loss. Một điểm khác biệt nữa là hàm này có một độ cong nhất định, tức là nó không giảm với tốc độ như nhau ở mọi điểm. Trong khi đó, thì một phần của perceptron loss hoặc hinge loss chỉ là một đường tuyến tính, với tốc độ giảm là một hằng số. Log loss chính là nền tảng của Logistic Regression model.
+Trong công thức trên, hàm $$\exp(\cdot)$$ là hàm lũy thừa theo cơ số tự nhiên $$e$$. Thoạt nhìn log loss trông có vẻ khá phức tạp, và trông không có vẻ gì là họ hàng của hai hàm còn lại. Tuy nhiên, khi nhìn vào đồ thị của hàm số này, ta lại thấy rất dễ hiểu bởi vì nó thỏa tất cả mọi tính chất của hàm mất mát mà ta đã nói ở phần trước. Đây là một hàm liên tục, không âm và không tăng. Không những không tăng, log loss còn luôn giảm, có nghĩa là nó luôn phân biệt giữa các dự đoán có độ tự tin khác nhau bất kể đúng hay sai. Đây là điểm khác biệt chính của log loss với perceptron loss và hinge loss. Một điểm khác biệt nữa là hàm này có một độ cong nhất định, tức là nó không giảm với tốc độ như nhau ở mọi điểm. Trong khi đó, thì một phần của perceptron loss hoặc hinge loss chỉ là một đường tuyến tính, với tốc độ giảm là một hằng số. Log loss chính là nền tảng của **logistic regression model**.
 
 Vậy có phải log loss là một hàm mất mát hoàn hảo? Chưa hẳn, điều này phụ thuộc vào bài toán. Tuy log loss đưa ra nhiều tiêu chí hấp dẫn, nhưng vấn đề model liệu có thể thỏa mãn những tiêu chí được những tiêu chí đó không. Hay chúng ta đang đòi quá nhiều ở model? Việc model phân biệt giữa một đáp đúng với độ chắn chắn thấp và một đáp án đúng với độ chắc chắn cao mang lại lợi ích gì cho ta? Có đôi khi, ta không quan tâm, đáp án nào cũng đều đúng. Có đôi khi, ta lại cần model phải rạch ròi. Có đôi khi, ta chỉ muốn tránh những đáp án có độ chắc chắn thấp; Lúc đó, hinge loss lại là sự lựa chọn tốt hơn. Tất cả đều tùy vào dữ liệu và ứng dụng.
 
