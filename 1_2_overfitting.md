@@ -101,7 +101,8 @@ Giảm thiểu $$\mathcal{L}_{\mathcal{D}}(w)$$ thực ra mới là mục đích
 
 Đến đây, ta định nghĩa overfitting là khi:
 
-####Model quá tập trung vào việc đoán đúng hết tất cả các điểm dữ liệu của tập huấn luyện, nhưng việc đó lại làm giảm khả năng dự đoán của nó trên một tập dữ liệu mới khác. Nói cách khác, khi $$\mathcal{L}_{D_{train}}(w)$$ nhỏ nhưng $$\mathcal{L}_{\mathcal{D}}(w) -\mathcal{L}_{D_{train}}(w)$$ lớn (với $$D_{train}$$ được lấy mẫu từ $$\mathcal{D}$$).
+*Model quá tập trung vào việc đoán đúng hết tất cả các điểm dữ liệu của tập huấn luyện, nhưng việc đó lại làm giảm khả năng dự đoán của nó trên một tập dữ liệu mới khác. Nói cách khác, khi $$\mathcal{L}_{D_{train}}(w)$$ nhỏ nhưng $$\mathcal{L}_{\mathcal{D}}(w) -\mathcal{L}_{D_{train}}(w)$$ lớn (với $$D_{train}$$ được lấy mẫu từ $$\mathcal{D}$$).*
+
 ---
 
 ### Chuẩn đoán overfitting
