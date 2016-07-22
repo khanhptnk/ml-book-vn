@@ -1,6 +1,6 @@
 # Hai góc nhìn về Supervised Learning
 
-Supervised learning có thể được quy về thành một bài toán tối thiểu hàm số cơ bản trong toán học. 
+Tiếp cận supervised learning thực chất không đòi hỏi quá nhiều kiến thức cao siêu. Nó có thể được quy về thành một bài toán tối thiểu hàm số cơ bản trong toán học. 
 
 ### Góc nhìn thứ nhất: ước lượng hàm số
 
