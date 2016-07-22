@@ -1,5 +1,8 @@
 # Các khái niệm cơ bản
 
+Mình 
+
+**Observation** (quan sát):
 
 **Model** (mô hình): trong bài này các bạn chỉ cần hiểu là nó là một hàm số $$f(x)$$, nhận vào một input $$x$$ và trả về một output $$y = f(x)$$. Ta thường gọi input $$x = (x_1, \cdots, x_d)$$ là observation (lưu ý là đây là một vector nhiều chiều). Output $$y$$ được gọi là label, là thứ mà ta muốn dự đoán.
 
