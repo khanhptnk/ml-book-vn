@@ -3,9 +3,7 @@
 
 Xin chào, mình là Nguyễn Xuân Khánh, một người đang học và nghiên cứu về Machine Learning. Lĩnh vực mình chuyên sâu cho đến bây giờ là Natural Language Processing (gọi tắt là NLP), tức là làm cho máy tính có khả năng hiểu được ngôn ngữ của con người. Mình không phải là một chuyên gia, kinh nghiệm còn khá non nếu so với các giáo sư đầu ngành nhưng mình rất muốn đem bộ môn này về giới thiệu với mọi người, nhất là các bạn còn đang loay hoay tìm câu trả lời cho câu hỏi: **học Tin học sau này làm được gì?**
 
-Cuốn sách này được viết nhằm đưa ra một trong rất nhiều câu trả lời cho câu hỏi trên. Nội dung chủ yếu xoay quanh các khái niệm và ứng dụng cơ bản về machine learning.  
-
-Machine learning là một lĩnh vực thu hút rất nhiều sự chú ý hiện nay. Trong giới học thuật, mỗi năm có hàng ngàn bài báo khoa học về đề tài này. Trong giới công nghiệp, từ các công ty lớn như Google, Facebook, Microsoft đến các công ty khởi nghiệp đều đổ vốn liếng vào lĩnh vực này để không bị tụt hậu. Vậy thực chất, machine learning là gì?
+Cuốn sách này được viết nhằm đưa ra một trong rất nhiều câu trả lời cho câu hỏi trên. Nội dung chủ yếu xoay quanh các khái niệm và ứng dụng cơ bản về **machine learning**. Hiện nay, machine learning là một lĩnh vực thu hút rất nhiều sự chú ý. Trong giới học thuật, mỗi năm có hàng ngàn bài báo khoa học về đề tài này. Trong giới công nghiệp, từ các công ty lớn như Google, Facebook, Microsoft đến các công ty khởi nghiệp đều đầu tư vào lĩnh vực này để không bị tụt hậu. Vậy thực chất, machine learning là gì?
 
 Để giới thiệu về Machine Learning, mình xin dựa vào mối quan hệ của nó với ba khái niệm sau:
 1. Machine Learning và **trí tuệ nhân tạo** (Artificial Intelligence hay AI)
