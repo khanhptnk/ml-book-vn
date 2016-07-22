@@ -1,4 +1,4 @@
-# Thuật toán supervised learning tổng quát
+# Tinh chỉnh các hyperparameter
 
 Sau khi đi qua RLM, ta đi được phần lớn quãng đường để xây dựng một thuật toán supervised learning hoàn chỉnh. Bài viết này sẽ đưa các bạn đi nốt phần đường còn lại. 
 
