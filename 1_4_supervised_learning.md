@@ -1,14 +1,12 @@
 # Tinh chỉnh các hyperparameter
 
-Sau khi đi qua RLM, ta đi được phần lớn quãng đường để xây dựng một thuật toán supervised learning hoàn chỉnh. Bài viết này sẽ đưa các bạn đi nốt phần đường còn lại. 
+Khi bình thường hoá tham số xuất hiện trong hàm mục tiêu, vấn đề đặt ra là ta không nhất thiết phải đặt giá trị của hằng số bình thường hoá $$\lambda$$ giống nhau cho mọi bài toán. Hơn nữa, ngoài $$\lambda$$, còn có nhiều hyperparameter khác ta cần phải lựa chọn (như bậc của đa thức). Làm sao để chọn được tập giá trị tối ưu cho các hyperparameter với từng bài toán?
 
 ---
 
 ### Tập phát triển
 
-Khi bình thường hóa tham số xuất hiện trong hàm mục tiêu, vấn đề đặt ra là ta không nhất thiết phải đặt giá trị của hằng số bình thường hóa $$\lambda$$ giống nhau cho mọi bài toán. Hơn nữa, ngoài $$\lambda$$, còn có nhiều hyperparameter khác ta cần phải lựa chọn (như bậc của đa thức). Làm sao để chọn được tập giá trị tối ưu cho các hyperparameter với từng bài toán?
-
-Ta có thể làm như sau: ta chọn một tập giá trị của các hyperparameter, huấn luyện để tìm ra một model rồi đo độ tốt của nó trên tập kiểm tra. Ta tiếp tục lặp lại quá trình này với nhiều tập giá trị hyperparameter khác nhau. Sau nhiều lần thử chọn như vậy, ta chọn tập giá trị nào cho độ sai sót thấp nhất trên tập kiểm tra.
+Để tinh chỉnh các hyperparameter, ta có thể là như sau: chọn một tập giá trị của các hyperparameter, huấn luyện để tìm ra một model rồi đo độ tốt của nó trên tập kiểm tra. Ta tiếp tục lặp lại quá trình này với nhiều tập giá trị hyperparameter khác nhau. Sau nhiều lần thử chọn như vậy, ta chọn tập giá trị nào cho độ sai sót thấp nhất trên tập kiểm tra.
 
 Cẩn thận! Khi dùng tập kiểm tra để xác định hyperparameter, ta đã vi phạm **nguyên tắc train-test độc lập** đã nêu ra ở đầu chương. Nói một cách đơn giản là ta đã sử dụng tập kiểm tra để chọn model. Để khắc phục điều này, ta cần đến một "tập kiểm tra thứ hai", chỉ chuyên dùng để tinh chỉnh các hyperparameter và không dùng để đưa thông báo cuối cùng về độ tốt của model. Ta gọi đấy là **tập phát triển** (development set).
 
