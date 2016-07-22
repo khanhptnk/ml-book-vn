@@ -1,6 +1,6 @@
 # Regularized Risk Minimization 
 
-Trong phần này, chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra một thuật toán supervised learning hiệu quả hơn ERM để chống lại overfitting. Nhưng trước khi đó ta cùng ôn lại những gì đã học ở phần trước bằng một số câu hỏi ngắn như sau:
+Chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra một thuật toán supervised learning hiệu quả hơn ERM để chống lại overfitting. Nhưng trước khi đó ta cùng ôn lại những gì đã học ở phần trước bằng một số câu hỏi ngắn như sau:
 
 **Q1** *: Overfitting là gì?*
 
@@ -18,13 +18,11 @@ Trong phần này, chúng ta sẽ hoàn tất những hiểu biết về overfit
 
 **A4** *: Đây không phải là một câu hỏi đúng vì overfitting là một khái niệm tương đối, tùy theo "cảm giác" của bạn. Nếu bạn đang nói về chuyện làm sao để $$\mathcal{L}_{D_{train}}$$ trùng với $$\mathcal{L}_{\mathcal{D}}$$ thì câu trả lời là không thể, trừ phi có vô hạn dữ liệu.*
 
-Chúng ta sẽ tìm hiểu sâu hơn về nguyên nhân gây ra overfitting. Như chúng ta đã biết, noise không phải là nguyên nhân trực tiếp gây ra overfitting. Vậy những yếu tố nào gây ra overfitting?
-
 ---
 
 ### Nguyên nhân gây ra overfitting
 
-Overfitting là sản phẩm của sự cộng hưởng giữa các yếu tố sau:
+Như chúng ta đã biết, noise không phải là nguyên nhân trực tiếp gây ra overfitting. Vậy những yếu tố nào gây ra overfitting? Overfitting là sản phẩm của sự cộng hưởng giữa các yếu tố sau:
 
 1. **Áp dụng ERM**.
 
