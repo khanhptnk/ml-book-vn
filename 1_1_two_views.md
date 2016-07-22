@@ -8,10 +8,10 @@ Bạn hãy tưởng tượng rằng đang chơi một trò chơi với thiên nh
 
 Mọi bài toán supervised learning đều có thể được định nghĩa theo cách này. Ví dụ trong bài toán phân loại văn bản, $$x$$ có thể là một văn bản, $$y$$ là chủ đề của văn bản đó, còn $$f^*$$ là một chuyên gia đọc văn bản và tìm ra chủ đề của chúng.
 
-**Câu hỏi 1**: *giả sử bằng cách nào đó ta biết được rằng $$f^{*}$$ là đa thức bậc 2, tức là $$y = f^{*}(x) = ax_1^2 + bx_2 + c$$, thì cần bao nhiêu cặp $$(x^{(i)}, y^{(i)})$$ để xác định được parameter của $$f^{*}$$?
+**Q1**: *giả sử bằng cách nào đó ta biết được rằng $$f^{*}$$ là đa thức bậc 2, tức là $$y = f^{*}(x) = ax_1^2 + bx_2 + c$$, thì cần bao nhiêu cặp $$(x^{(i)}, y^{(i)})$$ để xác định được parameter của $$f^{*}$$?
 *
 
-**Trả lời**: *Với mỗi cặp $$(x^{(i)}, y^{(i)})$$ ta xây dựng được một phương trình $$y^{(i)} = f^*(x^{(i)})$$. Vì có 3 ẩn nên ta cần chỉ cần 3 phương trình là giải ra được tham số (nếu tồn tại), tức là cần 3 cặp dữ liệu.* 
+**A1**: *Với mỗi cặp $$(x^{(i)}, y^{(i)})$$ ta xây dựng được một phương trình $$y^{(i)} = f^*(x^{(i)})$$. Vì có 3 ẩn nên ta cần chỉ cần 3 phương trình là giải ra được tham số (nếu tồn tại), tức là cần 3 cặp dữ liệu.* 
 
 Tuy nhiên trong thực tế thì mọi chuyện không đơn giản như vậy. Supervised learning đối mặt với nghịch lý sau đây: vì ta không thể nào giao tiếp được với tự nhiên, nên sẽ không bao giờ biết được $$f^{*}$$ có dạng như thế nào. Vì thế, dù ta có đưa ra một model $$f$$ để ước lượng $$f^{*}$$, cũng không ai biết $$f^{*}$$ là gì để cho biết là ta đang đúng hay sai. Nói cách khác, supervised learning là một trò chơi dự đoán mà không có đáp án đúng. 
 
@@ -22,9 +22,9 @@ Cho đến giờ, người ta vẫn phải làm thí nghiệm trong thực tế 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/05/ML101-accuracy.png)
 
 
-**Câu hỏi 2**: *Tại sao không dùng tất cả dữ liệu để tìm ra $$f_w$$ rồi đánh giá $$f_w$$ trên đó luôn?*
+**Q2**: *Tại sao không dùng tất cả dữ liệu để tìm ra $$f_w$$ rồi đánh giá $$f_w$$ trên đó luôn?*
 
-**Trả lời**: *Trong machine learning, có một nguyên tắc vô cùng, vô cùng quan trọng mà ai cũng phải nhớ: đó là quá trình huấn luyện và kiểm tra phải độc lập với nhau! Có rất nhiều cách để vi phạm nguyên tắc này, và điều dẫn đến một hậu quả "thảm khốc", overfitting. Mình sẽ giải thích về hiện tượng này trong một dịp khác. Nói nôm na là model của bạn sẽ chẳng học được gì khác ngoài những gì nó đã nhìn thấy. Vì thế, bạn phải chia dữ liệu ra thành tập huấn luyện và kiểm tra, và phải làm điều này trước khi huấn luyện và kiểm tra. Tỉ lệ 80:20 ở ví dụ trên là tỉ lệ train:test thường được áp dụng.*
+**A2**: *Trong machine learning, có một nguyên tắc vô cùng, vô cùng quan trọng mà ai cũng phải nhớ: đó là quá trình huấn luyện và kiểm tra phải độc lập với nhau! Có rất nhiều cách để vi phạm nguyên tắc này, và điều dẫn đến một hậu quả "thảm khốc", overfitting. Mình sẽ giải thích về hiện tượng này trong một dịp khác. Nói nôm na là model của bạn sẽ chẳng học được gì khác ngoài những gì nó đã nhìn thấy. Vì thế, bạn phải chia dữ liệu ra thành tập huấn luyện và kiểm tra, và phải làm điều này trước khi huấn luyện và kiểm tra. Tỉ lệ 80:20 ở ví dụ trên là tỉ lệ train:test thường được áp dụng.*
 
 Tuy đã biết cách để làm cho trò chơi supervised learning trở nên hợp lệ, nhưng ta vẫn chưa thể chơi được. Có hai vấn đề phát sinh, đó là:
 
