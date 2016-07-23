@@ -76,7 +76,6 @@ Hàm mục tiêu được định nghĩa dựa trên 3 yếu tố:
 1. Làm sao để tìm ra được một model tốt từ tập huấn luyện? $$\rightarrow$$ tìm model cực tiểu hóa giá trị hàm mục tiêu trên tập huấn luyện.
 2. Thế nào là một model tốt trên tập kiểm tra? $$\rightarrow$$ model cho giá trị hàm mục tiêu trên tập kiểm tra càng nhỏ thì càng tốt.
 
----
 Cụ thể hơn, sau khi định nghĩa được hàm mục tiêu, supervised learning có thể được gói gọn trong 2 bước sau:
 
 1. **Huấn luyện**: tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
