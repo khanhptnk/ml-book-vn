@@ -1,4 +1,4 @@
-# Regularized Risk Minimization 
+# Regularized Loss Minimization 
 
 Chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra một thuật toán supervised learning hiệu quả hơn ERM để chống lại overfitting. Nhưng trước khi đó ta cùng ôn lại những gì đã học ở phần trước bằng một số câu hỏi ngắn như sau:
 
@@ -56,7 +56,7 @@ Mình cũng xin dành ra vài dòng để nói về hiện tượng "cuồng" de
 
 ---
 
-### Regularized risk minimization
+### Regularized loss minimization
 
 Trong bài trước, ta đã biết được một phương pháp để giảm thiểu overfitting, **early stopping**. Ba yếu tố gây ra overfitting cũng gợi ý cho chúng ta những cách khác để khắc phục vấn đề này. Trong đó, yếu tố thứ hai đưa ra giải pháp đơn giản nhất: tăng kích thước tập huấn luyện. Sau đây, mình sẽ giới thiệu một phương pháp nhằm loại trừ đi yếu tố thứ nhất và thứ ba, được gọi là phương pháp **bình thường hóa tham số** (regularization). Phương pháp này sẽ thay đổi hàm mục tiêu của ERM nhằm hạn chế sức mạnh của model.
 
