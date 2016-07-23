@@ -1,7 +1,7 @@
 # Summary
 
 * [Lời tựa](README.md)
-* Machine learning là gì
+* [Machine learning là gì](intro.md)
 * [Supervised Learning](chapter1.md)
    * [Các khái niệm cơ bản](terms.md)
    * [Hai góc nhìn về supervised learning](1_1_two_views.md)
