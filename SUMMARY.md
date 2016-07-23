@@ -9,4 +9,5 @@
    * [Tinh chỉnh các hyperparameter](1_4_hyper.md)
    * [Thuật toán supervised learning tổng quát](1_5_supervised_learning.md)
    * [Hàm mất mát](1_6_loss_function.md)
+* Machine learning là gì
 
