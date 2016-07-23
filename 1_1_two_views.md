@@ -79,10 +79,9 @@ Hàm mục tiêu được định nghĩa dựa trên 3 yếu tố:
 ---
 Cụ thể hơn, sau khi định nghĩa được hàm mục tiêu, supervised learning có thể được gói gọn trong 2 bước sau:
 
-1. Tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
-2. Thông báo độ tốt của $$f_w$$ là $$\mathcal{L}_{D_{test}}(f_w)$$.
+1. **Huấn luyện**: tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
+2. **Kiểm tra**: thông báo độ tốt của $$f_w$$ là $$\mathcal{L}_{D_{test}}(f_w)$$.
 
 với $$D_{train}$$ và $$D_{test}$$ lần lượt là tập huấn luyện và tập kiểm tra.
 
----
 
