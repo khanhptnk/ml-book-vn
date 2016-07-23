@@ -18,8 +18,6 @@ Chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra m
 
 **A4** *: Đây không phải là một câu hỏi đúng vì overfitting là một khái niệm tương đối, tùy theo "cảm giác" của bạn. Nếu bạn đang nói về chuyện làm sao để $$\mathcal{L}_{D_{train}}$$ trùng với $$\mathcal{L}_{\mathcal{D}}$$ thì câu trả lời là không thể, trừ phi có vô hạn dữ liệu.*
 
----
-
 ### Nguyên nhân gây ra overfitting
 
 Như chúng ta đã biết, noise không phải là nguyên nhân trực tiếp gây ra overfitting. Vậy những yếu tố nào gây ra overfitting? Overfitting là sản phẩm của sự cộng hưởng giữa các yếu tố sau:
@@ -30,7 +28,6 @@ Như chúng ta đã biết, noise không phải là nguyên nhân trực tiếp 
 
 3. **Tập model quá "mạnh"**: khi chọn một dạng model $$f_w$$ và thay đổi parameter $$w$$ và các hyperparameter khác, ta được một **tập model** (model family). Ví dụ nếu $$f_w$$ là một đa thức bậc một, thì tập model là tập hợp tất cả các đa thức bậc một (có dạng $$y = f_w(x) = w_1x + w_2$$). Dù có vô số đa thức như vậy, nhưng mà đây được xem như một tập model "yếu" bởi vì nó không biểu diễu được các hàm phi tuyến tính. Vì bản chất machine learning là ước lượng hàm số, sử dụng một tập model mạnh hơn, thậm chí có khả năng mô phỏng tất cả dạng hàm số tưởng chừng như là một ý hay. Nhưng thực tế đây lại là một ý tưởng này rất tồi. Vì sao?
 
----
 
 ### Vì sao dùng tập model quá mạnh lại không tốt?
 
@@ -42,7 +39,6 @@ Nếu như đây không phải là một cuộc thi vẽ qua nhiều điểm mà
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Model-quá-mạnh.png)
 
----
 
 ### Sự kết hợp giữa các yếu tố gây overfitting 
 
@@ -54,7 +50,6 @@ Các yếu tố gây ra overfitting phải phối hợp với nhau thì mới đ
 
 Mình cũng xin dành ra vài dòng để nói về hiện tượng "cuồng" deep learning và áp dụng deep learning lên mọi bài toán. Các model của deep learning là các model mạng neuron cực mạnh nên cần rất nhiều dữ liệu để không bị overfitting. Đó là lý do mà dù các model deep learning này không mới, thậm chí là những model đầu tiên của machine learning, nhưng phải chờ đến kỷ nguyên Big Data hiện tại chúng mới phát huy sức mạnh. Nếu không am hiểu về overfitting và áp dụng deep learning vô tội vạ lên những tập dữ liệu chỉ có vài trăm cặp dữ liệu thì thường đạt đượt kết quả không cao. Khi gặp những điều kiện dữ liệu eo hẹp như vậy, nên bắt đầu từ những model đơn giản hơn trước.  Trong machine learning có một định lý gọi là "no free lunch" nói rằng không có một model nào tốt nhất cho tất cả các loại dữ liệu. Vì thế, tùy vào bài toán, vào tính chất và số lượng dữ liệu sẵn có, ta mới xác định được model phù hợp.
 
----
 
 ### Regularized loss minimization
 
@@ -73,8 +68,6 @@ $$
 Quy tắc này được gọi là **regularized loss minimization** (RLM), một mở mộng của ERM. Chú ý là đối với hàm mục tiêu của RLM, không nhất thiết là $$\mathcal{L}_{D_{train}}$$ phải đạt giá trị tối thiểu để cho tổng $$\mathcal{L}_{D_{train}} + \lambda R$$ trở nên tối thiểu. Nếu một model tối thiểu hóa $$\mathcal{L}_{D_{train}}$$ nhưng lại làm cho $$R$$ đạt giá trị lớn thì vẫn có cơ hội để chọn một model khác, dù có $$\mathcal{L}_{D_{train}}$$ lớn hơn nhưng lại cho giá trị của $$R$$ nhỏ hơn nhiều. Nói cách khác, ta có thể lựa chọn được một model đơn giản, dù nó không dự đoán hoàn hảo tập huấn luyện. Hàm mục tiêu của RLM đang đưa model đi gần đến Occam's razor hết mức có thể. Ta chấp nhận hy sinh độ chính xác trên tập huấn luyện để giảm độ phức tạp của model, miễn là giảm được hàm mục tiêu tổng. Tuy nhiên, đây là sự đánh đổi hoàn toàn có lợi cho ta.
 
 Hằng số $$\lambda$$ trong hàm mục tiêu được gọi là **hằng số bình thường hóa**, là một hyperparameter của model. Sự xuất hiện của $$\lambda$$ trong hàm mục tiêu làm cho vai trò của $$\mathcal{L}_{D_{train}}$$ và $$R$$ trở nên *bất đối xứng*: nếu ta tăng $$\mathcal{L}_{D_{train}}$$ lên $$1$$ đơn vị thì hàm mục tiêu tăng lên $$1$$ đơn vị; trong khi đó nếu tăng $$R$$ lên $$1$$ đơn vị thì hàm mục tiêu tăng lên thêm $$\lambda$$ đơn vị. Tức là $$1$$ đơn vị của $$\mathcal{L}_{D_{train}}$$ có giá trị bằng $$1 / \lambda$$ đơn vị của $$R$$. Thông thường, ta thường đặt $$\lambda$$ rất nhỏ, ví dụ $$\lambda = 10^{-6}$$. Lúc này, $$1$$ đơn vị của $$\mathcal{L}_{D_{train}}$$ bằng đến $$10^6$$ đơn vị của $$R$$. Điều này thể hiện rằng ta muốn ưu tiên vào tối thiểu hóa $$\mathcal{L}_{D_{train}}$$ hơn là $$R$$.
-
----
 
 ### Các hàm bình thường hóa thường gặp
 
