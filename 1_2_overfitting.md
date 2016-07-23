@@ -25,8 +25,6 @@ Sử dụng phương trình (1) để tìm ra model được gọi là quy tắc
 
 ERM không phải là cách duy nhất để tìm ra model từ tập huấn luyện. Trong thực tế, nếu ta ngây thơ áp dụng ERM thì sẽ thường không thu được model có độ tốt cao trên tập kiểm tra. Bài viết này giới thiệu những kiến thức cần thiết để ta đưa ra được một thuật toán supervised learning tốt hơn ERM. Ta sẽ nói kỹ về vấn đề lớn nhất thường gặp phải khi sử dụng ERM, overfitting, và cách khắc phục nó. Overfitting là một trong những khái niệm quan trọng bậc nhất trong machine learning. Trong phần này chúng ta sẽ định nghĩa overfitting và tìm hiểu tại sao nó lại được gọi là "bóng ma ám lấy machine learning".
 
----
-
 ### Occam's razor
 
 Albert Einstein từng có một câu nói nổi tiếng là:
@@ -52,7 +50,6 @@ Lưu ý là ở đây có đến hai điều kiện cần được đảm bảo:
 
 Chọn một đa thức bậc cao phức tạp để "giải thích" (đi qua hết) các điểm màu đen cũng vi phạm Occam's razor bởi vì thực chất ta chỉ cần một đa thức bậc một đơn giản (đường thẳng đỏ) để làm điều đó.
 
----
 
 ### Noise
 
@@ -84,8 +81,6 @@ Trong trường hợp này, nếu áp dụng ERM ta sẽ chọn đường xanh d
 
 Qua ví dụ này, ta thấy là khi áp dụng Occam's razor vào machine learning, ta không cần phải tuân thủ nó quá chặt chẽ. Sự xuất hiện của noise làm cho hai tiêu chuẩn của Occam's razor rất khó được bảo toàn: để giải thích được đúng hơn tập huấn luyện vốn chứa noise, ta buộc phải tăng độ phức tạp của model, và ngược lại. Vì thế, điều ta cần làm là cân bằng giữa hai điều kiện, đưa model gần với Occam's razor nhất có thể: chọn một model đơn giản vừa phải và giải thích được tập huấn luyện tương đối đúng, nhằm đạt được sai số nhỏ trên tập kiểm tra.
 
----
-
 ### Overfitting
 
 Qua phân tích ở phần trên, chắc các bạn cũng hiểu nôm na overfitting là khi ta quá cố gắng tối thiểu hóa $$\mathcal{L}_{D_{train}}(w)$$ nhưng điều đó lại làm cho $$\mathcal{L}_{D_{test}}(w)$$ lớn. Có nhiều định nghĩa về overfitting. Trong phần này, mình sẽ giới thiệu định nghĩa về overfitting mà mình quen thuộc nhất. Nhưng trước hết, ta cần một định nghĩa về hàm mục tiêu trên một tập dữ liệu vô hạn:
@@ -106,7 +101,6 @@ Giảm thiểu $$\mathcal{L}_{\mathcal{D}}(w)$$ thực ra mới là mục đích
 
 *Model quá tập trung vào việc đoán đúng hết tất cả các điểm dữ liệu của tập huấn luyện, nhưng việc đó lại làm giảm khả năng dự đoán của nó trên một tập dữ liệu mới khác. Nói cách khác, khi $$\mathcal{L}_{D_{train}}(w)$$ nhỏ nhưng $$\mathcal{L}_{\mathcal{D}}(w) -\mathcal{L}_{D_{train}}(w)$$ lớn (với $$D_{train}$$ được lấy mẫu từ $$\mathcal{D}$$).*
 
----
 
 ### Chuẩn đoán overfitting
 
