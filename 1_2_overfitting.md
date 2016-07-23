@@ -28,15 +28,15 @@ ERM không phải là cách duy nhất để tìm ra model từ tập huấn luy
 
 Albert Einstein từng có một câu nói nổi tiếng là:
 
-> Everything should be made as simple as possible, but no simpler.
+*Everything should be made as simple as possible, but no simpler.*
 
 Nghĩa là "mọi thứ nên được tối giản hóa hết mức có thể, nhưng không nên quá mức có thể". Trong machine learning, người ta thường nhắc đến một nguyên tắc gần tương tự gọi là Occam's razor:
 
-> Entities must not be multiplied beyond necessity. ([Wikipedia](https://en.wikipedia.org/wiki/Occam%27s_razor))
+*Entities must not be multiplied beyond necessity.* ([Wikipedia](https://en.wikipedia.org/wiki/Occam%27s_razor))
 
 Áp dụng vào machine learning, nguyên tắc này được hiểu là:
 
-**Trong tất cả các giả thiết có thể giải thích được một hiện tượng, ta nên chọn giả thiết đơn giản nhất. **
+*Trong tất cả các giả thiết có thể giải thích được một hiện tượng, ta nên chọn giả thiết đơn giản nhất. *
 
 Hoặc thậm chí đơn giản hơn:
 
