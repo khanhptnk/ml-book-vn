@@ -5,3 +5,4 @@ Xin chào, mình là Nguyễn Xuân Khánh, một người đang học và nghi�
 
 Cuốn sách này được viết nhằm đưa ra một trong rất nhiều câu trả lời cho câu hỏi trên. Nội dung chủ yếu giới thiệu về một lĩnh vực thu hút rất nhiều sự chú ý trong vài năm gần đây, **machine learning**. Cuốn sách tập trung vào các khái niệm và ứng dụng cơ bản trong lĩnh vực này, nhằm giúp người đọc có đọc nền tảng học thuật vững chắc trước khi đi sâu hơn vào nghiên cứu và sáng chế. 
 
+Ngày 20/7/2016
