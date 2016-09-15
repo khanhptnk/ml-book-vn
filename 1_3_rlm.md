@@ -73,11 +73,11 @@ Hằng số $$\lambda$$ trong hàm mục tiêu được gọi là **hằng số 
 
 $$R(w)$$ thường gặp nhất là norm của vector. Có rất nhiều loại norm, mình sẽ giới thiệu hai loại norm phổ biến nhất.
 
-**1-norm**: $$ R(w) = ||w||_1 = \sum_{i = 1}^d |w_i|$$ 
+**1-norm** (L1-norm): $$ R(w) = ||w||_1 = \sum_{i = 1}^d |w_i|$$ 
 
 tức là tổng của trị tuyệt đối của các thành phần. 1-norm đặc biệt ở chỗ là, khi đưa vào hàm mục tiêu, nó sẽ thường cho ra model thưa, tức là một vector $$w$$ có nhiều thành phần bằng 0. Model thưa rất có lợi thế trong tính toán và lưu trữ vì ta có thể phớt lờ đi các thành phần bằng 0.
 
-**squared 2-norm**: $$ R(w) = ||w||_2^2 = \sum_{i = 1}^d w_i^2$$ 
+**squared 2-norm** (L2-norm): $$ R(w) = ||w||_2^2 = \sum_{i = 1}^d w_i^2$$ 
 
 chính là bình phương độ dài của vector $$w$$. Sở dĩ ta phải bình phương là để giúp cho việc tính đạo hàm được dễ hơn khi tối ưu hàm mục tiêu. Mình sẽ nói kỹ hơn về vấn đề này vào dịp khác.
 
