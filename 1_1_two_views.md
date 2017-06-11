@@ -8,7 +8,7 @@ Bạn hãy tưởng tượng rằng đang chơi một trò chơi với thiên nh
 
 Mọi bài toán supervised learning đều có thể được định nghĩa theo cách này. Ví dụ trong bài toán phân loại văn bản, observation $$x$$ có thể là một văn bản, label $$y$$ là chủ đề của văn bản đó, còn $$f^*$$ là một chuyên gia đọc văn bản và tìm ra chủ đề của chúng.
 
-**Q1**: _giả sử bằng cách nào đó ta biết được rằng _$$x = (x_1, x_2)$$_ \(vector 2 chiều\) và _$$y = f^*(x) = ax_1^2 + bx_2 + c$$. Cần bao nhiêu điểm dữ liệu $$(x, y)$$ để có thể tìm ra parameter$$(a, b, c)$$?
+**Q1**:_ Giả sử bằng cách nào đó ta biết được rằng _$$x = (x_1, x_2)$$_ \(vector 2 chiều\) và _$$y = f^*(x) = ax_1^2 + bx_2 + c$$_. Cần bao nhiêu điểm dữ liệu _$$(x, y)$$_ để có thể tìm ra parameter_$$(a, b, c)$$_?_
 
 **A1**: Với mỗi cặp $$(x, y)$$ ta xây dựng được một phương trình $$y = ax_1^2 + bx_2 + c$$. Vì có 3 ẩn nên ta cần chỉ cần 3 phương trình là giải ra được tham số \(nếu tồn tại\). Tức là cần 3 điểm dữ liệu.
 
