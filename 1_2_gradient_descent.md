@@ -1,4 +1,4 @@
-# Train (huấn luyện) model với gradient descent
+# Train model với gradient descent
 
 Trong hai quá trình của supervised learning (train và test) thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. 
 
