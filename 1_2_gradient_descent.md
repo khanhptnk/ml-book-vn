@@ -2,7 +2,7 @@
 
 Trong hai quá trình của supervised learning (train và test) thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. 
 
-Quá trình train phức tạp hơn nhiều vì nó phải đảm bảo rằng model phải có khả năng tổng quát hóa. Tức là model không chỉ tốt trên train set mà còn phải tốt trên test set (chứa dữ liệu không được nhìn thấy lúc train).
+Quá trình train phức tạp hơn nhiều vì nó phải đảm bảo rằng model phải có khả năng tổng quát hóa. Tức là model không chỉ tốt trên train set mà còn phải tốt trên test set (chứa dữ liệu không được model nhìn thấy lúc train).
 
 ### Vì sao không dùng error rate để train model?
 
