@@ -6,7 +6,7 @@ Quá trình train phức tạp hơn nhiều vì nó phải đảm bảo rằng m
 
 ### Vì sao không dùng error rate để train model?
 
-Để trả lời câu hỏi bạn cần phải đọc cả bài viết. Ở đây mình chỉ nói sơ qua lý do. 
+Để trả lời câu hỏi bạn cần phải đọc cả bài viết. Trong phần n mình chỉ nói sơ qua lý do. 
 
 Như ta đã biết, quá trình train model về bản chất là tối ưu một hàm số. Từ kiến thức đã học từ cấp 3, ta cũng biết rằng việc tối ưu hàm số có liên quan đến đạo hàm (ví dụ như đạo hàm ở điểm cực tiểu của một hàm số bằng 0). Trong bài viết này, ta sẽ giới thiệu phương pháp tối ưu hàm số bằng gradient descent, tức là dùng gradient (đạo hàm nhiều biến) để dẫn lối cho ta đi 
 đến điểm cực tiểu. Bạn có thể hình dung việc này như là đi tìm thung lũng thấp nhất trong một vùng núi non. Cách đơn giản nhất là bạn cứ thả mình lăn xuống dốc cho đến khi nào dừng lại. Gradient giống nhưng tổng lực của lực hấp dẫn và phản lực của mặt đất, sẽ kéo bạn lăn về nơi thấp hơn cho đến khi mặt đất không còn dốc nữa.
