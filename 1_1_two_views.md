@@ -10,7 +10,7 @@ Mọi bài toán supervised learning đều có thể được định nghĩa th
 
 **Q1**:_ Giả sử bằng cách nào đó ta biết được rằng _$$x = (x_1, x_2)$$_ \(vector 2 chiều\) và _$$y = f^*(x) = ax_1^2 + bx_2 + c$$_. Cần bao nhiêu điểm dữ liệu _$$(x, y)$$_ để có thể tìm ra parameter_$$(a, b, c)$$_?_
 
-**A1**: Với mỗi cặp $$(x, y)$$ ta xây dựng được một phương trình $$y = ax_1^2 + bx_2 + c$$. Vì có 3 ẩn nên ta cần chỉ cần 3 phương trình là giải ra được tham số \(nếu tồn tại\). Tức là cần 3 điểm dữ liệu.
+**A1**: Với mỗi cặp $$(x, y)$$ ta xây dựng được một phương trình $$y = ax_1^2 + bx_2 + c$$. Vì có 3 ẩn nên ta cần chỉ cần 3 phương trình là giải ra được tham số \(nếu tồn tại\). Tức là cần 3 điểm dữ liệu. 
 
 Tuy nhiên trong thực tế thì mọi chuyện không đơn giản như vậy. Supervised learning đối mặt với nghịch lý sau đây: vì ta không thể nào giao tiếp được với tự nhiên, nên sẽ không bao giờ biết được $$f^{*}$$ có dạng như thế nào. Vì thế, dù ta có đưa ra một model $$f$$ để ước lượng $$f^{*}$$, cũng không ai biết $$f^{*}$$ là gì để cho biết là ta đang đúng hay sai. Nói cách khác, supervised learning là một trò chơi dự đoán mà không có đáp án đúng.
 
