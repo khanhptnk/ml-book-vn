@@ -1,5 +1,7 @@
 # Hai góc nhìn về Supervised Learning
 
+Ở bài này mình đưa ra một định nghĩa sơ lược. Định nghĩa này không hoàn toàn chính xác nhưng nó giúp ta hiểu một cách khái quát nhất về supervised learning. Dần dần trong các bài học sau chúng ta sẽ cải tiến để hoàn chỉnh định nghĩa này. 
+
 Tiếp cận supervised learning thực chất không đòi hỏi quá nhiều kiến thức cao siêu. Nó có thể được quy về thành một bài toán tối thiểu hàm số cơ bản trong toán học.
 
 ### Góc nhìn thứ nhất: ước lượng hàm số

@@ -1,21 +1,47 @@
 # Gradient descent
 
-Trong hai quá trình của supervised learning, train và test, đã được giới thiệu ở bài trước thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. Quá trình train phức tạp hơn vì nó phải đảm bảo rằng model phải có khả năng tổng quát hóa trên dữ liệu mới. Nói một cách đơn giản là model không chỉ tốt trên train set mà còn phải tốt trên test set.
+Trong hai quá trình của supervised learning, train và test, đã được giới thiệu ở bài trước thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. Quá trình train phức tạp hơn vì nó phải đảm bảo rằng model phải có khả năng tổng quát hóa trên dữ liệu mới. Trong một bài toán machine learning, độ tốt của model trên test set là thước đo chính xác nhất và quan trọng nhất về khả năng học của model. Vì thế quá trình train phải đảm bảo model dự đoán tốt trên test set.
 
-Cũng đã nói ở bài trước, quá trình train là việc tìm ra model dự đoán "khá" chính xác trên train set. Vì sao là "khá" chính xác mà không phải là chính xác hoàn toàn? Bởi vì model dự đoán hoàn chính xác trên train set có thể dự đoán rất tệ trên test set, nếu hai set này rất khác nhau. Điều giống như việc bạn bị "trật tủ" khi đi vậy (ôn một đằng đề ra một kiểu). Thế nên ta cần chừa ra một khoảng "không chính xác" để bù lại model dự đoán trên dữ liệu chưa nhìn thấy tốt hơn (gọi là khả năng tổng quát hóa). 
+### Objective function
+
+Để dự đoán tốt nhất trên test set, cách đơn giản nhất là tìm model dự đoán tốt nhất trên train set, và *hy vọng* rằng nó cũng sẽ tốt trên test set.
+Vì thế, ở bài trước ta phát biểu rằng quá trình train là tìm ra model tối thiểu hóa evaluation function trên train set. Tuy nhiên, cách làm thực sự đang đơn giản hóa vấn đề và thực tế không hiệu quả. Ta sẽ có hai thay đổi để làm nó tốt hơn.
+
+Thứ nhất, quá trình train là việc tìm ra model dự đoán "khá" chính xác trên train set. Vì sao là "khá" chính xác mà không phải là chính xác hoàn toàn? Model dự đoán hoàn chính xác trên train set có thể dự đoán rất tệ trên test set, nếu hai set này rất khác nhau. Điều giống như việc bạn bị "trật tủ" khi đi vậy (ôn một đằng đề ra một kiểu). Thế nên ta cần chừa ra một khoảng "không chính xác" để bù lại model dự đoán trên dữ liệu chưa nhìn thấy tốt hơn (gọi là khả năng tổng quát hóa). 
 
 Tuy nhiên, để đơn giản, bây giờ ta cứ hiểu là cần tìm một model dự đoán tốt nhất trên train set. Ta sẽ có nhiều điều chỉnh để model tổng quát hóa tốt hơn sau.
 
 Với cách hiểu này, việc train chỉ đơn là tìm ra model tối thiểu hóa evaluation function được tính trên train set. 
 
-
 $$
 \min_w \mathcal{L}_{D_{train}}(f_w)
 $$
 
-Ví dụ nếu evaluation là error rate, ta chỉ việc tìm model đoán đúng nhiều label nhất trên train set. Nghe rất hợp lý phải không nào! Nhưng câu hỏi là làm sao để tìm ra? 
+Ví dụ nếu loss function là error rate, thì mục tiêu của ta là tìm ra model đoán đúng nhiều label nhất trên train set. Nghe rất hợp lý phải không nào! Nhưng làm sao để tìm ra? 
 
-Tối ưu những hàm như error rate rất khó. Trên thực tế người ta sẽ tối ưu những dạng hàm khác? Những hàm đó là gì? Phương nào dùng để tìm ra model tối ưu cho những hàm đó? Chúng ta sẽ cùng tìm hiểu trong bài này :)
+Tối ưu những loss function như error rate rất khó. Trên thực tế người ta sẽ tối ưu những dạng loss function khác? Những hàm đó là gì? Chúng có tính chất gì giúp tìm ra model tối ưu dễ dàng hơn? Phương nào dùng để tìm ra model tối ưu cho những hàm đó? Chúng ta sẽ cùng tìm hiểu trong bài này :)
+
+### Objective function
+
+
+
+### Mục đích của huấn luyện
+
+Mục đích của huấn luyện là tìm ra model . Vì model là một hàm số $f_{\theta}$ có parameter là $\theta$, theo ngôn ngữ toán học, mục đích này chính là **tìm ra tham số $\theta^*$ tối ưu sao cho trung bình loss function trên training set là nhỏ nhất**:
+
+$$ \theta^* = \arg \min_{\theta} \mathcal{L}(\theta) = \arg \min_{\theta} \frac{1}{|D_{train}|} \sum_{(x, y) \in D_{train}} L(f_{\theta}(x), y)$$ với $D_{train}$ là training set. Kí hiệu $|D_{train}|$ nghĩa là số phần tử của training set. 
+
+$\mathcal{L}(\theta)$ được gọi là **objective function** (hàm mục tiêu).
+
+**Nâng cao**: để đơn giản hóa, mình đã bỏ bớt regularization trong hàm mục tiêu. Bạn có thể xem thêm về regularization [tại đây](https://ml-book-vn.khanhxnguyen.com/1_3_rlm.html).
+
+Bài toán này là một dạng của **function optimization** (tối ưu hàm số). Ở đây vì $\theta$ không có điều kiện gì ràng buộc nên được gọi là **unconstrained optimization**. 
+
+Nếu không có công thức trực tiếp cho $\theta^*$, ta bắt buộc phải làm nhỏ dần $\mathcal{L}(\theta)$ qua nhiều bước. Ta bắt đầu với một $\theta$ ngẫu nhiên, và tìm cách làm cho $\theta$ càng ngày càng tiến gần tới giá trị tối ưu $\theta^*$. Cách làm như vậy được gọi là một **iterative method**. Mỗi lần forward và backward chính là một bước biến đổi $\theta$ để làm $\mathcal{L}(\theta)$ nhỏ dần đi.
+
+Nếu ai đã quen thuộc với **binary search** thì sẽ nhận ra thuật toán này cũng mang tư tưởng tương tự. Binary search thực chất là một dạng đặc biệt của function optimization với hàm được tối ưu chính là giá trị tuyệt đối giữa dự đoán hiện tại và giá trị cần tìm. 
+
+
 
 ### Vì sao không dùng error rate để train model?
 
@@ -39,18 +65,3 @@ Vì thế người ta không tối thiểu error rate trong lúc train. Thay và
 
 Hàm được tối thiểu lúc train gọi là **objective function** (để phân biệt với **evaluation function** lúc test).
 
-### Mục đích của huấn luyện
-
-Mục đích của huấn luyện là tìm ra model . Vì model là một hàm số $f_{\theta}$ có parameter là $\theta$, theo ngôn ngữ toán học, mục đích này chính là **tìm ra tham số $\theta^*$ tối ưu sao cho trung bình loss function trên training set là nhỏ nhất**:
-
-$$ \theta^* = \arg \min_{\theta} \mathcal{L}(\theta) = \arg \min_{\theta} \frac{1}{|D_{train}|} \sum_{(x, y) \in D_{train}} L(f_{\theta}(x), y)$$ với $D_{train}$ là training set. Kí hiệu $|D_{train}|$ nghĩa là số phần tử của training set. 
-
-$\mathcal{L}(\theta)$ được gọi là **objective function** (hàm mục tiêu).
-
-**Nâng cao**: để đơn giản hóa, mình đã bỏ bớt regularization trong hàm mục tiêu. Bạn có thể xem thêm về regularization [tại đây](https://ml-book-vn.khanhxnguyen.com/1_3_rlm.html).
-
-Bài toán này là một dạng của **function optimization** (tối ưu hàm số). Ở đây vì $\theta$ không có điều kiện gì ràng buộc nên được gọi là **unconstrained optimization**. 
-
-Nếu không có công thức trực tiếp cho $\theta^*$, ta bắt buộc phải làm nhỏ dần $\mathcal{L}(\theta)$ qua nhiều bước. Ta bắt đầu với một $\theta$ ngẫu nhiên, và tìm cách làm cho $\theta$ càng ngày càng tiến gần tới giá trị tối ưu $\theta^*$. Cách làm như vậy được gọi là một **iterative method**. Mỗi lần forward và backward chính là một bước biến đổi $\theta$ để làm $\mathcal{L}(\theta)$ nhỏ dần đi.
-
-Nếu ai đã quen thuộc với **binary search** thì sẽ nhận ra thuật toán này cũng mang tư tưởng tương tự. Binary search thực chất là một dạng đặc biệt của function optimization với hàm được tối ưu chính là giá trị tuyệt đối giữa dự đoán hiện tại và giá trị cần tìm. 
