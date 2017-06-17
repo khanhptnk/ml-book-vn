@@ -1,8 +1,21 @@
-# Train model với gradient descent
+# Gradient descent
 
-Trong hai quá trình của supervised learning (train và test) thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. 
+Trong hai quá trình của supervised learning, train và test, đã được giới thiệu ở bài trước thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. Quá trình train phức tạp hơn vì nó phải đảm bảo rằng model phải có khả năng tổng quát hóa trên dữ liệu mới. Nói một cách đơn giản là model không chỉ tốt trên train set mà còn phải tốt trên test set.
 
-Quá trình train phức tạp hơn nhiều vì nó phải đảm bảo rằng model phải có khả năng tổng quát hóa. Tức là model không chỉ tốt trên train set mà còn phải tốt trên test set (chứa dữ liệu không được model nhìn thấy lúc train).
+Cũng đã nói ở bài trước, quá trình train là việc tìm ra model dự đoán "khá" chính xác trên train set. Vì sao là "khá" chính xác mà không phải là chính xác hoàn toàn? Bởi vì model dự đoán hoàn chính xác trên train set có thể dự đoán rất tệ trên test set, nếu hai set này rất khác nhau. Điều giống như việc bạn bị "trật tủ" khi đi vậy (ôn một đằng đề ra một kiểu). Thế nên ta cần chừa ra một khoảng "không chính xác" để bù lại model dự đoán trên dữ liệu chưa nhìn thấy tốt hơn (gọi là khả năng tổng quát hóa). 
+
+Tuy nhiên, để đơn giản, bây giờ ta cứ hiểu là cần tìm một model dự đoán tốt nhất trên train set. Ta sẽ có nhiều điều chỉnh để model tổng quát hóa tốt hơn sau.
+
+Với cách hiểu này, việc train chỉ đơn là tìm ra model tối thiểu hóa evaluation function được tính trên train set. 
+
+
+$$
+\min_w \mathcal{L}_{D_{train}}(f_w)
+$$
+
+Ví dụ nếu evaluation là error rate, ta chỉ việc tìm model đoán đúng nhiều label nhất trên train set. Nghe rất hợp lý phải không nào! Nhưng câu hỏi là làm sao để tìm ra? 
+
+Tối ưu những hàm như error rate rất khó. Trên thực tế người ta sẽ tối ưu những dạng hàm khác? Những hàm đó là gì? Phương nào dùng để tìm ra model tối ưu cho những hàm đó? Chúng ta sẽ cùng tìm hiểu trong bài này :)
 
 ### Vì sao không dùng error rate để train model?
 
