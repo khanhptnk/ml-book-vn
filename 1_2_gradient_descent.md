@@ -9,23 +9,7 @@ Vì thế, ở bài trước ta phát biểu rằng quá trình train là tìm r
 
 Thứ nhất, quá trình train là việc tìm ra model dự đoán "khá" chính xác trên train set. Vì sao là "khá" chính xác mà không phải là chính xác hoàn toàn? Các bạn thấy là không có điều gì đảm bảo model dự đoán hoàn chính xác trên train set cũng dự đoán tốt trên test set cả. Thậm chí nó có thể dự đoán rất tệ nếu test set rất khác với train set. Điều giống như việc bạn bị "trật tủ" khi đi vậy (ôn một đằng đề ra một kiểu). Ví dụ bạn train một model để dịch từ Anh-Việt, thì không ai đem model đó để test xem nó dịch Anh-Pháp tốt đến đâu. Thậm chí nếu model dịch Anh-Việt chỉ được train bằng cách văn bản ngành sinh học, rất khó để nó có thể dịch văn bản ngành toán học tốt vì văn phong hai ngành này khác nhau. Đây gọi là bài toán domain adaption, vô cùng khó trong machine learning. Thường trong các bài toán đơn giản, bạn có một khối dữ liệu lớn từ một nguồn, rồi tách ra lấy 8 phần để train, 2 phần để test. Vì thế mà train set và test set sẽ có cùng một nguồn, nói chính xác hơn là cùng một phân bố xác suất. Nhưng mà dù có gần giống nhau như vậy, hai set này cũng vẫn có những khác biệt nhất định. Ta phải đánh đổi giữa sự chi tiết (specificity) và khả năng tổng quát hóa (generalizability) của model. Model càng dự đoán tập train chính xác thì lại càng chi tiết, vì nó phải xem xét giải quyết từng observation một. Có khi một observation không tuân theo quy luật nào cả, model phải đặt ra ngoại lệ, những quy luật mà chỉ đúng với mỗi observation đó hoặc số ít khác. Việc đặt ra quá nhiều ngoại lệ làm giảm khả năng tổng quát hóa của model. Thế nên, để hạn chế những ngoại lệ này, ta chỉ cần model đoán "khá" chính xác trên train set mà thôi. Bù lại model sẽ tổng quát hơn và đoán chính xác hơn trên test set. Suy cho cùng, độ tốt trên test set mới là thứ ta quan tâm sau cùng. 
 
-Thứ hai, khi train model không tối thiểu evaluation function mà tối thiểu objective function. Trong trường hợp lý tưởng, hai hàm này trùng nhau. Tuy nhiên, trong đa số trường hợp chúng không giống nhau. Các bạn cảm thấy kì lạ đúng không? Chúng ta dạy model làm tốt một mục tiêu lúc train, nhưng lúc test lại muốn model làm tốt trên một mục tiêu khác. Chúng ta dạy một đằng, nhưng mà lại ra đều một nẻo. Tại sao lại kì lạ như vậy? Lý do là vì evaluation function thường rất khó để tối thiểu hó bằng cách phương pháp toán học (sẽ giải thích ngay sau phần này). Hiểu đơn giản là evaluation function thường có dạng đúng hết thì mới có điểm, cho nên nếu đoán sai thì không biết làm sai để sửa chữa và tiến bộ. Objective function cho chúng ta partial credit, tức là đúng tới đâu cho điểm tới đó, trả lời thế nào cũng có điểm  
-
-Tuy nhiên, để đơn giản, bây giờ ta cứ hiểu là cần tìm một model dự đoán tốt nhất trên train set. Ta sẽ có nhiều điều chỉnh để model tổng quát hóa tốt hơn sau.
-
-Với cách hiểu này, việc train chỉ đơn là tìm ra model tối thiểu hóa evaluation function được tính trên train set. 
-
-$$
-\min_w \mathcal{L}_{D_{train}}(f_w)
-$$
-
-Ví dụ nếu loss function là error rate, thì mục tiêu của ta là tìm ra model đoán đúng nhiều label nhất trên train set. Nghe rất hợp lý phải không nào! Nhưng làm sao để tìm ra? 
-
-Tối ưu những loss function như error rate rất khó. Trên thực tế người ta sẽ tối ưu những dạng loss function khác? Những hàm đó là gì? Chúng có tính chất gì giúp tìm ra model tối ưu dễ dàng hơn? Phương nào dùng để tìm ra model tối ưu cho những hàm đó? Chúng ta sẽ cùng tìm hiểu trong bài này :)
-
-### Objective function
-
-
+Thứ hai, khi train model không tối thiểu evaluation function mà tối thiểu **objective function**. Trong trường hợp lý tưởng, hai hàm này trùng nhau. Tuy nhiên, trong đa số trường hợp chúng không giống nhau. Các bạn cảm thấy kì lạ đúng không? Chúng ta dạy model làm tốt một mục tiêu lúc train, nhưng lúc test lại muốn model làm tốt trên một mục tiêu khác. Chúng ta dạy một đằng, nhưng mà lại ra đều một nẻo. Tại sao lại kì lạ như vậy? Lý do là vì evaluation function thường rất khó để tối thiểu hó bằng cách phương pháp toán học (sẽ giải thích ngay sau phần này). Hiểu đơn giản là evaluation function thường có dạng đúng hết thì mới có điểm, cho nên nếu đoán sai thì không biết làm sai để sửa chữa và tiến bộ. Objective function cho chúng ta partial credit, tức là đúng tới đâu cho điểm tới đó, trả lời thế nào cũng có điểm. Vì thế ta có thể tận dụng để thay đổi câu trả lời một chút xem điểm tăng hay giảm, dần dần tìm ra câu trả lời đúng. Objective function được thiết kế có mối quan hệ chặt chẽ với evaluation function, sao cho model tối thiểu hóa objective function cũng tối thiểu hóa evaluation function.
 
 ### Mục đích của huấn luyện
 
