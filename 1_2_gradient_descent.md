@@ -4,7 +4,7 @@ Trong hai quá trình của supervised learning, train và test, thì quá trìn
 
 ### Mục tiêu tối thượng của supervised learning
 
-Khi nói đến việc "giải" một bài toán supervised learning tức là ta đang nói đến việc tìm một phương pháp huấn luyện trên training set sao cho model dự đoán tốt trên test set. Người qua thường ít quan tâm đến độ tốt của model trên training set bởi vì nó thường rất cao. Độ tốt trên training set chỉ thể hiện được khả năng ghi nhớ của model về những gì đã nhìn thấy. Với một trí thông minh thật sự, ta cần thêm khả năng tổng quát hóa, chính là việc dự đoán tốt trên dữ liệu chưa hề được nhìn thấy.
+Khi nói đến việc "giải" một bài toán supervised learning tức là ta đang nói đến việc tìm một phương pháp huấn luyện trên training set sao cho model dự đoán tốt trên test set. Người qua thường ít quan tâm đến độ tốt của model trên training set bởi vì nó thường rất cao. Độ tốt trên training set chỉ thể hiện được khả năng ghi nhớ của model về những gì đã nhìn thấy. Với một trí thông minh thật sự, ta cần thêm khả năng tổng quát hóa, chính là việc dự đoán tốt trên dữ liệu *chưa hề* được nhìn thấy.
 
 ### Objective function
 
