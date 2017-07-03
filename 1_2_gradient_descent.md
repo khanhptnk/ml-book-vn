@@ -1,4 +1,4 @@
-# # Gradient descent (in progress)
+## Objective function
 
 Trong hai quá trình của supervised learning, train và test, thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. Quá trình train phức tạp hơn vì nó phải đảm bảo rằng model phải có khả năng dự đoán tốt trên test set (là dữ liệu không được model nhìn thấy lúc train). Bài viết giải thích tại sao không thể sử dụng các evaluation function như error rate để train model, và giới thiệu về khái niệm objective function. 
 
