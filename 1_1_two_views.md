@@ -63,7 +63,7 @@ error_rate = error_rate / N
 
 **Độ sai sót càng thấp, thì model càng tốt**. Nếu đoán đúng hết tất cả cặp dữ liệu, ta đạt được độ sai sót "trong mơ", 0%. Nhưng nên nhớ đấy là kết quả được đo trên một test set hữu hạn. Kết quả này chỉ đưa ra được một chặn trên và chặn dưới cho kết quả trên tập vô hạn \(muốn biết rõ, xem thêm về [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem)\). Nói cách khác, nếu tự nhiên có gửi đến một test set mới để đánh giá $$f_w$$, thì chưa chắc ta có thể lặp lại được độ sai sót giống như trên test set cũ. Độ sai sót được đánh giá trên test set càng lớn thì càng đáng tin cậy.
 
-Ta có thể định nghĩa độ tốt theo rất nhiều cách khác nữa. Một cách tổng quát, model sẽ được xác định độ tốt dựa trên giá trị trung bình của **evaluation function** trên test set:
+Ta có thể định nghĩa độ tốt theo rất nhiều cách khác nữa. Tổng quát, model sẽ được xác định độ tốt dựa trên giá trị trung bình của **evaluation function** trên test set:
 
 $$
 \mathcal{L}_{D_{test}}(f_w) = \frac{1}{|D_{test}|} \sum_{(x, y) \in D_{test}} L \left( f_w(x), y \right)
