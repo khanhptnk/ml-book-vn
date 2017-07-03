@@ -16,15 +16,19 @@ Tuy nhiên, cách làm này thực sự đang đơn giản hóa vấn đề và 
 
 Thứ nhất, khi train model ta chỉ muốn *tìm ra model dự đoán "khá" chính xác trên training set mà thôi*. Vì sao là "khá" chính xác mà không phải là chính xác hoàn toàn? 
 
-Không có điều gì đảm bảo model dự đoán hoàn chính xác trên train set cũng dự đoán tốt trên test set cả. Thậm chí nó có thể dự đoán rất tệ nếu test set rất khác với train set. Điều giống như việc bạn bị "trật tủ" khi đi vậy (ôn một đằng đề ra một kiểu). Thường trong các bài toán, bạn có một khối dữ liệu lớn từ một nguồn nào đó rồi chia ra 80% để train và 20% để test. Vì thế mà train set và test set sẽ có cùng một nguồn, nói chính xác hơn là cùng một phân bố xác suất. Nhưng mà dù có gần giống nhau như vậy, hai set này cũng vẫn có những khác biệt nhất định. Ta phải đánh đổi giữa khả năng ghi nhớ và khả năng tổng quát hóa của model. Model muốn ghi nhớ càng tốt thì lại càng phải xử lý nhiều trường hợp ngoại lệ. Có khi một observation $$x$$ được label là $$y$$ theo một logic rất kì lạ và hiếm gặp, model phải đặt ra ngoại lệ, những quy luật mà chỉ đúng với mỗi observation đó hoặc số ít khác. Việc đặt ra quá nhiều ngoại lệ làm giảm khả năng tổng quát hóa của model vì khả năng ghi nhớ của nó có hạn. Thế nên, để hạn chế những ngoại lệ này, ta chỉ cần model đoán "khá" chính xác trên train set mà thôi. Bù lại model sẽ tổng quát hơn và đoán chính xác hơn trên test set. Suy cho cùng, độ tốt trên test set mới là thứ ta quan tâm sau cùng. 
+Không có điều gì đảm bảo model dự đoán hoàn chính xác trên train set cũng dự đoán tốt trên test set cả. Thậm chí nó có thể dự đoán rất tệ nếu test set rất khác với train set. Điều giống như việc bạn bị "trật tủ" khi đi vậy (ôn một đằng đề ra một kiểu). Thường trong các bài toán, bạn có một khối dữ liệu lớn từ một nguồn nào đó rồi chia ra 80% để train và 20% để test. Vì thế mà train set và test set sẽ có cùng một nguồn, nói chính xác hơn là cùng một phân bố xác suất. Nhưng mà dù có gần giống nhau như vậy, hai set này cũng vẫn có những khác biệt nhất định. Ta phải đánh đổi giữa khả năng ghi nhớ và khả năng tổng quát hóa của model. Model muốn ghi nhớ càng tốt thì lại càng phải xử lý nhiều trường hợp ngoại lệ. Có khi một observation $$x$$ được label là $$y$$ theo một logic rất kì lạ và hiếm gặp. Lúc này, model phải đặt ra ngoại lệ, những quy luật mà chỉ đúng với mỗi observation đó hoặc số ít khác. Việc đặt ra quá nhiều ngoại lệ làm model bớt tính tổng quát. Để hạn chế những ngoại lệ này, ta chỉ cần model đoán "khá" chính xác trên train set mà thôi. Bù lại model sẽ tổng quát hơn và đoán chính xác hơn trên test set. Suy cho cùng, độ tốt trên test set mới là thứ ta quan tâm sau cùng. 
 
-Thứ hai, trong phát biểu trên ta dùng evaluation function cho cả train và test. Đây là một trường hợp rất lý tưởng và hiếm gặp trong thực tiễn. Trong đa số trường hợp, hàm được model tối ưu lúc train sẽ không phải là hàm dùng để đánh giá nó.  chúng không giống nhau. Các bạn cảm thấy kì lạ đúng không? Tại sao chúng ta "dạy" một đằng, nhưng mà lại "ra đề" một nẻo? Lý do là vì evaluation function thường dùng (như error rate) thường rất khó để tối thiểu hóa bằng cách phương pháp toán học (sẽ giải thích ngay sau phần này). Lý do khái quát là do các evaluation function này thường có dạng:
+Thứ hai, trong phát biểu trên ta dùng evaluation function cho cả train và test. Đây là một trường hợp rất lý tưởng và hiếm gặp trong thực tiễn. Trong đa số trường hợp, *hàm được model tối ưu lúc train sẽ không phải là evaluation function*. Kì lạ đúng không? Tại sao chúng ta "dạy" một đằng, nhưng mà lại "ra đề" một nẻo? Lý do là vì evaluation function thường dùng (như error rate) thường rất khó để tối thiểu hóa bằng các phương pháp toán học (sẽ giải thích ngay sau phần này). Lý do khái quát là do các evaluation function này thường có dạng:
 (a) Đúng hết thì mới có điểm, hoặc 
 (b) Tổng của các hàm có dạng như (a). 
 
 Đối với những hàm như vậy, nếu model đoán sai thì không biết sửa chữa theo hướng nào để tiến bộ hơn.
 
-Hàm được model tối ưu lúc train gọi là **objective function** để phân biệt với evaluation function lúc test. Objective function thường cho partial credit, tức là đúng tới đâu cho điểm tới đó và dự đoán thế nào cũng có điểm. Model có thể tận dụng điều này để thay đổi câu trả lời một chút xem điểm tăng hay giảm, dần dần tìm ra câu trả lời đúng. Objective function được thiết kế có mối quan hệ chặt chẽ với evaluation function, sao cho model tối thiểu hóa objective function cũng tối thiểu hóa evaluation function.
+Ta gọi hàm được model tối ưu lúc train là **objective function** để phân biệt với evaluation function lúc test. Objective function thường cho *partial credit*, tức là đúng tới đâu cho điểm tới đó và dự đoán thế nào cũng có điểm. Model có thể tận dụng điều này để thay đổi câu trả lời một chút xem điểm tăng hay giảm, dần dần tìm ra câu trả lời đúng. Objective function được thiết kế có mối quan hệ chặt chẽ với evaluation function, sao cho model tối thiểu hóa objective function cũng tối thiểu hóa evaluation function.
+
+Đến đây ta phát biểu lại về hai quá trình của supervised learning:
+1. **Train**: tìm model tối thiểu hóa objective function.
+2. **Test**: đo độ tốt của model trên test set bằng evaluation function.
 
 
 ### Vì sao không dùng error rate để train model?
@@ -40,8 +44,6 @@ $$ hầu hết mang giá trị 1. Chỉ đến điểm mà $$f_w(x) = y$$, hàm 
 
 ![](/assets/error rate demo.png)
 
-Gỉa sử model đang lạc ở vùng mà error đang có giá trị là 1. Xung quanh gần đó hoàn toàn là một vùng bằng phẳng. Model không thể nhìn rất xa nên không thể nào biết được là đi thêm về bên phải một đoạn đạt được error thấp hơn là 0. Ví dụ này chỉ là minh tất nhiên trong thực tế, model không chỉ đơn giản là đi về phía bên phải là có thể tối thiểu hóa được error rate. 
+Ở đây model của chúng ta đang được giả định là chỉ có 1 tham số. Việc đi sang trái/phải thể hiện cho việc tăng/giảm tham số đó. Gỉa sử model đang lạc ở vùng mà error rate đang có giá trị là 1. Xung quanh gần đó hoàn toàn là một vùng bằng phẳng (gradient bằng 0). Model không thể nhìn rất xa nên không thể nào biết được là đi thêm về bên phải một đoạn đạt được error rate thấp hơn là 0. Tất nhiên trong thực tế, model có rất nhiều tham số ta phải ra quyết định tăng hay giảm cho từng tham số. 
 
-Đến đây ta phát biểu lại về hai quá trình của supervised learning:
-1. **Train**: tìm model tối thiểu hóa objective function.
-2. **Test**: đo độ tốt của model trên test set bằng evaluation function.
+
