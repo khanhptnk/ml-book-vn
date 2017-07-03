@@ -1,6 +1,6 @@
-# Gradient descent
+# Gradient descent (in progress)
 
-Trong hai quá trình của supervised learning, train và test, đã được giới thiệu ở bài trước thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. Quá trình train phức tạp hơn vì nó phải đảm bảo rằng model phải có khả năng tổng quát hóa trên dữ liệu mới. Trong một bài toán machine learning, độ tốt của model trên test set là thước đo chính xác nhất và quan trọng nhất về khả năng học của model. Vì thế quá trình train phải đảm bảo model dự đoán tốt trên test set.
+Trong hai quá trình của supervised learning, train và test, thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. Quá trình train phức tạp hơn vì nó phải đảm bảo rằng model phải có khả năng dự đoán tốt trên test set (là dữ liệu không được model nhìn thấy lúc train). 
 
 ### Objective function
 
