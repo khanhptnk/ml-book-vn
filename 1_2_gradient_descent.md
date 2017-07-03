@@ -9,8 +9,8 @@ Khi nói đến việc "giải" một bài toán supervised learning tức là t
 ### Objective function
 
 Để dự đoán tốt nhất trên test set, cách đơn giản nhất là tìm model dự đoán tốt nhất trên training set, và *hy vọng* rằng nó cũng sẽ dự đoán tốt trên test set. Vì thế, ở bài trước ta phát biểu rằng:
-1. **Train** (huấn luyện): tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
-2. **Test** (kiểm tra): thông báo độ tốt của $$f_w$$ là $$\mathcal{L}_{D_{test}}(f_w)$$.
+1. **Train**: tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
+2. **Test**: thông báo độ tốt của $$f_w$$ là $$\mathcal{L}_{D_{test}}(f_w)$$.
 
 Tuy nhiên, cách làm này thực sự đang đơn giản hóa vấn đề và thực tế không hiệu quả. Ta sẽ tìm ra **2 vấn đề** trong phát biểu trên và thay đổi để làm nó thực tế và hiệu quả hơn.
 
