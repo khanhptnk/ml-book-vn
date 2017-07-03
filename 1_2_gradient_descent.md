@@ -43,5 +43,5 @@ $$ hầu hết mang giá trị 1. Chỉ đến điểm mà $$f_w(x) = y$$, hàm 
 Gỉa sử model đang lạc ở vùng mà error đang có giá trị là 1. Xung quanh gần đó hoàn toàn là một vùng bằng phẳng. Model không thể nhìn rất xa nên không thể nào biết được là đi thêm về bên phải một đoạn đạt được error thấp hơn là 0. Ví dụ này chỉ là minh tất nhiên trong thực tế, model không chỉ đơn giản là đi về phía bên phải là có thể tối thiểu hóa được error rate. 
 
 Đến đây ta phát biểu lại về hai quá trình của supervised learning:
-1. **Train** (huấn luyện): tìm model tối thiểu hóa objective function.
-2. **Test** (kiểm tra): đo độ tốt của model trên test set bằng evaluation function.
+1. **Train**: tìm model tối thiểu hóa objective function.
+2. **Test**: đo độ tốt của model trên test set bằng evaluation function.
