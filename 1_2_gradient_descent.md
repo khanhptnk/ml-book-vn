@@ -2,7 +2,7 @@
 
 Trong hai quá trình của supervised learning, train và test, thì quá trình test đơn giản hơn vì bạn chỉ việc đưa observation vào model, nhận về label dự đoán, và tính giá trị của evaluation function trên test set. Quá trình train phức tạp hơn vì nó phải đảm bảo rằng model phải có khả năng dự đoán tốt trên test set (là dữ liệu không được model nhìn thấy lúc train). Bài viết giải thích tại sao không thể sử dụng các evaluation function như error rate để train model, và giới thiệu về khái niệm objective function. 
 
-### Mục tiêu tối thượng
+### Mục tiêu tối thượng của supervised learning
 
 Khi nói đến việc "giải" một bài toán supervised learning tức là ta đang nói đến việc tìm một phương pháp huấn luyện trên training set sao cho model dự đoán tốt trên test set. Người qua thường ít quan tâm đến độ tốt của model trên training set bởi vì nó thường rất cao. Độ tốt trên training set chỉ thể hiện được sự ghi nhớ của model về những gì đã nhìn thấy. Với một trí thông minh thật sự, ta cần thêm khả năng tổng quát hóa, chính là việc dự đoán tốt trên dữ liệu chưa hề được nhìn thấy.
 
