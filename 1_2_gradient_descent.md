@@ -38,3 +38,4 @@ $$ ta thấy $$ \mathbb{I}\{ f_w(x) \neq y \}
 $$ không có gradient liên tục. Ta có thể tưởng tượng việc không có gradient liên tục giống như là hàm số bị "gãy" ở một số điểm nào đó. Trong trường hợp này, khi ta cho $$f_w(x)$$ đi từ $$-\infty$$ đến $$+\infty$$, hàm $$ \mathbb{I}\{ f_w(x) \neq y \}
 $$ hầu hết mang giá trị 1. Chỉ đến điểm mà $$f_w(x) = y$$, hàm này độ nhiên giảm xuống giá trị 0. Hơn nữa, ở những điểm mà hàm này có gradient, thì gradient lại vô dụng bởi vì nó bằng 0. Hình vẽ này sẽ giúp bạn dễ hình dung hơn,
 
+![](/assets/error rate demo.png)
