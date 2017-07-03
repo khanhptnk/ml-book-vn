@@ -39,3 +39,5 @@ $$ không có gradient liên tục. Ta có thể tưởng tượng việc không
 $$ hầu hết mang giá trị 1. Chỉ đến điểm mà $$f_w(x) = y$$, hàm này độ nhiên giảm xuống giá trị 0. Hơn nữa, ở những điểm mà hàm này có gradient, thì gradient lại vô dụng bởi vì nó bằng 0. Hình vẽ này sẽ giúp bạn dễ hình dung hơn,
 
 ![](/assets/error rate demo.png)
+
+Gỉa sử model đang lạc ở vùng mà error đang có giá trị là 1. Xung quanh gần đó hoàn toàn là một vùng bằng phẳng. Model không thể nhìn rất xa nên không thể nào biết được là đi thêm về bên phải một đoạn đạt được error thấp hơn là 0. Ví dụ này chỉ là minh tất nhiên trong thực tế, model không chỉ đơn giản là đi về phía bên phải là có thể tối thiểu hóa được error rate. 
