@@ -29,21 +29,12 @@ Hàm được model tối ưu lúc train gọi là **objective function** để 
 
 ### Vì sao không dùng error rate để train model?
 
-Như ta đã biết, quá trình train model về bản chất là tối ưu một hàm số. Từ kiến thức đã học từ cấp 3, ta cũng biết rằng việc tối ưu hàm số có liên quan đến đạo hàm (ví dụ như đạo hàm ở điểm cực tiểu của một hàm số bằng 0). Trong bài viết này, ta sẽ giới thiệu phương pháp tối ưu hàm số bằng gradient descent, tức là dùng gradient (đạo hàm nhiều biến) để dẫn lối cho ta đi 
-đến điểm cực tiểu. Bạn có thể hình dung việc này như là đi tìm thung lũng thấp nhất trong một vùng núi non. Cách đơn giản nhất là bạn cứ thả mình lăn xuống dốc cho đến khi nào dừng lại. Gradient giống nhưng tổng lực của lực hấp dẫn và phản lực của mặt đất, sẽ kéo bạn lăn về nơi thấp hơn cho đến khi mặt đất không còn dốc nữa.
+Như ta đã biết, quá trình train model về bản chất là tối ưu một hàm số. Từ kiến thức đã học từ cấp 3, ta cũng biết rằng việc tối ưu hàm số có liên quan đến đạo hàm (ví dụ như đạo hàm ở điểm cực tiểu của một hàm số bằng 0). Cụ thể hơn, trong supervised learning, ta thường tối ưu hàm số bằng **gradient descent**, tức là dùng gradient (đạo hàm nhiều biến) để dẫn lối cho ta đi đến điểm cực tiểu. Phương pháp này sẽ được giới thiệu chi tiết trong một bài khác. Để dễ hiểu, bạn có thể hình dung tối ưu hàm số như là đi tìm thung lũng thấp nhất trong một vùng núi non. Cách đơn giản nhất là bạn cứ thả mình lăn xuống dốc cho đến khi nào dừng lại. Gradient giống nhưng tổng lực của lực hấp dẫn và phản lực của mặt đất, sẽ kéo bạn lăn về nơi thấp hơn cho đến khi mặt đất không còn dốc nữa.
 
-Ta cần hàm được tối thiểu hóa có gradient ở mọi nơi (hoặc chí ít là sub-gradient). Tuy nhiên khi nhìn lại một evaluation function như là error rate:
+Khi nhìn lại một evaluation function như là error rate:
 $$
 e_D = \frac{1}{|D|} \sum_{(x, y) \in D} \mathbb{I}\{ f_w(x) \neq y \}
-$$
-
-Ta thấy mỗi hàm $$ \mathbb{I}\{ f_w(x) \neq y \}
-$$ không có đạo hàm liên tục. Ta có thể tưởng tượng việc không có đạo hàm liên tục giống như là hàm số bị "gãy". Khi ta cho $$f_w(x)$$ đi từ $$-\infty$$ đến $$+\infty$$, hàm $$ \mathbb{I}\{ f_w(x) \neq y \}
-$$ hầu hết mang giá trị 1. Chỉ đến điểm mà $$f_w(x) = y$$, hàm này độ nhiên nhảy lên giá trị 0. Điểm gãy này làm cho ta không thể áp dụng gradient descent được. Bạn thử tưởng tượng nếu đang leo núi mà rơi xuống một khe vực thì không biết đường nào mà leo lên cả. 
-
-Vì thế người ta không tối thiểu error rate trong lúc train. Thay vào đó, người ta sẽ tối thiểu các hàm khác có tính chất:
-- Có (sub)-gradient ở mọi nơi.
-- Model tối thiểu hàm này cũng sẽ tối thiểu error rate.
-
-Hàm được tối thiểu lúc train gọi là **objective function** (để phân biệt với **evaluation function** lúc test).
+$$ ta thấy $$ \mathbb{I}\{ f_w(x) \neq y \}
+$$ không có gradient liên tục. Ta có thể tưởng tượng việc không có gradient liên tục giống như là hàm số bị "gãy" ở một số điểm nào đó. Trong trường hợp này, khi ta cho $$f_w(x)$$ đi từ $$-\infty$$ đến $$+\infty$$, hàm $$ \mathbb{I}\{ f_w(x) \neq y \}
+$$ hầu hết mang giá trị 1. Chỉ đến điểm mà $$f_w(x) = y$$, hàm này độ nhiên giảm xuống giá trị 0. Hơn nữa, ở những điểm mà hàm này có gradient, thì gradient lại vô dụng bởi vì nó bằng 0. Hình vẽ này sẽ giúp bạn dễ hình dung hơn,
 
