@@ -79,5 +79,5 @@ Error rate là một dạng evaluation function thường dùng: $$L \left( f_w(
 
 Cụ thể hơn, sau khi chọn được evaluation function, supervised learning có thể được gói gọn trong 2 bước sau:
 
-1. **Train** (huấn luyện): tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
-2. **Test** (kiểm tra): thông báo độ tốt của $$f_w$$ là $$\mathcal{L}_{D_{test}}(f_w)$$.
+1. **Train** (huấn luyện): tìm model $$f_w$$ tối thiểu hóa giá trị trung bình của evaluation function trên training set.
+2. **Test** (kiểm tra): thông báo độ tốt của $$f_w$$ là gía trị trung bình của evaluation trên test set.

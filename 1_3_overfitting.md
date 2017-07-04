@@ -1,17 +1,8 @@
 # Overfitting
 
+Trong bài này, ta sẽ tìm hiểu hơn về quá trình train một model. Ta sẽ giải thích xem tại sao ta lại chỉ cần tìm model dự đoán "khá" chính xác trên training set? Tại sao tìm model dự đoán "hoàn toàn" chính xác lại là một ý tưởng tồi?
 
-Ở cuối phần trước, ta đã phát biểu như sau:
-
-Supervised learning có thể được gói gọn trong 2 bước sau:
-
-1. Huấn luyện: tìm $$f_w$$ để tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.
-2. Kiểm tra: thông báo độ tốt của $$f_w$$ là $$\mathcal{L}_{D_{test}}(f_w)$$.
-
-với $$D_{train}$$ và $$D_{test}$$ lần lượt là tập huấn luyện và tập kiểm tra.
- 
-
-Phát biểu này không sai nhưng chưa thật tổng quát. Điều ta đã giản lược nằm ở bước 1. Trước khi biết đó là gì, ta hãy xem xét một cách viết khác ngắn gọn và mang tính toán học hơn của bước 1:
+Gỉa sử ta chọn được objective function $$\mathcal{L}$$:
 
 $$
 w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w') \ \ \ \ (1)

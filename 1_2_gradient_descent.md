@@ -9,10 +9,10 @@ Khi nói đến việc "giải" một bài toán supervised learning tức là t
 ### Objective function
 
 Để dự đoán tốt nhất trên test set, cách đơn giản nhất là tìm model dự đoán tốt nhất trên training set, và *hy vọng* rằng nó cũng sẽ dự đoán tốt trên test set. Vì thế, ở bài trước ta phát biểu rằng:
-1. **Train**: tìm $$f_w$$ để tối thiểu hóa evaluation function trên training set.
-2. **Test**: thông báo giá trị của evaluation function của $$f_w$$ trên test set.
+1. **Train**: tìm model $$f_w$$ tối thiểu hóa giá trị trung bình của evaluation function trên training set.
+2. **Test**: thông báo độ tốt của $$f_w$$ là gía trị trung bình của evaluation trên test set.
 
-Tuy nhiên, cách làm này thực sự đang đơn giản hóa vấn đề và thực tế không hiệu quả. Ta sẽ tìm ra **2 vấn đề** trong phát biểu trên và thay đổi để làm nó thực tế và hiệu quả hơn.
+Tuy nhiên, cách làm này trong thực tế vừa rất khó thực hiện được vừa không hiệu quả. Ta sẽ tìm ra **2 vấn đề** trong phát biểu trên và thay đổi để làm nó thực tế và hiệu quả hơn.
 
 Thứ nhất, khi train model ta chỉ muốn *tìm ra model dự đoán "khá" chính xác trên training set mà thôi*. Vì sao là "khá" chính xác mà không phải là chính xác hoàn toàn? 
 
@@ -27,8 +27,8 @@ Thứ hai, trong phát biểu trên ta dùng evaluation function cho cả train 
 Ta gọi hàm được model tối ưu lúc train là **objective function** để phân biệt với evaluation function lúc test. Objective function thường cho *partial credit*, tức là đúng tới đâu cho điểm tới đó và dự đoán thế nào cũng có điểm. Model có thể tận dụng điều này để thay đổi câu trả lời một chút xem điểm tăng hay giảm, dần dần tìm ra câu trả lời đúng. Objective function được thiết kế có mối quan hệ chặt chẽ với evaluation function, sao cho model tối thiểu hóa objective function cũng tối thiểu hóa evaluation function.
 
 Đến đây ta phát biểu lại về hai quá trình của supervised learning:
-1. **Train**: tìm model tối thiểu hóa objective function.
-2. **Test**: đo độ tốt của model trên test set bằng evaluation function.
+1. **Train**: tìm model tối thiểu hóa giá trị trung bình của objective function trên training set.
+2. **Test**: đo độ tốt của model bằng giá trị trung bình của evaluation function trên test set.
 
 
 ### Vì sao không dùng error rate để train model?
