@@ -4,7 +4,7 @@ Trong bài này, ta sẽ tìm hiểu kỹ hơn về quá trình train một mode
 
 Khi nói đến train model, không thể quên [objective function](https://ml-book-vn.khanhxnguyen.com/1_2_objective.html). Objective function thường có dạng:
 $$
-\mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y) + \underbrace{R(f_w)}_{regularizer}
+\mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y) + \underbrace{R(f_w)}{regularizer}
 $$
 
 Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ cả model và parameter của model.
