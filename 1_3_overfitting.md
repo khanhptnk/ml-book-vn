@@ -51,7 +51,7 @@ Lưu ý là ở đây có đến hai điều kiện cần được đảm bảo:
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Overly-complicated-hypothesis.png)
 
-Chọn một đa thức bậc cao phức tạp để "giải thích" (đi qua hết) các điểm màu đen cũng vi phạm Occam's razor bởi vì thực chất ta chỉ cần một đa thức bậc một đơn giản (đường thẳng đỏ) để làm điều đó.
+Chọn một đa thức bậc cao phức tạp để "giải thích" (đi qua hết) các điểm màu đen cũng vi phạm Occam's razor bởi vì giả thiết được chọn không phải đơn giản nhất. Thực chất ta chỉ cần một đa thức bậc một đơn giản (đường thẳng đỏ) để đi qua mọi điểm.
 
 
 ### Noise
