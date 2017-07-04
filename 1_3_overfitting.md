@@ -56,7 +56,7 @@ Chọn một đa thức bậc cao phức tạp để "giải thích" (đi qua h�
 
 ### Noise
 
-Với mỗi bài toán supervised learning, cho dù có tồn tại một hàm bí ẩn $$f$$ sao cho mối quan hệ giữa label và observation là $$y = f(x)$$, thì dữ liệu trong thực tế cũng không bao giờ phản ánh chính xác được mối quan hệ này. Một trong những nguyên nhân gây ra điều này là do sai số trong dụng cụ đo. Dưới đây là một ví dụ minh họa cho thấy thay vì thu được dữ liệu tuyến tính hoàn hảo ($$y = ax$$) như hình bên trái thì thường tọa độ của các điểm dữ liệu sẽ bị sai lệch như hình bên phải.
+Với mỗi bài toán supervised learning, cho dù có tồn tại một hàm bí ẩn $$f^*$$ sao cho mối quan hệ giữa label và observation là $$y = f^*(x)$$, thì dữ liệu trong thực tế cũng không bao giờ phản ánh chính xác được mối quan hệ này. Nguyên nhân gây ra điều này có thể là do sai số trong dụng cụ đo, hoặc đơn giản là do tự nhiên mang tính ngẫu nhiên. Bạn rất thích ăn thịt, nhưng hôm nay bạn đến thăm nhà hàng xóm được đãi cá; vì thế, dữ liệu thu thập về bữa ăn của bạn không phải ngày nào cũng là thịt. Dưới đây là một ví dụ minh họa cho thấy thay vì thu được dữ liệu tuyến tính hoàn hảo ($$y = ax$$) như hình bên trái thì thường tọa độ của các điểm dữ liệu sẽ bị sai lệch như hình bên phải.
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Noisy-data.png)
 
