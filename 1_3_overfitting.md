@@ -3,9 +3,7 @@
 Trong bài này, ta sẽ tìm hiểu kỹ hơn về quá trình train một model. Tại sao chỉ cần tìm model dự đoán "khá" chính xác trên training set? Tại sao một model dự đoán "hoàn toàn" chính xác trên training set lại có thể dự đoán rất tồi trên test set?
 
 Khi nói đến train model, không thể quên [objective function](https://ml-book-vn.khanhxnguyen.com/1_2_objective.html). Objective function thường có dạng:
-$$
-\mathcal{L}_{D_{train}}(f_w) = \underbrace{\frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)}_{average\_loss} + \underbrace{R(f_w)}_{regularizer}
-$$
+
 
 Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ cả model và parameter của model.
 
