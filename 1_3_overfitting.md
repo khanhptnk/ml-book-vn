@@ -2,7 +2,11 @@
 
 Trong bài này, ta sẽ tìm hiểu kỹ hơn về quá trình train một model. Tại sao chỉ cần tìm model dự đoán "khá" chính xác trên training set? Tại sao một model dự đoán "hoàn toàn" chính xác trên training set lại có thể dự đoán rất tồi trên test set?
 
-Để dễ tiếp cận vấn, đầu tiên ra cần một số định nghĩa toán học. 
+Khi nói đến train model, không thể quên [objective function](. Objective function thường có dạng:
+
+$$
+\mathcal{L}_{D_{train}}(f_w) = \underbrace{\frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)}_{average\_loss} + \underbrace{R(f_w)}_{regularizer}
+$$
 
 Gỉa sử ta chọn được objective function $$\mathcal{L}$$:
 
