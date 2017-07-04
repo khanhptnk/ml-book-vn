@@ -86,7 +86,7 @@ Qua ví dụ này, ta thấy là khi áp dụng Occam's razor vào machine learn
 
 ### Overfitting
 
-Qua phân tích ở phần trên, chắc các bạn cũng hiểu nôm na overfitting là khi ta quá cố gắng tối thiểu hóa $$\mathcal{L}_{D_{train}}(w)$$ nhưng điều đó lại làm cho $$\mathcal{L}_{D_{test}}(w)$$ lớn. Có nhiều định nghĩa về overfitting. Trong phần này, mình sẽ giới thiệu định nghĩa về overfitting mà mình quen thuộc nhất. Nhưng trước hết, ta cần một định nghĩa về hàm mục tiêu trên một tập dữ liệu vô hạn:
+Qua phân tích ở phần trên, chắc các bạn cũng hiểu nôm na overfitting là khi ta quá cố gắng tối thiểu hóa objective function $$\mathcal{L}_{D_{train}}(w)$$ nhưng điều đó lại làm cho evaluation function $$\mathcal{L}_{D_{test}}(w)$$ lớn. Trong phần này, mình sẽ giới thiệu định nghĩa về overfitting mà mình quen thuộc nhất. Nhưng trước hết, ta cần một định nghĩa về evaluation function trên một tập dữ liệu vô hạn:
 
 $$
 \mathcal{L}_{\mathcal{D}}(w) = \mathbb{E}_{(x, y) \sim \mathcal{D}} \left[ L \left( f_w(x), y \right)  \right] =\sum_{(x, y)} L \left( f_w(x), y \right) \mathcal{D}(x, y) 
@@ -94,29 +94,29 @@ $$
 
 $$\mathcal{D}$$ ở đây không phải là một tập dữ liệu mà là một phân bố xác suất lên các cặp dữ liệu $$(x, y)$$, với $$\mathcal{D}(x, y)$$ là xác suất xuất hiện của cặp $$(x, y)$$. Khi nói về một tập dữ liệu "vô hạn", ta ám chỉ đến việc liên tục lấy các mẫu $$(x, y)$$ từ phân bố $$\mathcal{D}$$. Với các bạn chưa quen thuộc khái niệm này, mình sẽ minh họa bằng ví dụ đơn giản sau:
 
-*Giả sử ta có một phân bố xác suất về sấp ngửa của một đồng xu như sau: 60% ngửa và 40% sấp. Muốn lấy một mẫu từ phân bố này, ta ngẫu nhiên chọn một số thực trong đoạn $[0, 1)$, tạm gọi là $r$. Nếu $r \leq 0.6$, ta chọn mẫu là ngửa, ngược lại ta chọn mẫu là sấp. Lặp lại quá trình này vô hạn lần, ta được một tập dữ liệu vô hạn gồm các mẫu sấp ngửa (ví dụ sấp, ngửa, sấp, sấp, ngửa, ...).*
+*Giả sử ta có một phân bố xác suất về sấp ngửa của một đồng xu như sau: 60% ngửa và 40% sấp. Muốn lấy một mẫu từ phân bố này, ta ngẫu nhiên chọn một số thực trong đoạn $[0, 1)$, tạm gọi là $$r$$. Nếu $$r \leq 0.6$$, ta chọn mẫu là ngửa, ngược lại ta chọn mẫu là sấp. Lặp lại quá trình này vô hạn lần, ta được một tập dữ liệu vô hạn gồm các mẫu sấp/ngửa.*
 
-Ký hiệu $$\mathbb{E}_{x \sim P} \left[ f(x) \right]$$ được gọi là **kỳ vọng** (expectation) của đại lượng $$f(x)$$ với $$x$$ được lấy mẫu từ phân bố $$P$$, có thể hiểu là một phép tính trung bình cộng trên tập vô hạn. Ta thấy là định nghĩa hàm mục tiêu trên tập vô hạn thật ra không khác gì mấy so với định nghĩa hàm mục tiêu trên tập hữu hạn ở bài trước; ta chỉ thay phép trung bình cộng trên tập hữu hạn thành phép toán tương ứng trên tập vô hạn.
+Ký hiệu $$\mathbb{E}_{x \sim P} \left[ f(x) \right]$$ được gọi là **kỳ vọng** (expectation) của hàm $$f(x)$$ với $$x$$ được lấy mẫu từ phân bố $$P$$. Kỳ vọng đơn giản là phép tính trung bình cộng trên tập vô hạn. Ta thấy là định nghĩa evaluation function trên tập vô hạn thật ra không khác gì mấy so với định nghĩa evaluation function trên tập hữu hạn; ta chỉ thay phép trung bình cộng trên tập hữu hạn thành kỳ vọng.
 
-Giảm thiểu $$\mathcal{L}_{\mathcal{D}}(w)$$ thực ra mới là mục đích tối thượng của supervised learning; ta chỉ dùng $$\mathcal{L}_{D_{test}}(w)$$ để ước lượng $$\mathcal{L}_{\mathcal{D}}(w)$$ vì ta không thể nào có nguồn dữ liệu vô hạn.
+Giảm thiểu $$\mathcal{L}_{\mathcal{D}}(w)$$ là mục đích tối thượng của supervised learning. Ta dùng $$\mathcal{L}_{D_{test}}(w)$$ để ước lượng $$\mathcal{L}_{\mathcal{D}}(w)$$ vì trong thực tế ta không thể nào có nguồn dữ liệu vô hạn.
 
 Đến đây, ta định nghĩa overfitting là khi:
 
-*Model quá tập trung vào việc đoán đúng hết tất cả các điểm dữ liệu của tập huấn luyện, nhưng việc đó lại làm giảm khả năng dự đoán của nó trên một tập dữ liệu mới khác. Nói cách khác, khi $$\mathcal{L}_{D_{train}}(w)$$ nhỏ nhưng $$\mathcal{L}_{\mathcal{D}}(w) -\mathcal{L}_{D_{train}}(w)$$ lớn (với $$D_{train}$$ được lấy mẫu từ $$\mathcal{D}$$).*
+**Model quá tập trung vào việc đoán đúng hết tất cả các điểm dữ liệu của training set, nhưng việc đó lại làm giảm khả năng dự đoán của nó trên test set. Nói cách khác, overfitting là khi $$\mathcal{L}_{D_{train}}(w)$$ nhỏ nhưng $$\mathcal{L}_{\mathcal{D}}(w) -\mathcal{L}_{D_{train}}(w)$$ lớn.**
 
 
 ### Chuẩn đoán overfitting
 
-Trong định nghĩa trên, thế nào được xem là "lớn" thì tùy thuộc vào từng ứng dụng khác nhau. Hơn nữa, ta cũng không thể nào tính được $$\mathcal{L}_{\mathcal{D}}(w)$$ nên cũng không thể dựa vào định nghĩa đó để chuẩn đoán xem model có bị overfitting hay không. Để làm điều này, overfitting ta cần theo dõi learning curve, một biểu đồ thể hiện sự biến động của $$\mathcal{L}_{D_{train}}$$ và $$\mathcal{L}_{D_{test}}$$ trong quá trình huấn luyện. Giả sử quá trình huấn luyện model cần một khoảng thời gian nhất định. Nếu cứ sau một khoảng thời gian, ta ghi lại giá trị của $$\mathcal{L}_{D_{train}}$$ và $$\mathcal{L}_{D_{test}}$$ và vẽ biểu đồ của chúng theo thời gian, ta được learning curve.
+Trong định nghĩa trên, thế nào được xem là "lớn" thì tùy thuộc vào từng ứng dụng khác nhau. Hơn nữa, ta cũng không thể nào tính được $$\mathcal{L}_{\mathcal{D}}$$ nên cũng không thể dựa vào định nghĩa đó để chuẩn đoán xem model có bị overfitting hay không. Trong thực tế, ta dùng $$\mathcal{L}_{D_{test}}$$ thay cho $$\mathcal{L}_{\mathcal{D}}$$. Để phát hiện overfitting, ta cần theo dõi **learning curve**, một biểu đồ thể hiện sự biến động của $$\mathcal{L}_{D_{train}}$$ và $$\mathcal{L}_{D_{test}}$$ trong suốt thời gian huấn luyện. Cứ sau một khoảng thời gian, ta ghi lại giá trị của $$\mathcal{L}_{D_{train}}$$ và $$\mathcal{L}_{D_{test}}$$ và vẽ biểu đồ của chúng theo thời gian, ta được learning curve.
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/early-stopping.png)
 
-Hình ở trên minh hoạ learning curve trên tập kiểm tra và huấn luyện khi xuất hiện overfitting. Có vài điểm đáng chú ý sau:
+Hình ở trên minh hoạ learning curve khi xuất hiện overfitting. Có vài điểm đáng chú ý sau:
 
-1. Nếu ta áp dụng một phương pháp tối ưu hàm số hiệu quả, sai sót trên tập huấn luyện giảm theo thời gian.
-2. Ngược lại, sai sót trên tập kiểm tra không phải lúc nào cũng giảm. Nếu model bị overfitting, đến một lúc nào đó, sai sót này sẽ bắt đầu tăng trở lại.
-3. Thời điểm mà sai sót trên tập kiểm tra bắt đầu có xu hướng tăng được xem thời điểm bắt đầu overfitting. Vì sao? Vì sau đó, việc huấn luyện sẽ làm model dự đoán ngày càng tốt hơn trên tập huấn luyện, nhưng lại cho sai sót ngày càng nhiều trên tập kiểm tra.
+1. Nếu ta áp dụng một phương pháp tối ưu hàm số hiệu quả, $$\mathcal{L}_{D_{train}}$$ (đường đỏ) sẽ giảm theo thời gian.
+2. Ngược lại, $$\mathcal{L}_{D_{test}}$$ (đường xanh) không phải lúc nào cũng giảm. Nếu model bị overfitting, đến một lúc nào đó, gía trị này bắt đầu tăng trở lại.
+3. Thời điểm mà $$\mathcal{L}_{D_{test}}$$ bắt đầu có xu hướng tăng được xem thời điểm bắt đầu overfitting. Vì sao? Vì sau đó, việc huấn luyện sẽ làm model dự đoán ngày càng tốt hơn trên training set, nhưng lại cho sai sót ngày càng nhiều trên test set.
 
-Cách chuẩn đoán này cũng gợi ý cho ta cách làm đơn giản nhất để giảm thiểu overfitting: **dừng huấn luyện ngay tại thời điểm bắt đầu overfitting**. Phương pháp này được gọi là **early stopping** (dừng sớm). Early stopping có tác dụng ngăn không cho khoảng cách giữa $$\mathcal{L}_{D_{train}}$$ và $$\mathcal{L}_{D_{test}}$$ tăng lên thêm. Để rút ngắn khoảng cách này hơn nữa, ta cần thêm một phương pháp phức tạp hơn mà mình sẽ nói đến ở bài sau.
+Cách chuẩn đoán này cũng gợi ý cho ta cách làm đơn giản nhất để giảm thiểu overfitting, đó là **dừng huấn luyện ngay tại thời điểm bắt đầu overfitting**. Phương pháp này được gọi là **early stopping** (dừng sớm). Early stopping có tác dụng ngăn không cho khoảng cách giữa $$\mathcal{L}_{D_{train}}$$ và $$\mathcal{L}_{D_{test}}$$ tăng lên thêm. Để rút ngắn khoảng cách này hơn nữa, ta cần thêm một phương pháp phức tạp hơn mà mình sẽ nói đến ở bài sau.
 
-Mình muốn kết thúc phần này bằng việc nhấn mạnh lại tầm quan trọng của overfitting: nếu không có overfitting thì machine learning không thể được xem như một ngành nghiên cứu riêng biệt, bởi vì khi đó ta có thể vận dụng hết mọi công cụ tối ưu hàm số của toán học để giảm $$\mathcal{L}_{D_{train}}$$ về mức tối đa. Overfitting thể hiện trở ngại khi ta cố gắng bắt máy tính mô phỏng khả năng của con người: làm thế nào mà một người có thể tổng quát được những kiến thức đã học và áp dụng để xử lý tình huống chưa từng gặp, thậm chí là còn sáng tạo ra những thứ chưa hề tồn tại?
+Mình muốn kết thúc phần này bằng việc nhấn mạnh lại tầm quan trọng của overfitting: *nếu không có overfitting thì machine learning không thể được xem như một ngành nghiên cứu riêng biệt*, bởi vì khi đó ta chỉ cần vận dụng hết mọi công cụ tối ưu hàm số của toán học để giảm empirical risk về mức tối đa. Overfitting thể hiện trở ngại khi ta cố gắng bắt máy tính mô phỏng khả năng của con người: làm thế nào mà một người có thể tổng quát được những kiến thức đã học và áp dụng để xử lý tình huống chưa từng gặp, thậm chí là còn sáng tạo ra những thứ chưa hề tồn tại?
