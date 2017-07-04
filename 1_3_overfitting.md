@@ -66,23 +66,23 @@ $$
 \tilde{x} = x + \epsilon_x
 $$$$
 \tilde{y} = f(\tilde{x}) + \epsilon_y
-$$
+$$ 
 
 Cuối cùng, dữ liệu thật sự ta nhận được để huấn luyện và kiểm tra model là $$(\tilde{x}, \tilde{y})$$, phiên bản lỗi của $$(x, y)$$. $$\epsilon_x$$ và $$\epsilon_y$$ được gọi là **noise** của $$x$$ và $$y$$. Noise thường được xem là một biến số ngẫu nhiên (random variable), thay đổi tùy theo từng cặp $$(x, y)$$.
 
-Sự xuất hiện của noise làm cho mối quan hệ giữa observation và label trở nên phức tạp hơn quan hệ thực sự giữa chúng. Đối với ví dụ ở trên, thì noise đã biến một quan hệ tuyến tính thành một quan hệ phức tạp hơn (đường xanh dương) mà một đa thức bậc một không thể giải thích nổi nữa:
+Sự xuất hiện của noise làm cho mối quan hệ giữa observation và label trở nên phức tạp hơn quan hệ thực sự giữa chúng. Đối với ví dụ ở trên, thì noise đã biến một quan hệ tuyến tính thành một quan hệ phức tạp hơn (đường xanh dương) mà một đa thức tuyến tính (bậc một) không thể giải thích nổi nữa mà cần đến một đa thức bậc cao hơn:
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Noisy-data-complicate-relationship.png)
 
-Noise không trực tiếp gây ra overfitting nhưng nó lại làm cho overfitting trở nên gây hại. Về bản chất, khi overfitting, model cố gắng đi qua tất cả các điểm dữ liệu (hay dự đoán đúng tất cả các observation). Điều này không gì khác chính là tuân theo ERM một cách tuyệt đối. Nếu làm thế, trong quá hình huấn luyện, noise sẽ "lừa" model học một hàm số hoàn toàn sai so với bản chất của dữ liệu.
+Noise không trực tiếp gây ra overfitting nhưng nó lại làm cho overfitting trở nên gây hại. Về bản chất, **overfitting là việc model cố gắng giải thích tất cả các điểm dữ liệu nhìn thấy**. Điều này không gì khác chính là tuân theo ERM một cách tuyệt đối để dự đoán đúng tất cả các observation của training set. Nếu làm thế, trong quá hình huấn luyện, noise sẽ "lừa" model học một hàm số hoàn toàn sai so với bản chất của dữ liệu.
 
-Khi các điểm dữ liệu của tập kiểm tra xuất hiện, vì noise thường không quá lớn, các điểm mới này cũng vẫn thể hiện phần lớn quan hệ tuyến tính và chỉ hơi lệch với đường thẳng đỏ mà thôi.
+Khi các điểm dữ liệu của test set xuất hiện, vì noise thường không quá lớn, các điểm mới này cũng vẫn thể hiện phần lớn quan hệ tuyến tính và chỉ hơi lệch với đường thẳng đỏ mà thôi.
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Noisy-data-at-testing-1.png)
 
-Trong trường hợp này, nếu áp dụng ERM ta sẽ chọn đường xanh dương thay vì đường thẳng đỏ vì đường thẳng xanh dương cho sai số thấp hơn trên tập huấn luyện (các điểm đen). Nhưng một model phức tạp như đường thẳng xanh dương lại cho sai sót rất lớn trên tập kiểm tra (các điểm xanh lá cây nằm rất xa so với đường xanh dương). Vì sai sót trên tập kiểm tra mới là thứ ta quan tâm nên điều này rất tệ. Ngược lại, nếu chọn model đơn giản như hơn đường thẳng đỏ và chấp nhận sai sót một ít trên tập huấn luyện, sai sót trên tập kiểm tra sẽ nhỏ hơn nhiều.
+Trong trường hợp này, nếu áp dụng ERM ta sẽ chọn đường xanh dương thay vì đường thẳng đỏ vì đường thẳng xanh dương cho sai số thấp hơn trên các điểm dữ liệu của training set (các điểm đen). Nhưng một model phức tạp như đường thẳng xanh dương lại cho sai sót rất lớn trên các điểm dữ liệu của test set (ta thấy các điểm xanh lá cây nằm rất xa so với đường xanh dương). Vì sai sót trên tập kiểm tra mới là thứ ta quan tâm sau cùng nên điều này rất tệ. Ngược lại, nếu chọn model đơn giản như hơn đường thẳng đỏ và chấp nhận sai sót một ít trên tập huấn luyện, sai sót trên tập kiểm tra sẽ nhỏ hơn nhiều.
 
-Qua ví dụ này, ta thấy là khi áp dụng Occam's razor vào machine learning, ta không cần phải tuân thủ nó quá chặt chẽ. Sự xuất hiện của noise làm cho hai tiêu chuẩn của Occam's razor rất khó được bảo toàn: để giải thích được đúng hơn tập huấn luyện vốn chứa noise, ta buộc phải tăng độ phức tạp của model, và ngược lại. Vì thế, điều ta cần làm là cân bằng giữa hai điều kiện, đưa model gần với Occam's razor nhất có thể: chọn một model đơn giản vừa phải và giải thích được tập huấn luyện tương đối đúng, nhằm đạt được sai số nhỏ trên tập kiểm tra.
+Qua ví dụ này, ta thấy là khi áp dụng Occam's razor vào machine learning, ta không thể tuân thủ nó quá một cách chặt chẽ. Sự xuất hiện của noise làm cho hai tiêu chuẩn của Occam's razor rất khó được bảo toàn: để giải thích được đúng hơn tập huấn luyện vốn chứa noise, ta buộc phải tăng độ phức tạp của model, và ngược lại. Vì thế, điều ta cần làm là cân bằng giữa hai điều kiện, đưa model gần với Occam's razor nhất có thể: chọn một model đơn giản vừa phải và giải thích được tập huấn luyện tương đối đúng, nhằm đạt được sai số nhỏ trên tập kiểm tra.
 
 ### Overfitting
 
