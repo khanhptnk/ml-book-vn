@@ -2,25 +2,31 @@
 
 Trong bài này, ta sẽ tìm hiểu kỹ hơn về quá trình train một model. Tại sao chỉ cần tìm model dự đoán "khá" chính xác trên training set? Tại sao một model dự đoán "hoàn toàn" chính xác trên training set lại có thể dự đoán rất tồi trên test set?
 
-Khi nói đến train model, không thể quên [objective function](. Objective function thường có dạng:
+Khi nói đến train model, không thể quên [objective function](https://ml-book-vn.khanhxnguyen.com/1_2_objective.html). Objective function thường có dạng:
 
 $$
 \mathcal{L}_{D_{train}}(f_w) = \underbrace{\frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)}_{average\_loss} + \underbrace{R(f_w)}_{regularizer}
 $$
 
-Gỉa sử ta chọn được objective function $$\mathcal{L}$$:
+Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ cả model và parameter của model.
+
+Mục tiêu của training là tìm ra model tối thiểu hóa objective function:
 
 $$
-w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w') \ \ \ \ (1)
+w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w')
 $$
-Có 2 thay đổi đáng chú ý ở đây:
 
-1. Kí hiệu $$\arg\min_x f(x)$$ có nghĩa là giá trị của $$x$$ để hàm $$f(x)$$ đạt được giá trị cực tiểu. Ví dụ,  $$\arg\min_x x^2 + 1 = 0$$ bởi vì $$ x^2 + 1$$ đạt giá trị cực tiểu (bằng 1) tại $$x = 0$$.
-2. Ta đang giả sử rằng cấu trúc model đã xác định, tức là hai model nếu khác nhau thì chỉ khác nhau về tham số. Khi đó, ta dùng vector tham số $$w$$ để chỉ model thay cho $$f_w$$ (nhưng về bản chất, model vẫn là một hàm số nhé).
+Kí hiệu $$\arg\min_x f(x)$$ trả về giá trị của $$x$$ để hàm $$f(x)$$ đạt được giá trị cực tiểu. Ví dụ,  $$\arg\min_x x^2 + 1 = 0$$ bởi vì $$ x^2 + 1$$ đạt giá trị cực tiểu (bằng 1) tại $$x = 0$$. Các bạn sẽ nhìn thấy phương trình này trong đa số các paper (bài báo khoa học) về machine learning.
 
-Sử dụng phương trình (1) để tìm ra model được gọi là quy tắc empirical risk minimization (ERM). Ta sẽ giải thích vì sao nó được gọi như vậy. Hàm mục tiêu $$\mathcal{L}_D(w)$$ còn được gọi là **hàm rủi ro** (risk function) vì nó thể hiện độ sai lệch của một model trên một tập dữ liệu. Chữ *empirical* được thêm vào bởi vì hàm rủi ro này được tính trên một tập dữ liệu hữu hạn. Vì vậy, giá trị của hàm thay đổi tùy theo tập dữ liệu thu thập được. Vậy empirical risk minimization tức là **tối thiểu hóa rủi ro trên một tập dữ liệu hữu hạn**. Đó chính là những điều ta giới thiệu ở bài trước.
+Khi ta nói muốn tìm model dự đoán chính xác hoàn toàn trên training set, tức là nói đến việc sử dụng một objective function mà không có regularizer:
 
-ERM không phải là cách duy nhất để tìm ra model từ tập huấn luyện. Trong thực tế, nếu ta ngây thơ áp dụng ERM thì sẽ thường không thu được model có độ tốt cao trên tập kiểm tra. Bài viết này giới thiệu những kiến thức cần thiết để ta đưa ra được một thuật toán supervised learning tốt hơn ERM. Ta sẽ nói kỹ về vấn đề lớn nhất thường gặp phải khi sử dụng ERM, overfitting, và cách khắc phục nó. Overfitting là một trong những khái niệm quan trọng bậc nhất trong machine learning. Trong phần này chúng ta sẽ định nghĩa overfitting và tìm hiểu tại sao nó lại được gọi là "bóng ma ám lấy machine learning".
+$$
+\mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)
+$$
+
+Đây được gọi là quy tắc empirical risk minimization (ERM). Ta sẽ giải thích vì sao nó được gọi như vậy. Loss function còn được gọi là risk function (hàm rủi ro). Chữ *empirical* được thêm vào bởi vì risk function này được tính trung bình trên một tập dữ liệu hữu hạn. Vậy empirical risk minimization tức là **tối thiểu hóa rủi ro trên một tập dữ liệu hữu hạn**. 
+
+Như đã nhấn mạnh nhiều lần, nếu ta ngây thơ áp dụng ERM thì sẽ thường không thu được model có độ tốt cao trên tập kiểm tra. Bài viết này giới thiệu những kiến thức cần thiết để ta đưa ra được một thuật toán supervised learning tốt hơn ERM. Ta sẽ nói kỹ về vấn đề lớn nhất thường gặp phải khi sử dụng ERM, **overfitting**, và cách khắc phục nó. Overfitting là một trong những khái niệm quan trọng bậc nhất trong machine learning, là "bóng ma ám lấy machine learning".
 
 ### Occam's razor
 
