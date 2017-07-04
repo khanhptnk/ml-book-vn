@@ -32,8 +32,8 @@ Ta thấy là nếu model đưa xác suất 100% cho label thật y, thì loss f
 
 Ta gọi hàm được model tối ưu lúc train là **objective function** để phân biệt với evaluation function lúc test. Objective function thường có dạng như sau: 
 
-$$ 
-   objective = average\_loss + regularizer 
+$$
+   objective = average\_loss + regularizer
 $$
 
 Giống như evaluation function, objective function cũng gồm giá trị trung bình của loss function (lưu ý, loss function này khác với loss function của evaluation function). Objective function còn có thêm **regularizer**. Tác dụng của regularizer chính là để giải quyết vấn đề đầu tiên ta nhắc đến, làm cho model chỉ dự đoán "khá" chính xác training set mà thôi.  
