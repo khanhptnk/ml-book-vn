@@ -47,7 +47,7 @@ Hoặc thậm chí đơn giản hơn:
 **Trong tất cả các model "đúng", chọn model đơn giản nhất. 
 **
 
-Lưu ý là ở đây có đến hai điều kiện cần được đảm bảo: giả thiết phải *đơn giản nhất* nhưng vẫn phải *giải thích được hiện tượng*. Rất dễ để áp dụng Occam's razor một cách sai lầm. Ta xét bài toán phân loại thư vào hai loại, spam và không spam. Model đơn giản nhất có thể nghĩ ra đó là random một trong hai lựa chọn với mỗi bức thư. Model này dù tối giản nhưng lại vô dụng và vi phạm Occam's razor vì nó không thể giải thích tính chất spam. Trong một ví dụ khác như trong hình sau,
+Lưu ý là ở đây có đến hai điều kiện cần được đảm bảo: giả thiết phải *đơn giản nhất* nhưng vẫn phải *giải thích được hiện tượng*. Rất dễ để áp dụng Occam's razor một cách sai lầm. Ta xét bài toán phân loại thư vào hai loại, spam và không spam. Model đơn giản nhất có thể nghĩ ra đó là random một trong hai lựa chọn với mỗi bức thư. Model này dù tối giản nhưng lại vô dụng và vi phạm Occam's razor vì nó không thể giải thích tính chất spam (độ chính xác chỉ là 50%). Trong một ví dụ khác như trong hình sau,
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Overly-complicated-hypothesis.png)
 
