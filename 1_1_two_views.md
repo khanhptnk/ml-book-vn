@@ -63,21 +63,21 @@ error_rate = error_rate / N
 
 **Độ sai sót càng thấp, thì model càng tốt**. Nếu đoán đúng hết tất cả cặp dữ liệu, ta đạt được độ sai sót "trong mơ", 0%. Nhưng nên nhớ đấy là kết quả được đo trên một test set hữu hạn. Kết quả này chỉ đưa ra được một chặn trên và chặn dưới cho kết quả trên tập vô hạn \(muốn biết rõ, xem thêm về [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem)\). Nói cách khác, nếu tự nhiên có gửi đến một test set mới để đánh giá $$f_w$$, thì chưa chắc ta có thể lặp lại được độ sai sót giống như trên test set cũ. Độ sai sót được đánh giá trên test set càng lớn thì càng đáng tin cậy.
 
-Ta có thể định nghĩa độ tốt theo rất nhiều cách khác nữa. Tổng quát, độ tốt của model được xác định dựa trên giá trị trung bình của **evaluation function** trên test set:
+Ta có thể định nghĩa độ tốt theo rất nhiều cách khác nữa. Tổng quát, độ tốt của model được xác định dựa trên giá trị của **evaluation function** trên test set:
 
 $$
-\mathcal{L}_{D_{test}}(f_w) = \frac{1}{|D_{test}|} \sum_{(x, y) \in D_{test}} L \left( f_w(x), y \right)
-$$ trong đó $$f_w$$ là model được test, hàm $$L$$ là một **evaluation function**. 
+\mathcal{L}_{D_{test}} (f_w) = \frac{1}{|D_{test}|} \sum_{(x, y) \in D_{test}} L \left( f_w(x), y \right)
+$$ trong đó $$f_w$$ là model được test, hàm $$L$$ là một **loss function**.
 
-Error rate là một dạng evaluation function thường dùng: $$L \left( f_w(x), y \right) = \mathbb{I}\{ f(x) \neq y \}$$.
+Error rate là một dạng evaluation function thường dùng với loss function là $$L \left( f_w(x), y \right) \equiv \mathbb{I}\{ f(x) \neq y \}$$ (kí hiệu $$\equiv$$ đọc là "được định nghĩa bằng nhau").
 
-Đến đây, ta tạm thời sẵn sàng để chơi trò chơi supervised learning dưới góc nhìn như một bài toán tối ưu hàm số. Hãy quay lại trả lời 2 câu hỏi trong phần trước:
+Đến đây, ta tạm thời sẵn sàng chơi trò chơi supervised learning dưới góc nhìn như một bài toán tối ưu hàm số. Hãy quay lại trả lời 2 câu hỏi trong phần trước:
 
-1. Thế nào là một model "tốt" trên test set? $$\rightarrow$$ model cho giá trị trung bình của evaluation function trên test set càng nhỏ thì càng tốt.
+1. Thế nào là một model "tốt" trên test set? $$\rightarrow$$ model cho giá trị của evaluation function trên test set càng nhỏ thì càng tốt.
 
-2. Làm sao để tìm ra được một model tốt từ training set? $$\rightarrow$$ tìm model cực tiểu hóa giá trị trung bình của evaluation function trên training set.
+2. Làm sao để tìm ra được một model tốt từ training set? $$\rightarrow$$ tìm model cực tiểu hóa giá trị của evaluation function trên training set.
 
 Cụ thể hơn, sau khi chọn được evaluation function, supervised learning có thể được gói gọn trong 2 bước sau:
 
-1. **Train** (huấn luyện): tìm model $$f_w$$ tối thiểu hóa giá trị trung bình của evaluation function trên training set.
-2. **Test** (kiểm tra): thông báo độ tốt của $$f_w$$ là gía trị trung bình của evaluation trên test set.
+1. **Train** (huấn luyện): tìm model $$f_w$$ tối thiểu hóa giá trị của evaluation function trên training set.
+2. **Test** (kiểm tra): thông báo độ tốt của $$f_w$$ là gía trị của evaluation function trên test set.

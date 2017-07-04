@@ -1,6 +1,8 @@
 # Overfitting
 
-Trong bài này, ta sẽ tìm hiểu hơn về quá trình train một model. Ta sẽ giải thích xem tại sao ta lại chỉ cần tìm model dự đoán "khá" chính xác trên training set? Tại sao tìm model dự đoán "hoàn toàn" chính xác lại là một ý tưởng tồi?
+Trong bài này, ta sẽ tìm hiểu kỹ hơn về quá trình train một model. Tại sao chỉ cần tìm model dự đoán "khá" chính xác trên training set? Tại sao một model dự đoán "hoàn toàn" chính xác trên training set lại có thể dự đoán rất tồi trên test set?
+
+Để dễ tiếp cận vấn, đầu tiên ra cần một số định nghĩa toán học. 
 
 Gỉa sử ta chọn được objective function $$\mathcal{L}$$:
 
