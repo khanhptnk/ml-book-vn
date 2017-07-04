@@ -2,10 +2,16 @@
 
 Trong bài này, ta sẽ tìm hiểu kỹ hơn về quá trình train một model. Tại sao chỉ cần tìm model dự đoán "khá" chính xác trên training set? Tại sao một model dự đoán "hoàn toàn" chính xác trên training set lại có thể dự đoán rất tồi trên test set?
 
-Khi nói đến train model, không thể quên [objective function](https://ml-book-vn.khanhxnguyen.com/1_2_objective.html). Objective function thường có dạng:
+Khi nói đến train model, không thể quên [objective function](https://ml-book-vn.khanhxnguyen.com/1_2_objective.html). Ở bài trước, nói rằng objective function thường có dạng:
+
 $$
-\mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y) + \underbrace{R(f_w)}{regularizer}
+    objective =average\_loss + regularizer
 $$
+
+Theo ngôn ngữ toán học:
+$$
+\mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y) + R(f_w)
+$$ với $$\frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)$$ là trung bình loss function trên training set và $$R(f_w)$$ là regularizer.
 
 Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ cả model và parameter của model.
 
@@ -116,6 +122,6 @@ Hình ở trên minh hoạ learning curve khi xuất hiện overfitting. Có và
 2. Ngược lại, $$\mathcal{L}_{D_{test}}$$ (đường xanh) không phải lúc nào cũng giảm. Nếu model bị overfitting, đến một lúc nào đó, gía trị này bắt đầu tăng trở lại.
 3. Thời điểm mà $$\mathcal{L}_{D_{test}}$$ bắt đầu có xu hướng tăng được xem thời điểm bắt đầu overfitting. Vì sao? Vì sau đó, việc huấn luyện sẽ làm model dự đoán ngày càng tốt hơn trên training set, nhưng lại cho sai sót ngày càng nhiều trên test set.
 
-Cách chuẩn đoán này cũng gợi ý cho ta cách làm đơn giản nhất để giảm thiểu overfitting, đó là **dừng huấn luyện ngay tại thời điểm bắt đầu overfitting**. Phương pháp này được gọi là **early stopping** (dừng sớm). Early stopping có tác dụng ngăn không cho khoảng cách giữa $$\mathcal{L}_{D_{train}}$$ và $$\mathcal{L}_{D_{test}}$$ tăng lên thêm. Để rút ngắn khoảng cách này hơn nữa, ta cần thêm một phương pháp phức tạp hơn mà mình sẽ nói đến ở bài sau.
+Cách chuẩn đoán này cũng gợi ý cho ta cách làm đơn giản nhất để giảm thiểu overfitting, đó là **dừng huấn luyện ngay tại thời điểm bắt đầu overfitting**. Phương pháp này được gọi là **early stopping** (dừng sớm). Early stopping có tác dụng ngăn không cho khoảng cách giữa $$\mathcal{L}_{D_{train}}$$ và $$\mathcal{L}_{D_{test}}$$ tăng lên thêm. Để rút ngắn khoảng cách này hơn nữa, ta cần **sử dụng regularizer**, sẽ được nói đến ở bài sau.
 
 Mình muốn kết thúc phần này bằng việc nhấn mạnh lại tầm quan trọng của overfitting: *nếu không có overfitting thì machine learning không thể được xem như một ngành nghiên cứu riêng biệt*, bởi vì khi đó ta chỉ cần vận dụng hết mọi công cụ tối ưu hàm số của toán học để giảm empirical risk về mức tối đa. Overfitting thể hiện trở ngại khi ta cố gắng bắt máy tính mô phỏng khả năng của con người: làm thế nào mà một người có thể tổng quát được những kiến thức đã học và áp dụng để xử lý tình huống chưa từng gặp, thậm chí là còn sáng tạo ra những thứ chưa hề tồn tại?
