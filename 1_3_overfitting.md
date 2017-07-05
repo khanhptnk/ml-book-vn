@@ -10,8 +10,8 @@ $$
 
 Theo ngôn ngữ toán học:
 $$
-\mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y) + R(f_w)
-$$ với $$\frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)$$ là trung bình loss function trên training set và $$R(f_w)$$ là regularizer.
+\mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y) + \lambda R(f_w)
+$$ với $$\frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)$$ là trung bình loss function trên training set, $$R(f_w)$$ là regularizer, $$\lambda$$ là regularization constant.
 
 Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ cả model và parameter của model.
 

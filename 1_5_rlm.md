@@ -59,11 +59,15 @@ Giả sử rằng đã lỡ tay chọn một model quá mạnh. Thì không cầ
 
 Nếu parameter $$w$$ là một vector số thực có $$d$$ chiều, tập hợp các giá trị $$w$$ có thể nhận, hay còn gọi là parameter space của $$w$$, là tập tất cả các vector có $$d$$ chiều số thực, ký hiệu là $$\mathbb{R}^d$$. Trong không gian này, mỗi chiều của $$w$$ đều được tự do bay nhảy trong khoảng $$(-\infty,\infty)$$. Muốn thu nhỏ lại không gian này, ta cần một cơ chế để thu hẹp miền giá trị của mỗi chiều.
 
-Để làm được điều đó, ý tưởng ở đây là định nghĩa một đại lượng để khái quát được "độ lớn" của vector $$w$$ và cố gắng giảm thiểu nó. Ta ký hiệu đại lượng này là, $$R(w)$$, là một hàm số phụ thuộc vào $$w$$. Khi huấn luyện để tìm ra $$w$$, cùng với việc giảm thiểu $$R(w)$$, ta cũng nhớ là mình vẫn cần phải giảm thiểu hàm mục tiêu của ERM, $$\mathcal{L}_{D_{train}}(w)$$. Để thể hiện được việc phải giảm thiểu cùng một lúc hai hàm số, ta sẽ giảm thiểu tổng của chúng. Cụ thể, ta định nghĩa lại mục tiêu ở bước (1) của supervised learning như sau:
+Để làm được điều đó, ý tưởng ở đây là định nghĩa một đại lượng để khái quát được "độ lớn" của vector $$w$$ và cố gắng tối thiểu nó. Đại lượng này sẽ được dùng làm regularizer, ký hiệu là $$R(w)$$ như ta đã biết, là một hàm số phụ thuộc vào $$w$$. Objective function của chúng ta được định nghĩa lại như sau:
 
 $$
  w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w') + \lambda R(w')
 $$
+
+  Khi objective function của chúng là tổng của empirical risk và regularizer, cả hai đại lượng sẽ cùng được tối thiểu hóa lúc train. Tuy nhiên,  khi huấn luyện để tìm ra $$w$$, cùng với việc giảm thiểu $$R(w)$$, ta cũng nhớ là mình vẫn cần phải giảm thiểu hàm mục tiêu của ERM, $$\mathcal{L}_{D_{train}}(w)$$. Để thể hiện được việc phải giảm thiểu cùng một lúc hai hàm số, ta sẽ giảm thiểu tổng của chúng. Cụ thể, ta định nghĩa lại mục tiêu ở bước (1) của supervised learning như sau:
+
+
 
 Quy tắc này được gọi là **regularized loss minimization** (RLM), một mở mộng của ERM. Chú ý là đối với hàm mục tiêu của RLM, không nhất thiết là $$\mathcal{L}_{D_{train}}$$ phải đạt giá trị tối thiểu để cho tổng $$\mathcal{L}_{D_{train}} + \lambda R$$ trở nên tối thiểu. Nếu một model tối thiểu hóa $$\mathcal{L}_{D_{train}}$$ nhưng lại làm cho $$R$$ đạt giá trị lớn thì vẫn có cơ hội để chọn một model khác, dù có $$\mathcal{L}_{D_{train}}$$ lớn hơn nhưng lại cho giá trị của $$R$$ nhỏ hơn nhiều. Nói cách khác, ta có thể lựa chọn được một model đơn giản, dù nó không dự đoán hoàn hảo tập huấn luyện. Hàm mục tiêu của RLM đang đưa model đi gần đến Occam's razor hết mức có thể. Ta chấp nhận hy sinh độ chính xác trên tập huấn luyện để giảm độ phức tạp của model, miễn là giảm được hàm mục tiêu tổng. Tuy nhiên, đây là sự đánh đổi hoàn toàn có lợi cho ta.
 
