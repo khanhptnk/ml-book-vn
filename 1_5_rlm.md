@@ -68,7 +68,7 @@ Tối thiểu hóa objective function này được gọi là quy tắc **regula
 
 Hằng số $$\lambda$$ trong hàm mục tiêu được gọi là **rgularization constant**, là một hyperparameter của model. Sự xuất hiện của $$\lambda$$ trong hàm mục tiêu làm cho vai trò của $$\mathcal{L}_{D_{train}}^{ERM}$$ và $$R$$ trở nên *bất đối xứng*: nếu ta tăng $$\mathcal{L}_{D_{train}}^{ERM}$$ lên $$1$$ đơn vị thì hàm mục tiêu tăng lên $$1$$ đơn vị; trong khi đó nếu tăng $$R$$ lên $$1$$ đơn vị thì hàm mục tiêu tăng lên thêm $$\lambda$$ đơn vị. Tức là $$1$$ đơn vị của $$\mathcal{L}_{D_{train}}^{ERM}$$ có giá trị bằng $$1 / \lambda$$ đơn vị của $$R$$. Thông thường, ta thường đặt $$\lambda$$ rất nhỏ, ví dụ $$\lambda = 10^{-6}$$. Lúc này, $$1$$ đơn vị của $$\mathcal{L}_{D_{train}}^{ERM}$$ bằng đến $$10^6$$ đơn vị của $$R$$. Điều này thể hiện rằng ta muốn ưu tiên vào tối thiểu hóa $$\mathcal{L}_{D_{train}}^{ERM}$$ hơn là $$R$$.
 
-### Các hàm bình thường hóa thường gặp
+### Các regularizer thường gặp
 
 $$R(w)$$ thường gặp nhất là [norm của vector](http://mathworld.wolfram.com/VectorNorm.html). Có rất nhiều loại norm, mình sẽ giới thiệu hai loại norm phổ biến nhất.
 
