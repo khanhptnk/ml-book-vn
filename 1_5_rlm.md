@@ -4,11 +4,11 @@ Chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra m
 
 **Q1** *: Overfitting là gì?*
 
-**A1** *: Là khi model không có khả năng tổng quát từ những gì đã học được: độ sai sót trên tập huấn luyện nhỏ, trên tập kiểm tra to.*
+**A1** *: Là khi model không có khả năng tổng quát từ những gì đã học được: độ sai sót trên training set nhỏ, trên test set to.*
 
 **Q2** *: Tại sao overfitting lại có hại?*
 
-**A2** *: Vì dữ liệu lúc nào cũng chứa noise, mà model bị overfitting rất nhạy cảm với noise. Noise làm cho model tìm được phức tạp quá mức cần thiết.*
+**A2** *: Vì dữ liệu lúc nào cũng chứa noise. Noise làm cho model tìm được phức tạp quá mức cần thiết.*
 
 **Q3** *: Làm sao để biết được model có bị overfitting hay không?*
 
@@ -16,17 +16,17 @@ Chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra m
 
 **Q4** *: Làm sao để không bị overfitting?*
 
-**A4** *: Đây không phải là một câu hỏi đúng vì overfitting là một khái niệm tương đối, tùy theo "cảm giác" của bạn. Nếu bạn đang nói về chuyện làm sao để $$\mathcal{L}_{D_{train}}$$ trùng với $$\mathcal{L}_{\mathcal{D}}$$ thì câu trả lời là không thể, trừ phi có vô hạn dữ liệu.*
+**A4** *: Nếu bạn đang nói về chuyện làm sao để $$\mathcal{L}_{D_{train}}$$ trùng với $$\mathcal{L}_{\mathcal{D}}$$ thì câu trả lời là không thể, trừ phi có vô hạn dữ liệu. Đây không phải là một câu hỏi đúng vì overfitting là một khái niệm tương đối, tùy theo "cảm giác" của bạn. Làm sao để giảm thiểu overfitting mới là câu hỏi đúng!*
 
 ### Nguyên nhân gây ra overfitting
 
 Như chúng ta đã biết, noise không phải là nguyên nhân trực tiếp gây ra overfitting. Vậy những yếu tố nào gây ra overfitting? Overfitting là sản phẩm của sự cộng hưởng giữa các yếu tố sau:
 
-1. **Áp dụng ERM**.
+1. **Áp dụng ERM**. Thay vì thực sự tối thiểu hóa $$\mathcal{L}_{\mathcal{D}}$$, một điều không thể, ta chỉ có thể tối thiểu hóa xấp xỉ của đại lượng này trên một tập dữ liệu giới hạn, $$\mathcal{L}_{D_{train}}$$. $$\mathcal{L}_{D_{test}}$$ cũng là xấp xỉ của đại lượng đó, nhưng lại được tính trên một tập dữ liệu khác. Điều này dẫn đến sự khác biệt giữa đại lượng ta muốn tối thiểu vào lúc train và lúc test.
 
-2. **Giới hạn về dữ liệu**: khi có thêm các cặp observation-label, hiển nhiên ta có thêm thông tin về mối quan hệ giữa chúng. Cụ thể hơn, ta thấy rằng $$\mathcal{L}_{D_{train}}$$ sẽ hội tụ về $$\mathcal{L}_{\mathcal{D}}$$ khi độ lớn của $$D_{train}$$ tiến đến vô cực. Khi hai đại lượng này trùng nhau thì overfitting hoàn toàn biến mất (theo định nghĩa). Vì thế, càng có nhiều dữ liệu huấn luyện thì càng ít bị overfitting.
+2. **Giới hạn về dữ liệu**: khi có thêm các cặp observation-label, hiển nhiên ta có thêm thông tin về mối quan hệ giữa chúng. Cụ thể hơn, ta thấy rằng $$\mathcal{L}_{D_{train}}$$ sẽ hội tụ về $$\mathcal{L}_{\mathcal{D}}$$ khi số lượng phần tử của $$D_{train}$$ tiến đến vô cùng. Khi hai đại lượng này trùng nhau thì overfitting hoàn toàn biến mất (theo định nghĩa). Vì thế, càng có nhiều dữ liệu huấn luyện thì càng ít bị overfitting.
 
-3. **Tập model quá "mạnh"**: khi chọn một dạng model $$f_w$$ và thay đổi parameter $$w$$ và các hyperparameter khác, ta được một **tập model** (model family). Ví dụ nếu $$f_w$$ là một đa thức bậc một, thì tập model là tập hợp tất cả các đa thức bậc một (có dạng $$y = f_w(x) = w_1x + w_2$$). Dù có vô số đa thức như vậy, nhưng mà đây được xem như một tập model "yếu" bởi vì nó không biểu diễu được các hàm phi tuyến tính. Vì bản chất machine learning là ước lượng hàm số, sử dụng một tập model mạnh hơn, thậm chí có khả năng mô phỏng tất cả dạng hàm số tưởng chừng như là một ý hay. Nhưng thực tế đây lại là một ý tưởng này rất tồi. Vì sao?
+3. **Model quá "mạnh"**: một model quá mạnh là khi nó có khả năng mô phỏng rất nhiều mối quan hệ phức tạp giữa observation và label (cũng tức là mô phỏng được rất nhiều hàm số). Ví dụ nếu $$f_w$$ là một đa thức bậc một, thì  tất cả các đa thức bậc một (có dạng $$y = f_w(x) = w_1x + w_2$$). Dù có vô số đa thức như vậy, nhưng mà đây được xem như một tập model "yếu" bởi vì nó không biểu diễu được các hàm phi tuyến tính. Vì bản chất machine learning là ước lượng hàm số, sử dụng một tập model mạnh hơn, thậm chí có khả năng mô phỏng tất cả dạng hàm số tưởng chừng như là một ý hay. Nhưng thực tế đây lại là một ý tưởng này rất tồi. Vì sao?
 
 
 ### Vì sao dùng tập model quá mạnh lại không tốt?
