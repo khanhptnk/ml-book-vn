@@ -26,7 +26,7 @@ Kí hiệu $$\arg\min_x f(x)$$ trả về giá trị của $$x$$ để hàm $$f(
 Khi ta nói muốn tìm model dự đoán chính xác hoàn toàn trên training set, tức là nói đến việc sử dụng một objective function mà không có regularizer:
 
 $$
-\mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)
+\mathcal{L}_{D_{train}}^{ERM}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)
 $$
 
 Đây được gọi là quy tắc empirical risk minimization (ERM). Ta sẽ giải thích vì sao nó được gọi như vậy. Loss function còn được gọi là risk function (hàm rủi ro). Chữ *empirical* được thêm vào bởi vì risk function này được tính trung bình trên một tập dữ liệu hữu hạn. Vậy empirical risk minimization tức là **tối thiểu hóa rủi ro trên một tập dữ liệu hữu hạn**. 
