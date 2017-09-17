@@ -5,25 +5,25 @@ Trong bài này, ta sẽ tìm hiểu kỹ hơn về quá trình train một mode
 Khi nói đến train model, không thể quên [objective function](https://ml-book-vn.khanhxnguyen.com/1_2_objective.html). Ở bài trước, nói rằng objective function thường có dạng:
 
 $$
-    objective =average\_loss + regularizer
+    objective = average\_loss + regularizer
 $$
 
 Theo ngôn ngữ toán học:
 $$
 \mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y) + \lambda R(f_w)
-$$ với $$\frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)$$ là trung bình loss function trên training set, $$R(f_w)$$ là regularizer, $$\lambda$$ là regularization constant.
+$$ với $$\frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)$$ là trung bình loss function trên training set, $$R(f_w)$$ là regularizer, $$\lambda$$ là regularization constant (một [hyperparameter](https://ml-book-vn.khanhxnguyen.com/terms.html)).
 
 Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ cả model và parameter của model.
 
 Mục tiêu của training là tìm ra model tối thiểu hóa objective function:
 
 $$
-w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w')
+w^* = \arg\min_{w} \mathcal{L}_{D_{train}}(w)
 $$
 
 Kí hiệu $$\arg\min_x f(x)$$ trả về giá trị của $$x$$ để hàm $$f(x)$$ đạt được giá trị cực tiểu. Ví dụ,  $$\arg\min_x x^2 + 1 = 0$$ bởi vì $$ x^2 + 1$$ đạt giá trị cực tiểu (bằng 1) tại $$x = 0$$. Các bạn sẽ nhìn thấy phương trình này trong đa số các paper (bài báo khoa học) về machine learning.
 
-Khi ta nói muốn tìm model dự đoán chính xác hoàn toàn trên training set, tức là nói đến việc sử dụng một objective function mà không có regularizer:
+Khi ta nói muốn tìm model "dự đoán chính xác hoàn toàn" trên training set, tức là nói đến việc sử dụng một objective function mà không có regularizer:
 
 $$
 \mathcal{L}_{D_{train}}^{ERM}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)
