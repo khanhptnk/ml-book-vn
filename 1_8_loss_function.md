@@ -1,16 +1,17 @@
-# Hàm mất mát
+#
+Loss function
 
 Ở các phần trước, ta đã bỏ rất nhiều công sức để xây dựng được một công thức tổng quát để tìm ra một model từ một tập dữ liệu. Đó hàm mục tiêu của **regularized loss minimization** (RLM):
 
 
 
 $$
- w^* = \arg\min_{w} \mathcal{L}_{D_{train}}^{ERM}(w) + \lambda R(w) 
+w^* = \arg\min_{w} \mathcal{L}_{D_{train}}^{ERM}(w) + \lambda R(w)
 $$
 
 
 
-Nhưng suy đi nghĩ lại thì công thức này khá là "vô dụng" vì nó tổng quát nhưng không cụ thể. Ta chẳng thể dùng nó để luyện ra model nào bởi ta không biết $$\mathcal{L}$$ có dạng thế nào để mà tìm giá trị cực tiểu. Vậy tại sao chúng ta lại bỏ thời gian ra "vô ích" như vậy? 
+Nhưng suy đi nghĩ lại thì công thức này khá là "vô dụng" vì nó tổng quát nhưng không cụ thể. Ta chẳng thể dùng nó để luyện ra model nào bởi ta không biết $$\mathcal{L}$$ có dạng thế nào để mà tìm giá trị cực tiểu. Vậy tại sao chúng ta lại bỏ thời gian ra "vô ích" như vậy?
 
 ### Tại sao chúng ta lại cần một công thức tổng quát?
 
@@ -22,19 +23,19 @@ Machine learning cũng như vậy. Ta bỏ nhiều công sức ra để xây d�
 
 Bây giờ ta sẽ đi nghiên cứu một số biến thể thông dụng nhất nhé!
 
-### Hàm mất mát
+### Định nghĩa loss function
 
-Đầu tiên chúng ta cần nhớ lại xem hàm mất mát là gì? **Hàm mất mát** (loss function), kí hiệu là $$L$$, là thành phần cốt lõi của hàm rủi ro $$\mathcal{L}$$. Hàm rủi ro thực chất là trung bình cộng của hàm mất mát tính trên một tập dữ liệu. Cụ thể, trong công thức:
+Đầu tiên chúng ta cần nhớ lại xem loss function là gì? **loss function** (loss function), kí hiệu là $$L$$, là thành phần cốt lõi của hàm rủi ro $$\mathcal{L}$$. Hàm rủi ro thực chất là trung bình cộng của loss function tính trên một tập dữ liệu. Cụ thể, trong công thức:
 
 
 
 $$
- \mathcal{L}_D(f_w) = \frac{1}{|D|} \sum_{(x, y) \in D} L \left( f_w(x), y \right) 
+\mathcal{L}_D(f_w) = \frac{1}{|D|} \sum_{(x, y) \in D} L \left( f_w(x), y \right)
 $$
 
 
 
-Thì hàm $$L$$ chính là hàm mất mát. Hàm mất mát trả về một số thực không âm thể hiện sự chênh lệch giữa hai đại lượng: $$\hat{y}$$, label được dự đoán và $$y$$, label đúng. Hàm mất mát giống như một hình thức để bắt model đóng phạt mỗi lần nó dự đoán sai, và số mức phạt này tỉ lệ thuận với độ trầm trọng của sai sót. Trong mọi bài toán supervised learning, mục tiêu của ta luôn bao gồm giảm thiểu tổng mức phạt phải đóng. Trong trường hợp lý tưởng, tức là khi $$\hat{y} = y$$, hàm mất mát sẽ trả về giá trị cực tiểu, bằng 0.
+Thì hàm $$L$$ chính là loss function. loss function trả về một số thực không âm thể hiện sự chênh lệch giữa hai đại lượng: $$\hat{y}$$, label được dự đoán và $$y$$, label đúng. loss function giống như một hình thức để bắt model đóng phạt mỗi lần nó dự đoán sai, và số mức phạt này tỉ lệ thuận với độ trầm trọng của sai sót. Trong mọi bài toán supervised learning, mục tiêu của ta luôn bao gồm giảm thiểu tổng mức phạt phải đóng. Trong trường hợp lý tưởng, tức là khi $$\hat{y} = y$$, loss function sẽ trả về giá trị cực tiểu, bằng 0.
 
 ### Hai dạng bài supervised learning cơ bản
 
@@ -46,63 +47,63 @@ Khi $$y$$ là một đại lượng rời rạc chỉ nhận giá trị trong m�
 
 Lưu ý rằng ta đang nói đến label thật $$y$$ chứ không phải label dự đoán $$\hat{y} = f_w(x)$$. Thông thường, đối với cả regression và binary classification, ta đều thiết kế để model $$f_w(x)$$ trả về một số thực $$\hat{y} \in (-\infty,\infty) $$. Với regression, $$\hat{y}$$ dĩ nhiên mang ý nghĩa là giá trị được dự đoán. Với binary classification, $$\hat{y}$$ là điểm số thể hiện model ưa thích label nào hơn trong hai label. Nếu $$\hat{y} < 0$$ tức là model thích phương án -1 hơn và ngược lại, nếu $$\hat{y} \geq 0$$ tức là model nghiêng về phương án +1 hơn. Giá trị tuyệt đối của $$\hat{y}$$ thể hiện sự tự tin (sự chắc chắn) của model đối với lựa chọn của mình.
 
-### Cách xây dựng hàm mất mát
+### Cách xây dựng loss function
 
-Vì hàm mất mát đo đạc chênh lệch giữa $$y$$ và $$\hat{y}$$, nên không lạ gì nếu ta nghĩ ngay đến việc lấy hiệu giữa chúng:
-
-
-
-$$
- L(\hat{y}, y) = \hat{y} \ - \ y
-$$
-
-
-
-Tuy nhiên hàm này lại không thỏa mãn tính chất không âm của một hàm mất mát. Ta có thể sửa nó lại một chút để thỏa mãn tính chất này. Ví dụ như lấy giá trị tuyệt đối của hiệu:
+Vì loss function đo đạc chênh lệch giữa $$y$$ và $$\hat{y}$$, nên không lạ gì nếu ta nghĩ ngay đến việc lấy hiệu giữa chúng:
 
 
 
 $$
- L(\hat{y}, y) = |\hat{y} - y|
+L(\hat{y}, y) = \hat{y} \ - \ y
 $$
 
 
 
-Hàm mất mát này không âm nhưng lại không thuận tiện trong việc cực tiểu hóa, bởi vì đạo hàm của nó không liên tục (nhớ là đạo hàm của $$f(x) = |x|$$ bị đứt quãng tại $$x = 0$$) và thường các phương pháp cực tiểu hóa hàm số thông dụng đòi hỏi phải tính được đạo hàm. Một cách khác đó là lấy bình phương của hiệu:
+Tuy nhiên hàm này lại không thỏa mãn tính chất không âm của một loss function. Ta có thể sửa nó lại một chút để thỏa mãn tính chất này. Ví dụ như lấy giá trị tuyệt đối của hiệu:
 
 
 
 $$
- L(\hat{y}, y) = \frac{1}{2}(\hat{y} - y)^2
+L(\hat{y}, y) = |\hat{y} - y|
 $$
 
 
 
-Khi tính đạo hàm theo $$\hat{y}$$, ta được $$\nabla L = \frac{1}{2} \times 2 \times (\hat{y} - y) =\hat{y} - y$$. Các bạn có thể thấy rằng hằng số $$\frac{1}{2}$$ được thêm vào chỉ để cho công thức đạo hàm được đẹp hơn, không có hằng số phụ. Hàm mất mát này được gọi là **square loss**. Square loss có thể được sử dụng cho cả regression và classification, nhưng thực tế thì nó thường được dùng cho regression hơn.
+loss function này không âm nhưng lại không thuận tiện trong việc cực tiểu hóa, bởi vì đạo hàm của nó không liên tục (nhớ là đạo hàm của $$f(x) = |x|$$ bị đứt quãng tại $$x = 0$$) và thường các phương pháp cực tiểu hóa hàm số thông dụng đòi hỏi phải tính được đạo hàm. Một cách khác đó là lấy bình phương của hiệu:
 
-Đối với binary classification, ta có một cách tiếp cận khác để xây dựng hàm mất mát. Nhắc lại là đối với dạng bài này, thì nếu model trả về $$\hat{y} < 0$$ tức là thích đáp án -1 hơn, trả về $$\hat{y} \geq 0$$ tức là thích đáp án +1 hơn.
 
-Một cách rất tự nhiên, ta thấy rằng hàm mất mát của binary classification cần phải đạt được một số tiêu chí sau:
 
-1. Ta cần phải phạt model nhiều hơn khi dự đoán sai hơn là khi dự đoán đúng. Vì thế, tiêu chí đầu tiên của ta là khi model dự đoán sai ($$y$$ khác dấu với $$\hat{y}$$), hàm mất mát phải trả về giá trị lớn hơn so với khi model dự đoán đúng ($$y$$ cùng dấu với $$\hat{y}$$).
+$$
+L(\hat{y}, y) = \frac{1}{2}(\hat{y} - y)^2
+$$
+
+
+
+Khi tính đạo hàm theo $$\hat{y}$$, ta được $$\nabla L = \frac{1}{2} \times 2 \times (\hat{y} - y) =\hat{y} - y$$. Các bạn có thể thấy rằng hằng số $$\frac{1}{2}$$ được thêm vào chỉ để cho công thức đạo hàm được đẹp hơn, không có hằng số phụ. loss function này được gọi là **square loss**. Square loss có thể được sử dụng cho cả regression và classification, nhưng thực tế thì nó thường được dùng cho regression hơn.
+
+Đối với binary classification, ta có một cách tiếp cận khác để xây dựng loss function. Nhắc lại là đối với dạng bài này, thì nếu model trả về $$\hat{y} < 0$$ tức là thích đáp án -1 hơn, trả về $$\hat{y} \geq 0$$ tức là thích đáp án +1 hơn.
+
+Một cách rất tự nhiên, ta thấy rằng loss function của binary classification cần phải đạt được một số tiêu chí sau:
+
+1. Ta cần phải phạt model nhiều hơn khi dự đoán sai hơn là khi dự đoán đúng. Vì thế, tiêu chí đầu tiên của ta là khi model dự đoán sai ($$y$$ khác dấu với $$\hat{y}$$), loss function phải trả về giá trị lớn hơn so với khi model dự đoán đúng ($$y$$ cùng dấu với $$\hat{y}$$).
 
 2. Nếu $$\hat{y}$$ cùng đấu với $$y$$ thì ta nên phạt model thế nào? Cụ thể là nếu có hai đáp án $$\hat{y}_1$$ và $$\hat{y}_2$$ đều cùng dấu với $$y$$ thì ta nên phạt đáp án nào nhiều hơn? Như đã nói, giá trị tuyệt đối $$|\hat{y}|$$ thể hiện "độ tự tin" của model đối với một phương án. Giá trị này càng lớn thì model càng "thích" một phương án. Trong trường hợp $$\hat{y}$$ cùng dấu với $$y$$, phương án được thích là phương án đúng, do đó, model càng thích thì ta phải càng khuyến khích và phạt ít đi. Cũng với lập luận như vậy, nếu $$\hat{y}$$ khác dấu với $$y$$, vì phương án được thích là phương án sai nên model càng thích thì ta phải càng phạt nặng để model không tái phạm nữa.
 
-Một cách tổng quát, đối với binary classification thì các hàm mất mát thường có dạng như sau:
+Một cách tổng quát, đối với binary classification thì các loss function thường có dạng như sau:
 
 
 
 $$
- L(\hat{y}, y) = f(y \cdot \hat{y}) 
+L(\hat{y}, y) = f(y \cdot \hat{y})
 $$
 
- trong đó $$f$$ là một hàm không âm và không tăng.
+trong đó $$f$$ là một hàm không âm và không tăng.
 
-**Q1**: *Giải thích tại sao hàm $$g(\hat{y}, y) =  \ - y \cdot \hat{y}$$ lại thỏa mãn hai tiêu chí đã nêu ở trên.*
+**Q1**: *Giải thích tại sao hàm $$g(\hat{y}, y) = \ - y \cdot \hat{y}$$ lại thỏa mãn hai tiêu chí đã nêu ở trên.*
 
-**Q2**: *Giải thích tại sao hàm $$g(\hat{y}, y) =  \ - y \cdot \hat{y}$$ lại không thỏa điều kiện của một hàm mất mát (lưu ý tính chất của hàm mất mát và $$f$$).*
+**Q2**: *Giải thích tại sao hàm $$g(\hat{y}, y) = \ - y \cdot \hat{y}$$ lại không thỏa điều kiện của một loss function (lưu ý tính chất của loss function và $$f$$).*
 
-### Các hàm mất mát cơ bản dành cho binary classification 
+### Các loss function cơ bản dành cho binary classification
 
 ####Hàm 0-1 loss:
 
@@ -113,19 +114,19 @@ Hàm này rất đơn giản: trả về 1 nếu $$y \cdot \hat{y} < 0$$, trả 
 
 
 $$
- L_{perceptron}(\hat{y}, y) = \max(0,- y \cdot \hat{y}) 
+L_{perceptron}(\hat{y}, y) = \max(0,- y \cdot \hat{y})
 $$
 
 
 
-Ta thấy rằng hàm perceptron loss là một cách đơn giản nhất để sửa sao cho hàm $$g$$ ở câu hỏi trên trở thành không âm (thỏa điều kiện của một hàm mát). Đối với perceptron loss, khi model đoán đúng ($$\hat{y}$$ cùng dấu với $$y$$), $$- y \cdot \hat{y}$$ sẽ mang dấu âm. Tức là, khi đó $$L_{perceptron}(\hat{y}, y) = \max(0,  negative) = 0$$. Nói cách khác, perceptron loss không phân biệt gì giữa các dự đoán đúng. Chúng đều không bị phạt. Đối với các dự đoán sai, thì perceptron vẫn tuân thủ theo nguyên tắc là model càng thích thì phạt càng nặng. Perceptron loss là hàm mất mát của **perceptron model**.
+Ta thấy rằng hàm perceptron loss là một cách đơn giản nhất để sửa sao cho hàm $$g$$ ở câu hỏi trên trở thành không âm (thỏa điều kiện của một hàm mát). Đối với perceptron loss, khi model đoán đúng ($$\hat{y}$$ cùng dấu với $$y$$), $$- y \cdot \hat{y}$$ sẽ mang dấu âm. Tức là, khi đó $$L_{perceptron}(\hat{y}, y) = \max(0, negative) = 0$$. Nói cách khác, perceptron loss không phân biệt gì giữa các dự đoán đúng. Chúng đều không bị phạt. Đối với các dự đoán sai, thì perceptron vẫn tuân thủ theo nguyên tắc là model càng thích thì phạt càng nặng. Perceptron loss là loss function của **perceptron model**.
 
 ####Hàm hinge loss
 
 
 
 $$
- L_{hinge}(\hat{y}, y) = \max(0, 1 - y \cdot \hat{y}) 
+L_{hinge}(\hat{y}, y) = \max(0, 1 - y \cdot \hat{y})
 $$
 
 
@@ -139,17 +140,17 @@ Vì sao lại làm như vậy? Những dự đoán ở trong margin $$[0, 1]$$ l
 
 
 $$
-L_{log}(\hat{y}, y) = \log_2(1 + \exp(- y \cdot \hat{y})) 
+L_{log}(\hat{y}, y) = \log_2(1 + \exp(- y \cdot \hat{y}))
 $$
 
 
 
-Trong công thức trên, hàm $$\exp(\cdot)$$ là hàm lũy thừa theo cơ số tự nhiên $$e$$. Thoạt nhìn log loss trông có vẻ khá phức tạp, và trông không có vẻ gì là họ hàng của hai hàm còn lại. Tuy nhiên, khi nhìn vào đồ thị của hàm số này, ta lại thấy rất dễ hiểu bởi vì nó thỏa tất cả mọi tính chất của hàm mất mát mà ta đã nói ở phần trước. Đây là một hàm liên tục, không âm và không tăng. Không những không tăng, log loss còn luôn giảm, có nghĩa là nó luôn phân biệt giữa các dự đoán có độ tự tin khác nhau bất kể đúng hay sai. Đây là điểm khác biệt chính của log loss với perceptron loss và hinge loss. Một điểm khác biệt nữa là hàm này có một độ cong nhất định, tức là nó không giảm với tốc độ như nhau ở mọi điểm. Trong khi đó, thì một phần của perceptron loss hoặc hinge loss chỉ là một đường tuyến tính, với tốc độ giảm là một hằng số. Log loss chính là nền tảng của **logistic regression model**.
+Trong công thức trên, hàm $$\exp(\cdot)$$ là hàm lũy thừa theo cơ số tự nhiên $$e$$. Thoạt nhìn log loss trông có vẻ khá phức tạp, và trông không có vẻ gì là họ hàng của hai hàm còn lại. Tuy nhiên, khi nhìn vào đồ thị của hàm số này, ta lại thấy rất dễ hiểu bởi vì nó thỏa tất cả mọi tính chất của loss function mà ta đã nói ở phần trước. Đây là một hàm liên tục, không âm và không tăng. Không những không tăng, log loss còn luôn giảm, có nghĩa là nó luôn phân biệt giữa các dự đoán có độ tự tin khác nhau bất kể đúng hay sai. Đây là điểm khác biệt chính của log loss với perceptron loss và hinge loss. Một điểm khác biệt nữa là hàm này có một độ cong nhất định, tức là nó không giảm với tốc độ như nhau ở mọi điểm. Trong khi đó, thì một phần của perceptron loss hoặc hinge loss chỉ là một đường tuyến tính, với tốc độ giảm là một hằng số. Log loss chính là nền tảng của **logistic regression model**.
 
-Vậy có phải log loss là một hàm mất mát hoàn hảo? Chưa hẳn, điều này phụ thuộc vào bài toán. Tuy log loss đưa ra nhiều tiêu chí hấp dẫn, nhưng vấn đề model liệu có thể thỏa mãn những tiêu chí được những tiêu chí đó không. Hay chúng ta đang đòi quá nhiều ở model? Việc model phân biệt giữa một đáp đúng với độ chắn chắn thấp và một đáp án đúng với độ chắc chắn cao mang lại lợi ích gì cho ta? Có đôi khi, ta không quan tâm, đáp án nào cũng đều đúng. Có đôi khi, ta lại cần model phải rạch ròi. Có đôi khi, ta chỉ muốn tránh những đáp án có độ chắc chắn thấp; Lúc đó, hinge loss lại là sự lựa chọn tốt hơn. Tất cả đều tùy vào dữ liệu và ứng dụng.
+Vậy có phải log loss là một loss function hoàn hảo? Chưa hẳn, điều này phụ thuộc vào bài toán. Tuy log loss đưa ra nhiều tiêu chí hấp dẫn, nhưng vấn đề model liệu có thể thỏa mãn những tiêu chí được những tiêu chí đó không. Hay chúng ta đang đòi quá nhiều ở model? Việc model phân biệt giữa một đáp đúng với độ chắn chắn thấp và một đáp án đúng với độ chắc chắn cao mang lại lợi ích gì cho ta? Có đôi khi, ta không quan tâm, đáp án nào cũng đều đúng. Có đôi khi, ta lại cần model phải rạch ròi. Có đôi khi, ta chỉ muốn tránh những đáp án có độ chắc chắn thấp; Lúc đó, hinge loss lại là sự lựa chọn tốt hơn. Tất cả đều tùy vào dữ liệu và ứng dụng.
 
-Cuối cùng, để kết thúc bài viết, xin tặng các bạn một tấm hình minh họa các hàm mất mát từ trang [scikit-learn](http://scikit-learn.org/stable/auto_examples/linear_model/plot_sgd_loss_functions.html):
+Cuối cùng, để kết thúc bài viết, xin tặng các bạn một tấm hình minh họa các loss function:
 
-![](http://scikit-learn.org/stable/_images/plot_sgd_loss_functions_001.png)
+![](/assets/lNgJE.png)!
 
 

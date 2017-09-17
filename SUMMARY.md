@@ -10,5 +10,5 @@
   * [Regularized Loss Minimization](1_5_rlm.md)
   * [Tinh chỉnh các hyperparameter](1_6_hyper.md)
   * [Thuật toán supervised learning tổng quát](1_7_supervised_learning.md)
-  * [Hàm mất mát](1_8_loss_function.md)
+  * [Loss function](1_8_loss_function.md)
 
