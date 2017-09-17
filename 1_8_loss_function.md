@@ -101,6 +101,12 @@ trong đó $$f$$ là một hàm không âm và không tăng.
 
 ### Các loss function cơ bản dành cho binary classification
 
+![](/assets/lNgJE.png)
+
+
+
+
+
 #### 0-1 loss:
 
 Hàm này rất đơn giản: trả về 1 nếu $$y \cdot \hat{y} < 0$$, trả về 0 nếu ngược lại. Việc này tương đương với việc đếm số câu trả lời sai của model. 0-1 loss thường chỉ được dùng để tính error rate của model, chứ không dùng để huấn luyện model vì đạo hàm của nó không xác định ở điểm 0.
@@ -133,20 +139,14 @@ Vì sao lại làm như vậy? Những dự đoán ở trong margin $$[0, 1]$$ l
 
 #### Logistic loss (hay log loss):
 
-
-
 $$
 L_{log}(\hat{y}, y) = \log_2(1 + \exp(- y \cdot \hat{y}))
 $$
-
-
 
 Trong công thức trên, hàm $$\exp(\cdot)$$ là hàm lũy thừa theo cơ số tự nhiên $$e$$. Thoạt nhìn log loss trông có vẻ khá phức tạp, và trông không có vẻ gì là họ hàng của hai hàm còn lại. Tuy nhiên, khi nhìn vào đồ thị của hàm số này, ta lại thấy rất dễ hiểu bởi vì nó thỏa tất cả mọi tính chất của loss function mà ta đã nói ở phần trước. Đây là một hàm liên tục, không âm và không tăng. Không những không tăng, log loss còn luôn giảm, có nghĩa là nó luôn phân biệt giữa các dự đoán có độ tự tin khác nhau bất kể đúng hay sai. Đây là điểm khác biệt chính của log loss với perceptron loss và hinge loss. Một điểm khác biệt nữa là hàm này có một độ cong nhất định, tức là nó không giảm với tốc độ như nhau ở mọi điểm. Trong khi đó, thì một phần của perceptron loss hoặc hinge loss chỉ là một đường tuyến tính, với tốc độ giảm là một hằng số. Log loss chính là nền tảng của **logistic regression model**.
 
 Vậy có phải log loss là một loss function hoàn hảo? Chưa hẳn, điều này phụ thuộc vào bài toán. Tuy log loss đưa ra nhiều tiêu chí hấp dẫn, nhưng vấn đề model liệu có thể thỏa mãn những tiêu chí được những tiêu chí đó không. Hay chúng ta đang đòi quá nhiều ở model? Việc model phân biệt giữa một đáp đúng với độ chắn chắn thấp và một đáp án đúng với độ chắc chắn cao mang lại lợi ích gì cho ta? Có đôi khi, ta không quan tâm, đáp án nào cũng đều đúng. Có đôi khi, ta lại cần model phải rạch ròi. Có đôi khi, ta chỉ muốn tránh những đáp án có độ chắc chắn thấp; Lúc đó, hinge loss lại là sự lựa chọn tốt hơn. Tất cả đều tùy vào dữ liệu và ứng dụng.
 
-Cuối cùng, để kết thúc bài viết, xin tặng các bạn một tấm hình minh họa các loss function:
 
-![](/assets/lNgJE.png)!
 
 
