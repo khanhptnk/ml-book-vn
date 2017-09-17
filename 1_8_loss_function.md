@@ -25,17 +25,14 @@ Bây giờ ta sẽ đi nghiên cứu một số biến thể thông dụng nhấ
 
 ### Định nghĩa loss function
 
-Đầu tiên chúng ta cần nhớ lại xem loss function là gì? **loss function** (loss function), kí hiệu là $$L$$, là thành phần cốt lõi của hàm rủi ro $$\mathcal{L}$$. Hàm rủi ro thực chất là trung bình cộng của loss function tính trên một tập dữ liệu. Cụ thể, trong công thức:
-
-
+**Loss function** kí hiệu là $$L$$, là thành phần cốt lõi của evaluation function và objective function. Cụ thể, trong công thức thường gặp:
 
 $$
 \mathcal{L}_D(f_w) = \frac{1}{|D|} \sum_{(x, y) \in D} L \left( f_w(x), y \right)
 $$
+thì hàm $$L$$ chính là loss function. 
 
-
-
-Thì hàm $$L$$ chính là loss function. loss function trả về một số thực không âm thể hiện sự chênh lệch giữa hai đại lượng: $$\hat{y}$$, label được dự đoán và $$y$$, label đúng. loss function giống như một hình thức để bắt model đóng phạt mỗi lần nó dự đoán sai, và số mức phạt này tỉ lệ thuận với độ trầm trọng của sai sót. Trong mọi bài toán supervised learning, mục tiêu của ta luôn bao gồm giảm thiểu tổng mức phạt phải đóng. Trong trường hợp lý tưởng, tức là khi $$\hat{y} = y$$, loss function sẽ trả về giá trị cực tiểu, bằng 0.
+Loss function trả về một số thực không âm thể hiện sự chênh lệch giữa hai đại lượng: $$\hat{y}$$, label được dự đoán và $$y$$, label đúng. Loss function giống như một hình thức để bắt model đóng phạt mỗi lần nó dự đoán sai, và số mức phạt này tỉ lệ thuận với độ trầm trọng của sai sót. Trong mọi bài toán supervised learning, mục tiêu của ta luôn bao gồm giảm thiểu tổng mức phạt phải đóng. Trong trường hợp lý tưởng, tức là khi $$\hat{y} = y$$, loss function sẽ trả về giá trị cực tiểu, bằng 0.
 
 ### Hai dạng bài supervised learning cơ bản
 
@@ -69,7 +66,7 @@ $$
 
 
 
-loss function này không âm nhưng lại không thuận tiện trong việc cực tiểu hóa, bởi vì đạo hàm của nó không liên tục (nhớ là đạo hàm của $$f(x) = |x|$$ bị đứt quãng tại $$x = 0$$) và thường các phương pháp cực tiểu hóa hàm số thông dụng đòi hỏi phải tính được đạo hàm. Một cách khác đó là lấy bình phương của hiệu:
+Loss function này không âm nhưng lại không thuận tiện trong việc cực tiểu hóa, bởi vì đạo hàm của nó không liên tục (nhớ là đạo hàm của $$f(x) = |x|$$ bị đứt quãng tại $$x = 0$$) và thường các phương pháp cực tiểu hóa hàm số thông dụng đòi hỏi phải tính được đạo hàm. Một cách khác đó là lấy bình phương của hiệu:
 
 
 
@@ -105,11 +102,11 @@ trong đó $$f$$ là một hàm không âm và không tăng.
 
 ### Các loss function cơ bản dành cho binary classification
 
-####Hàm 0-1 loss:
+#### 0-1 loss:
 
 Hàm này rất đơn giản: trả về 1 nếu $$y \cdot \hat{y} < 0$$, trả về 0 nếu ngược lại. Việc này tương đương với việc đếm số câu trả lời sai của model. 0-1 loss thường chỉ được dùng để tính error rate của model, chứ không dùng để huấn luyện model vì đạo hàm của nó không xác định ở điểm 0.
 
-####Hàm perceptron loss:
+#### Perceptron loss:
 
 
 
@@ -121,7 +118,7 @@ $$
 
 Ta thấy rằng hàm perceptron loss là một cách đơn giản nhất để sửa sao cho hàm $$g$$ ở câu hỏi trên trở thành không âm (thỏa điều kiện của một hàm mát). Đối với perceptron loss, khi model đoán đúng ($$\hat{y}$$ cùng dấu với $$y$$), $$- y \cdot \hat{y}$$ sẽ mang dấu âm. Tức là, khi đó $$L_{perceptron}(\hat{y}, y) = \max(0, negative) = 0$$. Nói cách khác, perceptron loss không phân biệt gì giữa các dự đoán đúng. Chúng đều không bị phạt. Đối với các dự đoán sai, thì perceptron vẫn tuân thủ theo nguyên tắc là model càng thích thì phạt càng nặng. Perceptron loss là loss function của **perceptron model**.
 
-####Hàm hinge loss
+#### Hinge loss
 
 
 
@@ -131,11 +128,11 @@ $$
 
 
 
-Hinge loss chẳng qua chỉ là một biến thể từ perceptron loss. Ta chỉ thêm 1 đơn vị vào đại lượng $$- y \cdot \hat{y}$$. Số 1 này có một ý nghĩa rất đặt biệt, được gọi là margin (lề). Các bạn sẽ thấy là hinge loss hoạt động gần như tương tự như perceptron loss chỉ trừ các dự đoán mà $$y \cdot \hat{y}$$ nằm trong khoảng $$[0, 1]$$. Chú ý là các dự đoán mà $$y \cdot \hat{y}$$ rơi vào khoảng này thì đều đúng. Hinge loss phân biệt các dự đoán đúng này theo nguyên tắc là model càng thích thì càng phạt nhẹ. Còn khi $$y \cdot \hat{y}$$ vượt quá 1 thì hinge loss lại không phân biệt nữa.
+Hinge loss chẳng qua chỉ là một biến thể từ perceptron loss. Ta chỉ thêm 1 đơn vị vào đại lượng $$- y \cdot \hat{y}$$. Số 1 này có một ý nghĩa rất đặt biệt, được gọi là *margin* (lề). Các bạn sẽ thấy là hinge loss hoạt động gần như tương tự như perceptron loss chỉ trừ các dự đoán mà $$y \cdot \hat{y}$$ nằm trong khoảng $$[0, 1]$$. Chú ý là các dự đoán mà $$y \cdot \hat{y}$$ rơi vào khoảng này thì đều đúng. Hinge loss phân biệt các dự đoán đúng này theo nguyên tắc là model càng thích thì càng phạt nhẹ. Còn khi $$y \cdot \hat{y}$$ vượt quá 1 thì hinge loss lại không phân biệt nữa.
 
 Vì sao lại làm như vậy? Những dự đoán ở trong margin $$[0, 1]$$ là những dự đoán gần ranh giới, là những lúc mà model lưỡng lự. Ý tưởng của hinge loss là muốn model phải thật rõ ràng và tự tin với những quyết định của mình. Do khi vẫn còn trong margin thì model vẫn bị phạt, nên model sẽ được khuyến khích để đưa ra những quyết định đúng và có tính chắc chắn cao, nằm ngoài margin để không bị phạt nữa. Đây chính là ý tưởng của **support vector machines model**.
 
-####Hàm logistic loss (hay log loss):
+#### Logistic loss (hay log loss):
 
 
 
