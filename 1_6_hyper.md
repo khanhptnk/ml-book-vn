@@ -17,5 +17,5 @@ Trong nghiên cứu, tỉ lệ train:dev:test thường được dùng đó là 
 
 ### k-fold cross-validation
 
-**k-fold cross validation** được sử dụng khi ta không có đủ dữ liệu để trích ra được một development đủ lớn. Phương pháp này sẽ chia training set thành k phần. Sau đó, ta lần lượt sử dụng từng phần làm development và k - 1 phần còn lại làm training set. Độ tốt của model (lúc phát triển) sẽ bằng trung bình cộng độ tốt qua k lần huấn luyện.  
+**k-fold cross validation** được sử dụng khi ta không có đủ dữ liệu để trích ra được một development set đủ lớn. Phương pháp này sẽ chia training set thành k phần. Sau đó, ta lần lượt sử dụng từng phần làm development và k - 1 phần còn lại làm training set. Độ tốt của model (lúc phát triển) sẽ bằng trung bình cộng độ tốt qua k lần huấn luyện.  
 
