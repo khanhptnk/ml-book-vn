@@ -5,7 +5,7 @@
 
 
 $$
- w = \arg\min_{w'} \mathcal{L}_{D_{train}}(w') + \lambda R(w') 
+ w^* = \arg\min_{w} \mathcal{L}_{D_{train}}^{ERM}(w) + \lambda R(w) 
 $$
 
 
