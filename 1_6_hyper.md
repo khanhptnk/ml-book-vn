@@ -15,3 +15,7 @@ Trong bài viết trước, vì chưa nhắc giới thiệu khái niệm develop
 
 Trong nghiên cứu, tỉ lệ train:dev:test thường được dùng đó là **7:1:2**. Tức là nếu có 100 điểm dữ liệu, thì lấy 70 điểm để huấn luyện, 10 điểm để phát triển, và 20 điểm để kiểm tra. 
 
+### k-fold cross-validation
+
+**k-fold cross validation** được sử dụng khi ta không có đủ dữ liệu để trích ra được một development đủ lớn. Phương pháp này sẽ chia training set thành k phần. Sau đó, ta lần lượt sử dụng từng phần làm development và k - 1 phần còn lại làm training set. Độ tốt của model (lúc phát triển) sẽ bằng trung bình cộng độ tốt qua k lần huấn luyện.  
+
