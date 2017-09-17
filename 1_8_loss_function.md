@@ -1,5 +1,4 @@
-#
-Loss function
+#Loss function
 
 Ở các phần trước, ta đã bỏ rất nhiều công sức để xây dựng được một công thức tổng quát để tìm ra một model từ một tập dữ liệu. Đó hàm mục tiêu của **regularized loss minimization** (RLM):
 
