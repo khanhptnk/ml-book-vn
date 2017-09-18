@@ -30,9 +30,9 @@ Ví dụ, nếu nhận được 100 cặp observation-label, ta chỉ dùng kho�
 
 Tuy đã làm cho trò chơi supervised learning trở nên hợp lệ, ta vẫn chưa thể chơi được. Có hai vấn đề phát sinh, đó là:
 
-1. Thế nào là một model "tốt" trên test set?
-2. Làm sao để tìm ra được một model "tốt" từ training set?
+1. Thế nào là một model "tốt" trên test set? 2. Làm sao để tìm ra được một model "tốt" từ training set?
 
+Vấn đề thứ nhất gọi là **evaluation problem** và vấn đề thứ hai **training problem**. Giải một bài toán machine learning tức là bạn đi tìm lời giải cụ thể cho hai bài toán này.
 
 Để giải quyết hai vấn đề này, ta cần đến góc nhìn thứ hai.
 
