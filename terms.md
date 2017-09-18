@@ -2,7 +2,7 @@
 
 **Observation**: kí hiệu là $$x$$, input trong các bài toán. Observation thường có dạng một vector $$x = (x_1, x_2, ..., x_n)$$, gọi là **feature vector**. Mỗi $$x_i$$ gọi là một **feature**. Ví dụ bạn muốn đoán xem hôm nay có mưa không dựa vào observation gồm các feature (nhiệt độ, độ ẩm, tốc độ gió). 
 
-**Label**: kí hiệu là $$y$$, output của bài toán. Mỗi observation sẽ có một label tương ứng \(ví dụ mỗi khuôn mặt sẽ có một cái tên\). Label có thể mang nhiều dạng nhưng đều có thể chuyển đổi thành một số thực hoặc một vector. Trong chương này chủ yếu làm việc với label là số thực.
+**Label**: kí hiệu là $$y$$, output của bài toán. Mỗi observation sẽ có một label tương ứng. Ở ví dụ về mưa ở trên label chỉ là "mưa" hoặc "không mưa". Label có thể mang nhiều dạng nhưng đều có thể chuyển đổi thành một số thực hoặc một vector. Trong chương này chủ yếu làm việc với label là số thực.
 
 **Model**: trong chương này các bạn hiểu là nó là một hàm số $$f(x)$$, nhận vào một observation $$x$$ và trả về một label $$y = f(x)$$.
 
