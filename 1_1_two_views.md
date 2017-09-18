@@ -32,7 +32,7 @@ Tuy đã làm cho trò chơi supervised learning trở nên hợp lệ, ta vẫn
 
 1. Thế nào là một model "tốt" trên test set? 2. Làm sao để tìm ra được một model "tốt" từ training set?
 
-Vấn đề thứ nhất gọi là **evaluation problem** và vấn đề thứ hai **training problem**. *Giải một bài toán machine learning tức là bạn đi tìm lời giải cụ thể cho hai vấn đề này*.
+Vấn đề thứ nhất gọi là **evaluation problem** và vấn đề thứ hai gọi là **training problem**. *Giải một bài toán machine learning tức là bạn đi tìm lời giải cụ thể cho hai vấn đề này*.
 
 ### Góc nhìn thứ hai: tối ưu hàm số
 
@@ -61,7 +61,7 @@ for i = 0 .. N - 1
 error_rate = error_rate / N
 ```
 
-**Độ sai sót càng thấp, thì model càng tốt**. Nếu đoán đúng hết tất cả cặp dữ liệu, ta đạt được độ sai sót "trong mơ", 0%. Nhưng nên nhớ đấy là kết quả được đo trên một test set hữu hạn. Kết quả này chỉ đưa ra được một chặn trên và chặn dưới cho kết quả trên tập vô hạn \(muốn biết rõ, xem thêm về [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem)\). Nói cách khác, nếu tự nhiên có gửi đến một test set mới để đánh giá $$f_w$$, thì chưa chắc ta có thể lặp lại được độ sai sót giống như trên test set cũ. Độ sai sót được đánh giá trên test set càng lớn thì càng đáng tin cậy.
+**Error rate càng thấp, thì model càng tốt**. Nếu đoán đúng hết tất cả cặp dữ liệu, ta đạt được error rate "trong mơ", 0%. Nhưng nên nhớ đấy là kết quả được đo trên một test set hữu hạn. Kết quả này chỉ đưa ra được một chặn trên và chặn dưới cho kết quả trên tập vô hạn \(xem thêm về [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem)\). Nói cách khác, nếu tự nhiên có gửi đến một test set mới để đánh giá $$f_w$$, thì chưa chắc ta có thể lặp lại được error rate giống như trên test set cũ. Error rate được đánh giá trên test set càng lớn thì càng đáng tin cậy.
 
 Ta có thể định nghĩa độ tốt theo rất nhiều cách khác nữa. Tổng quát, độ tốt của model được xác định dựa trên giá trị của **evaluation function** trên test set:
 
