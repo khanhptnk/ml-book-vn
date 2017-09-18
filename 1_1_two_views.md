@@ -2,9 +2,11 @@
 
 Ở bài này mình đưa ra một định nghĩa sơ lược. Định nghĩa này không hoàn toàn chính xác nhưng nó giúp ta hiểu một cách khái quát nhất về supervised learning. Dần dần trong các bài học sau chúng ta sẽ cải tiến để hoàn chỉnh định nghĩa này. 
 
+### Góc nhìn thứ nhất: ước lượng hàm số
+
 Tiếp cận supervised learning thực chất không đòi hỏi quá nhiều kiến thức cao siêu. Nó có thể được quy về thành một bài toán tối thiểu hàm số cơ bản trong toán học.
 
-### Góc nhìn thứ nhất: ước lượng hàm số
+
 
 Bạn hãy tưởng tượng rằng đang chơi một trò chơi với thiên nhiên \(là một sức mạnh vô hình điều khiển mọi sự việc của vũ trụ\). Đầu tiên, thiên nhiên viết ra một hàm bí ẩn $$f^*$$ nào đó. Sau đó thiên nhiên đưa vào hàm số này một loạt các observation $$x^{(1)}, \cdots, x^{(N)}$$ để tạo ra một loạt các label $$y^{(1)}, \cdots, y^{(N)}$$ tương ứng. Sau đó, thiên nhiên đem giấu hàm $$f^*$$ đi và chỉ chừa lại các cặp observation-label $$(x^{(i)}, y^{(i)})$$ cho chúng ta nhìn thấy. Nhiệm vụ của chúng ta là khôi phục lại được hàm $$f^*$$ bằng một model $$f_w$$ một cách chính xác nhất có thể. Ta gọi đây là **trò chơi supervised learning**.
 
