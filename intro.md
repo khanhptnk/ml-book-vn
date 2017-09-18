@@ -25,7 +25,7 @@ và
 
 * Khoảng _300 giờ video_ được upload trên youtube trong mỗi phút \(theo [https://www.youtube.com/yt/press/statistics.html](https://www.youtube.com/yt/press/statistics.html)\)
 * Hơn _900 triệu người _ thật sự sử dụng Facebook mỗi ngày, 82.8% trong số đó ở ngoài Mỹ và Canada \(theo [http://newsroom.fb.com/company-info/](http://newsroom.fb.com/company-info/)\)
-* Nhu cầu chia sẻ tăng đi đôi với việc nhu cầu tìm kiếm thông tin cũng tăng. Google phải xử lý \_100 tỉ lượt tìm kiếm \_mỗi tháng, tức là 3,3 tỉ lượt mỗi ngày và 38.000 lượt mỗi giây \(theo [http://www.internetlivestats.com/google-search-statistics/](http://www.internetlivestats.com/google-search-statistics/)\).
+* Nhu cầu chia sẻ tăng đi đôi với việc nhu cầu tìm kiếm thông tin cũng tăng. Google phải xử lý *100 tỉ* lượt tìm kiếm mỗi tháng, tức là *3,3 tỉ* lượt mỗi ngày và *38.000 lượt* mỗi giây \(theo [http://www.internetlivestats.com/google-search-statistics/](http://www.internetlivestats.com/google-search-statistics/)\).
 
 Và những con số này đang tăng lên theo từng giây!
 
