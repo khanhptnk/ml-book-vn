@@ -32,13 +32,13 @@ Tuy đã làm cho trò chơi supervised learning trở nên hợp lệ, ta vẫn
 
 1. Thế nào là một model "tốt" trên test set? 2. Làm sao để tìm ra được một model "tốt" từ training set?
 
-Vấn đề thứ nhất gọi là **evaluation problem** và vấn đề thứ hai **training problem**. *Giải một bài toán machine learning tức là bạn đi tìm lời giải cụ thể cho hai bài toán này*.
-
-Để giải quyết hai vấn đề này, ta cần đến góc nhìn thứ hai.
+Vấn đề thứ nhất gọi là **evaluation problem** và vấn đề thứ hai **training problem**. *Giải một bài toán machine learning tức là bạn đi tìm lời giải cụ thể cho hai vấn đề này*.
 
 ### Góc nhìn thứ hai: tối ưu hàm số
 
-Đầu tiên, ta tập trung vào vấn đề thứ nhất: giả sử đã tìm được một model $$f_w$$, làm thế nào để đo độ tốt của nó trên test set bằng một con số cụ thể? 
+Để giải quyết hai vấn đề đã nêu, ta cần đến góc nhìn thứ hai.
+
+Đầu tiên, ta tập trung vào evaluation problem: giả sử đã tìm được một model $$f_w$$, làm thế nào để đo độ tốt của nó trên test set bằng một con số cụ thể? 
 
 Một trong những cách đơn giản nhất đó là đếm xem nó đoán sai bao nhiêu label thật trên test set. Ta giả sử model bị phạt 1 điểm với mỗi lần label dự đoán khác với label thật. Số điểm bị phạt trung bình được gọi là **error rate** (độ sai sót) của model. Error rate là một số thực trong đoạn \[0, 1\]. Theo ngôn ngữ toán học, error rate trên một test set $$D_{test}$$ của model $$f_w$$ được tính như sau:
 
