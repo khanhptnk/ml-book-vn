@@ -82,5 +82,5 @@ Cụ thể hơn, sau khi chọn được evaluation function, supervised learnin
 1. **Train** (huấn luyện): tìm model $$f_w$$ tối thiểu hóa giá trị của evaluation function trên training set.
 2. **Test** (kiểm tra): thông báo độ tốt của $$f_w$$ là gía trị của evaluation function trên test set.
 
-**Lưu ý**: Ở đây ta sử dụng luôn evaluation fucntion để giải quyết training problem. Tuy nhiên, đây chỉ là giải pháp tạm thời. Lý do vì sao và giải pháp tốt hơn là gì sẽ được bàn đến trong những bài sau.
+**Lưu ý**: Ở đây ta sử dụng luôn evaluation fucntion để giải quyết training problem. Tuy nhiên, đây chỉ là giải pháp tạm thời. Lý do vì sao và giải pháp tốt hơn là gì sẽ được bàn đến trong bài sau.
 
