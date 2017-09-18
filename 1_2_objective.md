@@ -48,14 +48,12 @@ Giống với evaluation function, nếu không có regularizer, objective funct
 **Trả lời**: *khác nhau ở loss function và regularizer*.
 
 Đến đây ta phát biểu lại về hai quá trình của supervised learning:  
-1. **Train**: tìm $$f_w$$ tối thiểu hóa $$\mathcal{L}_{D_{train}}(f_w)$$.  
-2. **Test**: đo độ tốt của $$f_w$$ bằng $$\mathcal{L}_{D_{test}}(f_w)$$.
-
-Ở đây ta sử dụng $$\mathcal{L}_{D_{train}}$$ để chỉ objective function và $$\mathcal{L}_{D_{test}}$$ để chỉ evaluation function.
+1. **Train**: tìm $$f_w$$ tối thiểu hóa objective function $$\mathcal{L}_{D_{train}}(f_w)$$.  
+2. **Test**: đo độ tốt của $$f_w$$ bằng evaluation function $$\mathcal{L}_{D_{test}}(f_w)$$.
 
 ### Đọc thêm: vì sao không dùng error rate để train model?
 
-Như ta đã biết, quá trình train model về bản chất là tối ưu một hàm số. Từ kiến thức đã học từ cấp 3, ta cũng biết rằng việc tối ưu hàm số có liên quan đến đạo hàm \(ví dụ như đạo hàm ở điểm cực tiểu của một hàm số bằng 0\). Cụ thể hơn, trong supervised learning, ta thường tối ưu hàm số bằng **gradient descent**, tức là dùng gradient \(đạo hàm nhiều biến\) để dẫn lối cho ta đi đến điểm cực tiểu. Phương pháp này sẽ được giới thiệu chi tiết trong một bài khác. Để dễ hiểu, bạn có thể hình dung tối ưu hàm số như là đi tìm thung lũng thấp nhất trong một vùng núi non. Cách đơn giản nhất là bạn cứ thả mình lăn xuống dốc cho đến khi nào dừng lại. Gradient giống nhưng tổng lực của lực hấp dẫn và phản lực của mặt đất, sẽ kéo bạn lăn về nơi thấp hơn cho đến khi mặt đất không còn dốc nữa.
+Như ta đã biết, quá trình train model về bản chất là tối ưu một hàm số. Từ kiến thức đã học từ cấp 3, ta cũng biết rằng việc tối ưu hàm số có liên quan đến đạo hàm \(ví dụ như đạo hàm ở điểm cực tiểu của một hàm số bằng 0\). Cụ thể hơn, trong supervised learning, ta thường tối ưu hàm số bằng **gradient descent**, tức là dùng gradient \(đạo hàm nhiều biến\) để dẫn lối cho ta đi đến điểm cực tiểu. Phương pháp này sẽ được giới thiệu chi tiết trong một bài khác. Để dễ hiểu, bạn có thể hình dung **tối ưu hàm số như là đi tìm thung lũng thấp nhất trong một vùng núi non**. Cách đơn giản nhất là bạn cứ thả mình lăn xuống dốc cho đến khi nào dừng lại. Gradient giống nhưng tổng lực của lực hấp dẫn và phản lực của mặt đất, sẽ kéo bạn lăn về nơi thấp hơn cho đến khi mặt đất không còn dốc nữa.
 
 Khi nhìn lại một evaluation function như là error rate:
 
@@ -63,9 +61,9 @@ Khi nhìn lại một evaluation function như là error rate:
 $$
 e_D = \frac{1}{|D|} \sum_{(x, y) \in D} \mathbb{I}\{ f_w(x) \neq y \}
 $$
- ta thấy $$ \mathbb{I}\{ f_w(x) \neq y \}$$ không có gradient liên tục. Ta có thể tưởng tượng việc không có gradient liên tục giống như hàm số bị "gãy" ở một số điểm nào đó. Trong trường hợp này, khi ta cho $$f_w(x)$$ đi từ $$-\infty$$ đến $$+\infty$$, hàm $$ \mathbb{I}\{ f_w(x) \neq y \}$$ hầu hết mang giá trị 1. Chỉ đến điểm mà $$f_w(x) = y$$, hàm này độ nhiên giảm xuống giá trị 0. Hơn nữa, ở những điểm mà hàm này có gradient, thì gradient lại vô dụng bởi vì nó bằng 0. Hình vẽ này sẽ giúp bạn dễ hình dung hơn,
+ ta thấy $$ \mathbb{I}\{ f_w(x) \neq y \}$$ không có gradient liên tục. Ta có thể tưởng tượng việc không có gradient liên tục giống như hàm số bị "gãy" ở một số điểm nào đó. Trong trường hợp này, khi ta cho $$f_w(x)$$ đi từ $$-\infty$$ đến $$+\infty$$, hàm $$ \mathbb{I}\{ f_w(x) \neq y \}$$ hầu hết mang giá trị 1 và gradient bằng 0. Chỉ đến điểm mà $$f_w(x) = y$$, hàm này độ nhiên giảm xuống giá trị 0 và gradient ở đây không được định nghĩa. Hơn nữa, ở những điểm mà hàm này có gradient, thì gradient lại vô dụng (bằng 0). Hình vẽ này sẽ giúp bạn dễ hình dung hơn,
 
 ![](/assets/error rate demo.png)
 
-Ở đây model của chúng ta đang được giả định là chỉ có 1 [parameter](https://ml-book-vn.khanhxnguyen.com/terms.html) \(ví dụ như $$y = f(x) = ax$$ với tham số là $$a$$\). Đường ngang thể hiện cho đồ thị với trục ngang là tham số, trục dọc là giá trị error rate ứng với tham số. Việc đi sang trái/phải thể hiện cho việc tăng/giảm tham số. Gỉa sử model đang lạc ở vùng mà error rate đang có giá trị là 1. Xung quanh gần đó hoàn toàn là một vùng bằng phẳng \(gradient bằng 0\). Model hoàn toàn không biết nên đi về hướng nào (tăng hay giảm parameter) để đến được vùng thấp hơn. Model không thể nhìn qúa xa và không thể nào biết được là đi thêm về bên phải một đoạn đạt được error rate thấp hơn là 0. Trong thực tế, model có rất nhiều parameter và ta phải ra quyết định tăng hay giảm cho từng parameter.
+Ở đây model của chúng ta đang được giả định là chỉ có 1 [parameter](https://ml-book-vn.khanhxnguyen.com/terms.html) \(ví dụ như $$y = f(x) = ax$$ với parameter là $$a$$\). Đường ngang thể hiện cho đồ thị với trục ngang là tham số, trục dọc là giá trị error rate ứng với tham số. Việc đi sang trái/phải thể hiện cho việc tăng/giảm tham số. Gỉa sử model đang lạc ở vùng mà error rate đang có giá trị là 1. Xung quanh gần đó hoàn toàn là một vùng bằng phẳng \(gradient bằng 0\). Model hoàn toàn không biết nên đi về hướng nào (tăng hay giảm parameter) để đến được vùng thấp hơn. Model không thể nhìn qúa xa và không thể nào biết được là đi thêm về bên phải một đoạn sẽ đạt được error rate tối ưu (bằng 0). Trong thực tế, model có rất nhiều parameter và, với mỗi parameter, ta phải ra quyết định tăng hay giảm như thế này.
 
