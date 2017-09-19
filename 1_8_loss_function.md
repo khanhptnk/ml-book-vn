@@ -37,11 +37,11 @@ Loss function trả về một số thực không âm thể hiện sự chênh l
 
 Ta phân chia các dạng bài supervised learning dựa vào tính chất của $$y$$. Để đơn giản, ta xét bài các bài toán mà $$y$$ có thể biểu diễn được bằng một con số.
 
-Khi $$y$$ có thể tự do dao động trong khoảng $$(-\infty,\infty)$$, ta được một bài toán **regression**. Ví dụ như ta cần tiên đoán giá cổ phiếu, giá xăng, giá vàng vào ngày mai.
+Khi $$y$$ là một số thực dao động trong khoảng $$(-\infty,\infty)$$, ta được một bài toán **regression**. Ví dụ như ta cần tiên đoán giá cổ phiếu, giá xăng, giá vàng vào ngày mai.
 
-Khi $$y$$ là một đại lượng rời rạc chỉ nhận giá trị trong một tập label hữu hạn rời rạc nào đó, ta được bài toán **classification**. Ví dụ, khi ta cần nhận dạng tên một người từ một tấm ảnh chân dung, cho dù có hàng tỉ cái tên trên thế giới thì tập hợp này vẫn là rời rạc hữu hạn. Vì thế, bài toán này vẫn được quy vào dạng classification. Để đơn giản các công thức, bài viết này chỉ đề cập đến **binary classification**, tức là khi tập các label chỉ có hai phần tử ("có" hoặc "không", "đúng" hoặc "sai", "positive" hoặc "negative", ...). Để tiện cho việc tính toán, trong binary classification, ta chuyển đổi tập label thành tập $$\{-1, +1\}$$ (ví dụ như -1 nghĩa là "không", +1 nghĩa là "có").
+Khi $$y$$ là một đại lượng rời rạc chỉ nhận giá trị trong một tập label hữu hạn rời rạc nào đó, ta được bài toán **classification**. Ví dụ, khi ta cần nhận dạng tên một người từ một tấm ảnh chân dung, cho dù có hàng tỉ cái tên trên thế giới thì tập hợp này vẫn là rời rạc hữu hạn. Vì thế, bài toán này vẫn được quy vào dạng classification. Để đơn giản các công thức, bài viết này chỉ đề cập đến **binary classification**, tức là khi tập các label chỉ có hai phần tử ("có" hoặc "không", "đúng" hoặc "sai", "positive" hoặc "negative", ...). Để tiện cho việc tính toán, trong binary classification, ta chuyển đổi tập label thành tập $$\{-1, +1\}$$ (-1 nghĩa là "không", +1 nghĩa là "có").
 
-Lưu ý rằng ta đang nói đến label thật $$y$$ chứ không phải label dự đoán $$\hat{y} = f_w(x)$$. Thông thường, đối với cả regression và binary classification, ta đều thiết kế để model $$f_w(x)$$ trả về một số thực $$\hat{y} \in (-\infty,\infty) $$. Với regression, $$\hat{y}$$ dĩ nhiên mang ý nghĩa là giá trị được dự đoán. Với binary classification, $$\hat{y}$$ là điểm số thể hiện model ưa thích label nào hơn trong hai label. Nếu $$\hat{y} < 0$$ tức là model thích phương án -1 hơn và ngược lại, nếu $$\hat{y} \geq 0$$ tức là model nghiêng về phương án +1 hơn. Giá trị tuyệt đối của $$\hat{y}$$ thể hiện sự tự tin (sự chắc chắn) của model đối với lựa chọn của mình.
+Lưu ý rằng ta đang nói đến label thật $$y$$ chứ không phải label dự đoán $$\hat{y} = f_w(x)$$. Thông thường, đối với cả regression và binary classification, ta đều thiết kế để model $$f_w(x)$$ trả về một số thực $$\hat{y} \in (-\infty,\infty) $$. Với regression, $$\hat{y}$$ dĩ nhiên mang ý nghĩa là giá trị được dự đoán. Với binary classification, $$\hat{y}$$ là điểm số thể hiện model ưa thích label nào hơn trong hai label. Nếu $$\hat{y} < 0$$ tức là model thích phương án -1 hơn và ngược lại, nếu $$\hat{y} \geq 0$$ tức là model nghiêng về phương án +1 hơn. Giá trị tuyệt đối của $$\hat{y}$$ thể hiện mức độ thích của model đối với lựa chọn của mình.
 
 ### Cách xây dựng loss function
 
@@ -75,7 +75,7 @@ $$
 
 
 
-Khi tính đạo hàm theo $$\hat{y}$$, ta được $$\nabla L = \frac{1}{2} \times 2 \times (\hat{y} - y) =\hat{y} - y$$. Các bạn có thể thấy rằng hằng số $$\frac{1}{2}$$ được thêm vào chỉ để cho công thức đạo hàm được đẹp hơn, không có hằng số phụ. loss function này được gọi là **square loss**. Square loss có thể được sử dụng cho cả regression và classification, nhưng thực tế thì nó thường được dùng cho regression hơn.
+Khi tính đạo hàm theo $$\hat{y}$$, ta được $$\nabla L = \frac{1}{2} \times 2 \times (\hat{y} - y) =\hat{y} - y$$. Các bạn có thể thấy rằng hằng số $$\frac{1}{2}$$ được thêm vào chỉ để cho công thức đạo hàm được đẹp hơn, không có hằng số phụ. Loss function này được gọi là **square loss**. Square loss có thể được sử dụng cho cả regression và classification, nhưng thực tế thì nó thường được dùng cho regression hơn.
 
 Đối với binary classification, ta có một cách tiếp cận khác để xây dựng loss function. Nhắc lại là đối với dạng bài này, thì nếu model trả về $$\hat{y} < 0$$ tức là thích đáp án -1 hơn, trả về $$\hat{y} \geq 0$$ tức là thích đáp án +1 hơn.
 
