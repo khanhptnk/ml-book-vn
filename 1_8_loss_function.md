@@ -83,7 +83,7 @@ Một cách rất tự nhiên, ta thấy rằng loss function của binary class
 
 1. Ta cần phải phạt model nhiều hơn khi dự đoán sai hơn là khi dự đoán đúng. Vì thế, tiêu chí đầu tiên của ta là khi model dự đoán sai ($$y$$ khác dấu với $$\hat{y}$$), loss function phải trả về giá trị lớn hơn so với khi model dự đoán đúng ($$y$$ cùng dấu với $$\hat{y}$$).
 
-2. Nếu model đã đoán đúng ($$\hat{y}$$ cùng đấu với $$y$$) thì ta nên phạt thế nào? Cụ thể là nếu có hai đáp án $$\hat{y}_1$$ và $$\hat{y}_2$$ đều cùng dấu với $$y$$ thì ta nên phạt đáp án nào nhiều hơn? Như đã nói, giá trị tuyệt đối $$|\hat{y}|$$ thể hiện "độ tự tin" của model đối với một phương án. Giá trị này càng lớn thì model càng "thích" một phương án. Trong trường hợp $$\hat{y}$$ cùng dấu với $$y$$, phương án được thích là phương án đúng, do đó, model càng thích thì ta phải càng khuyến khích và phạt ít đi. Cũng với lập luận như vậy, nếu $$\hat{y}$$ khác dấu với $$y$$, vì phương án được thích là phương án sai nên model càng thích thì ta phải càng phạt nặng để model không tái phạm nữa.
+2. Nếu có hai đáp án $$\hat{y}_1$$ và $$\hat{y}_2$$ đều cùng dấu (hoặc khác dấu) với $$y$$ thì ta nên phạt đáp án nào nhiều hơn? Như đã nói, giá trị tuyệt đối $$|\hat{y}|$$ thể hiện "độ thích" của model đối với một phương án. Giá trị này càng lớn thì model càng "thích" một phương án. Trong trường hợp $$\hat{y}$$ cùng dấu với $$y$$, phương án được thích là phương án đúng, do đó, model càng thích thì ta phải càng khuyến khích và phạt ít đi. Cũng với lập luận như vậy, nếu $$\hat{y}$$ khác dấu với $$y$$, vì phương án được thích là phương án sai nên model càng thích thì ta phải càng phạt nặng để model không tái phạm nữa.
 
 Một cách tổng quát, đối với binary classification thì các loss function thường có dạng như sau:
 
@@ -95,9 +95,9 @@ $$
 
 trong đó $$f$$ là một hàm không âm và không tăng.
 
-**Q1**: *Giải thích tại sao hàm $$g(\hat{y}, y) = \ - y \cdot \hat{y}$$ lại thỏa mãn hai tiêu chí đã nêu ở trên.*
+**Câu hỏi 1**: *Giải thích tại sao hàm $$g(\hat{y}, y) = \ - y \cdot \hat{y}$$ lại thỏa mãn hai tiêu chí đã nêu ở trên.*
 
-**Q2**: *Giải thích tại sao hàm $$g(\hat{y}, y) = \ - y \cdot \hat{y}$$ lại không thỏa điều kiện của một loss function (lưu ý tính chất của loss function và $$f$$).*
+**Câu hỏi 2**: *Giải thích tại sao hàm $$g(\hat{y}, y) = \ - y \cdot \hat{y}$$ lại không thỏa điều kiện của một loss function (lưu ý tính chất của loss function và $$f$$).*
 
 ### Các loss function cơ bản dành cho binary classification
 
@@ -119,9 +119,7 @@ $$
 L_{perceptron}(\hat{y}, y) = \max(0,- y \cdot \hat{y})
 $$
 
-
-
-Ta thấy rằng hàm perceptron loss là một cách đơn giản nhất để sửa sao cho hàm $$g$$ ở câu hỏi trên trở thành không âm (thỏa điều kiện của một hàm mát). Đối với perceptron loss, khi model đoán đúng ($$\hat{y}$$ cùng dấu với $$y$$), $$- y \cdot \hat{y}$$ sẽ mang dấu âm. Tức là, khi đó $$L_{perceptron}(\hat{y}, y) = \max(0, negative) = 0$$. Nói cách khác, perceptron loss không phân biệt gì giữa các dự đoán đúng. Chúng đều không bị phạt. Đối với các dự đoán sai, thì perceptron vẫn tuân thủ theo nguyên tắc là model càng thích thì phạt càng nặng. Perceptron loss là loss function của **perceptron model**.
+Ta thấy rằng hàm perceptron loss là một cách đơn giản nhất để sửa sao cho hàm $$g$$ ở câu hỏi trong phần trước trở thành không âm (thỏa điều kiện của một hàm mát). Đối với perceptron loss, khi model đoán đúng ($$\hat{y}$$ cùng dấu với $$y$$), $$- y \cdot \hat{y}$$ sẽ mang dấu âm. Tức là, khi đó $$L_{perceptron}(\hat{y}, y) = \max(0, negative) = 0$$. Nói cách khác, perceptron loss không phân biệt gì giữa các dự đoán đúng. Chúng đều không bị phạt. Đối với các dự đoán sai, thì perceptron vẫn tuân thủ theo nguyên tắc là model càng thích thì phạt càng nặng. Perceptron loss là loss function của **perceptron model**.
 
 #### Hinge loss
 
