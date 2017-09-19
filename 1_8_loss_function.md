@@ -18,9 +18,9 @@ Câu trả lời rất đơn giản, **tiết kiệm năng lượng**. Không ri
 
 Nhưng hãy tưởng tượng rằng nếu bức tường ta xây cứ ba ngày lại đổ một lần. Cứ xây đi xây lại như thế thì cả đời ta cũng không thể có cơ hội để trang trí một căn nhà. Tương tự, nếu chân đứng còn chưa vững thì nói gì đến việc sáng chế chiêu thức. Thế nên, muốn làm việc cao cấp vui vẻ thì trước hết phải làm những việc cơ bản nhàm chán thành thục trước đã.
 
-Machine learning cũng như vậy. Ta bỏ nhiều công sức ra để xây dựng nên RLM là bởi nguyên tắc này được sử dụng trong hầu hết mọi model. Nếu bạn nắm kỹ RLM, thì tốc độ học của bạn sẽ được đẩy lên rất nhiều. Vì sao? Hãy nhìn vào công thức RLM, mảnh ghép còn thiếu cuối cùng chỉ là dạng của $$\mathcal{L}$$. Cho nên, mỗi lần gặp một dạng model mới và nhận ra được bóng dáng của RLM trong đó thì gần như là "game over". Công việc của bạn lúc đó chỉ là nhìn ra dạng của $$\mathcal{L}$$ với từng model khác nhau. Thậm chí tạo ra một model mới cũng không phải là việc quá khó khăn. Bạn đã có RLM làm nền, công việc của bạn chỉ là ngồi sáng tạo ra các biến thể của $$\mathcal{L}$$ để lắp vào. Nhẹ nhàng nhưng đầy trí tuệ, vui đấy chứ?
+Machine learning cũng như vậy. Ta bỏ nhiều công sức ra để xây dựng nên RLM là bởi nguyên tắc này được sử dụng trong hầu hết mọi model. Nếu bạn nắm kỹ RLM, thì tốc độ học của bạn sẽ được đẩy lên rất nhiều. Vì sao? Hãy nhìn vào công thức RLM, mảnh ghép còn thiếu cuối cùng chỉ là dạng của loss function $$L$$. Cho nên, mỗi lần bạn đọc tài liệu và gặp một dạng model mới, nếu nhận ra được bóng dáng của RLM trong đó thì gần như là "job done!". Công việc của bạn lúc đó chỉ là nhìn ra dạng của loss function với từng model khác nhau. Công việc sáng tạo model mới cũng được thi hành một cách bài bản hơn. Bạn đã có RLM làm nền, công việc của bạn chỉ là ngồi sáng tạo ra các biến thể của loss function để lắp vào. 
 
-Bây giờ ta sẽ đi nghiên cứu một số biến thể thông dụng nhất nhé!
+Bây giờ ta sẽ đi nghiên cứu một số biến thể thông dụng nhất của loss function nhé!
 
 ### Định nghĩa loss function
 
@@ -31,11 +31,11 @@ $$
 $$
 thì hàm $$L$$ chính là loss function. 
 
-Loss function trả về một số thực không âm thể hiện sự chênh lệch giữa hai đại lượng: $$\hat{y}$$, label được dự đoán và $$y$$, label đúng. Loss function giống như một hình thức để bắt model đóng phạt mỗi lần nó dự đoán sai, và số mức phạt này tỉ lệ thuận với độ trầm trọng của sai sót. Trong mọi bài toán supervised learning, mục tiêu của ta luôn bao gồm giảm thiểu tổng mức phạt phải đóng. Trong trường hợp lý tưởng, tức là khi $$\hat{y} = y$$, loss function sẽ trả về giá trị cực tiểu, bằng 0.
+Loss function trả về một số thực không âm thể hiện sự chênh lệch giữa hai đại lượng: $$\hat{y}$$, label được dự đoán và $$y$$, label đúng. Loss function giống như một hình thức để bắt model đóng phạt mỗi lần nó dự đoán sai, và số mức phạt tỉ lệ thuận với độ trầm trọng của sai sót. Trong mọi bài toán supervised learning, mục tiêu của ta luôn bao gồm giảm thiểu tổng mức phạt phải đóng. Trong trường hợp lý tưởng $$\hat{y} = y$$, loss function sẽ trả về giá trị cực tiểu bằng 0.
 
 ### Hai dạng bài supervised learning cơ bản
 
-Ta phân chia các dạng bài supervised learning dựa vào tính chất của $$y$$. Ta xét bài các bài toán mà $$y$$ là một số thực.
+Ta phân chia các dạng bài supervised learning dựa vào tính chất của $$y$$. Để đơn giản, ta xét bài các bài toán mà $$y$$ có thể biểu diễn được bằng một con số.
 
 Khi $$y$$ có thể tự do dao động trong khoảng $$(-\infty,\infty)$$, ta được một bài toán **regression**. Ví dụ như ta cần tiên đoán giá cổ phiếu, giá xăng, giá vàng vào ngày mai.
 
