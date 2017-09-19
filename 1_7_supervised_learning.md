@@ -6,4 +6,4 @@
     
     b. **Đánh giá trên development set**: thông báo gía trị của evaluation function trên development set. 
 
-2. **Đánh giá trên tập kiểm tra**: với model $$w^*$$ cho kết quả tốt nhất ở development set, thông báo giá trị của evaluation trên test set của $$w^*$$.
+2. **Đánh giá trên tập kiểm tra**: với model $$w^*$$ cho kết quả tốt nhất ở development set, thông báo giá trị của evaluation function trên test set.
