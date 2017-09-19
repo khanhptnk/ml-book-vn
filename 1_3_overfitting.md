@@ -19,7 +19,7 @@ $$
 w^* = \arg\min_{w} \mathcal{L}_{D_{train}}(w)
 $$
 
-Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ cả model (thay cho $$f_w$$) và parameter của model.
+Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ model thay cho $$f_w$$.
 
 Kí hiệu $$\arg\min_x f(x)$$ trả về giá trị của $$x$$ để hàm $$f(x)$$ đạt được giá trị cực tiểu. Ví dụ,  $$\arg\min_x x^2 + 1 = 0$$ bởi vì $$ x^2 + 1$$ đạt giá trị cực tiểu (bằng 1) tại $$x = 0$$. Các bạn sẽ nhìn thấy phương trình này trong đa số các paper (bài báo khoa học) về machine learning.
 
@@ -29,9 +29,9 @@ $$
 \mathcal{L}_{D_{train}}^{ERM}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)
 $$
 
-Đây được gọi là quy tắc empirical risk minimization (ERM). Ta sẽ giải thích vì sao nó được gọi như vậy. Loss function còn được gọi là risk function (hàm rủi ro). Chữ *empirical* được thêm vào bởi vì risk function này được tính trung bình trên một tập dữ liệu hữu hạn. Vậy empirical risk minimization tức là **tối thiểu hóa rủi ro trên một tập dữ liệu hữu hạn**. 
+Đây được gọi là quy tắc **empirical risk minimization** (ERM). Ta sẽ giải thích vì sao nó được gọi như vậy. Loss function còn được gọi là risk function (hàm rủi ro). Chữ *empirical* được thêm vào bởi vì risk function này được tính trung bình trên một tập dữ liệu hữu hạn. Vậy empirical risk minimization tức là **tối thiểu hóa rủi ro trên một tập dữ liệu hữu hạn**. 
 
-Như đã nhấn mạnh nhiều lần, nếu ta ngây thơ áp dụng ERM thì sẽ thường không thu được model có độ tốt cao trên tập kiểm tra. Bài viết này giới thiệu những kiến thức cần thiết để ta đưa ra được một thuật toán supervised learning tốt hơn ERM. Ta sẽ nói kỹ về vấn đề lớn nhất thường gặp phải khi sử dụng ERM, **overfitting**, và cách khắc phục nó. Overfitting là một trong những khái niệm quan trọng bậc nhất trong machine learning, là "bóng ma ám lấy machine learning".
+Bài viết này giới thiệu những kiến thức cần thiết để ta đưa ra được một thuật toán supervised learning tốt hơn ERM. Ta sẽ nói kỹ về vấn đề lớn nhất thường gặp phải khi sử dụng ERM, **overfitting**, và cách khắc phục nó. Overfitting là một trong những khái niệm quan trọng bậc nhất trong machine learning, là "bóng ma ám lấy machine learning".
 
 ### Occam's razor
 
@@ -52,16 +52,20 @@ Hoặc thậm chí đơn giản hơn:
 **Trong tất cả các model "đúng", chọn model đơn giản nhất. 
 **
 
-Lưu ý là ở đây có đến hai điều kiện cần được đảm bảo: giả thiết phải *đơn giản nhất* nhưng vẫn phải *giải thích được hiện tượng*. Rất dễ để áp dụng Occam's razor một cách sai lầm. Ta xét bài toán phân loại thư vào hai loại, spam và không spam. Model đơn giản nhất có thể nghĩ ra đó là random một trong hai lựa chọn với mỗi bức thư. Model này dù tối giản nhưng lại vô dụng và vi phạm Occam's razor vì nó không thể giải thích tính chất spam (độ chính xác chỉ là 50%). Trong một ví dụ khác như trong hình sau,
+Lưu ý là ở đây có đến hai điều kiện cần được đảm bảo: giả thiết phải *đơn giản nhất* nhưng vẫn phải *giải thích được hiện tượng*. Rất dễ để áp dụng Occam's razor một cách sai lầm. 
+
+Ta xét bài toán phân loại thư vào hai loại label, spam và không spam. Model đơn giản nhất có thể nghĩ ra đó là random một trong hai label với mỗi bức thư. Model này dù tối giản nhưng lại vô dụng và vi phạm Occam's razor vì nó không thể giải thích tính chất spam. 
+
+Trong một ví dụ khác như trong hình sau,
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Overly-complicated-hypothesis.png)
 
-Chọn một đa thức bậc cao phức tạp để "giải thích" (đi qua hết) các điểm màu đen cũng vi phạm Occam's razor bởi vì giả thiết được chọn không phải đơn giản nhất. Thực chất ta chỉ cần một đa thức bậc một đơn giản (đường thẳng đỏ) để đi qua mọi điểm.
+Chọn một đa thức bậc cao phức tạp để "giải thích" (đi qua hết) các điểm màu đen cũng vi phạm Occam's razor bởi vì giả thiết được chọn không phải đơn giản nhất. Thực chất ta chỉ cần một đa thức bậc một đơn giản (đường thẳng đỏ) để "giải thích" được các điểm này.
 
 
 ### Noise
 
-Với mỗi bài toán supervised learning, cho dù có tồn tại một hàm bí ẩn $$f^*$$ sao cho mối quan hệ giữa label và observation là $$y = f^*(x)$$, thì dữ liệu trong thực tế cũng không bao giờ phản ánh chính xác được mối quan hệ này. Nguyên nhân gây ra điều này có thể là do sai số trong dụng cụ đo, hoặc đơn giản là do tự nhiên mang tính ngẫu nhiên. Bạn rất thích ăn thịt, nhưng hôm nay bạn đến thăm nhà hàng xóm được đãi cá; vì thế, dữ liệu thu thập về bữa ăn của bạn không phải ngày nào cũng là thịt. Ví dụ minh họa cho thấy thay vì thu được dữ liệu tuyến tính hoàn hảo ($$y = ax$$) như hình bên trái thì thường tọa độ của các điểm dữ liệu sẽ bị sai lệch như hình bên phải.
+Với supervised learning, cho dù có tồn tại một hàm bí ẩn $$f^*$$ sao cho mối quan hệ giữa label và observation là $$y = f^*(x)$$, thì dữ liệu trong thực tế cũng không bao giờ phản ánh chính xác được mối quan hệ này. Nguyên nhân gây ra điều này có thể là do sai số trong dụng cụ đo, hoặc đơn giản là do tự nhiên mang tính ngẫu nhiên. Ví dụ sau cho thấy thay vì thu được dữ liệu tuyến tính hoàn hảo ($$y = ax$$) như hình bên trái thì thường tọa độ của các điểm dữ liệu sẽ bị sai lệch như hình bên phải.
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Noisy-data.png)
 
@@ -79,15 +83,15 @@ Sự xuất hiện của noise làm cho mối quan hệ giữa observation và l
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Noisy-data-complicate-relationship.png)
 
-Noise không trực tiếp gây ra overfitting nhưng nó lại làm cho overfitting trở nên gây hại. Về bản chất, **overfitting là việc model cố gắng giải thích tất cả các điểm dữ liệu nhìn thấy**. Điều này không gì khác chính là tuân theo ERM một cách tuyệt đối để dự đoán đúng tất cả các observation của training set. Nếu làm thế, trong quá hình huấn luyện, noise sẽ "lừa" model học một hàm số hoàn toàn sai so với bản chất của dữ liệu.
+Noise không trực tiếp gây ra overfitting nhưng nó lại làm cho overfitting trở nên gây hại. Về bản chất, **overfitting là do model cố gắng giải thích tất cả các điểm dữ liệu nhìn thấy**. Điều này không gì khác chính là tuân theo ERM một cách tuyệt đối để dự đoán đúng tất cả các observation của training set. Nếu làm thế, trong quá hình huấn luyện, noise sẽ "lừa" model học một hàm số hoàn toàn sai so với bản chất của dữ liệu.
 
 Khi các điểm dữ liệu của test set xuất hiện, vì noise thường không quá lớn, các điểm mới này cũng vẫn thể hiện phần lớn quan hệ tuyến tính và chỉ hơi lệch với đường thẳng đỏ mà thôi.
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/Noisy-data-at-testing-1.png)
 
-Trong trường hợp này, nếu áp dụng ERM ta sẽ chọn đường xanh dương thay vì đường thẳng đỏ vì đường thẳng xanh dương cho sai số thấp hơn trên các điểm dữ liệu của training set (các điểm đen). Nhưng một model phức tạp như đường thẳng xanh dương lại cho sai sót rất lớn trên các điểm dữ liệu của test set (ta thấy các điểm xanh lá cây nằm rất xa so với đường xanh dương). Vì sai sót trên tập kiểm tra mới là thứ ta quan tâm sau cùng nên điều này rất tệ. Ngược lại, nếu chọn model đơn giản như hơn đường thẳng đỏ và chấp nhận sai sót một ít trên tập huấn luyện, sai sót trên tập kiểm tra sẽ nhỏ hơn nhiều.
+Trong trường hợp này, nếu áp dụng ERM ta sẽ chọn đường xanh dương thay vì đường thẳng đỏ vì đường thẳng xanh dương cho sai số thấp hơn trên các điểm dữ liệu của training set (các điểm đen). Nhưng một model phức tạp như đường thẳng xanh dương lại cho sai sót rất lớn trên các điểm dữ liệu của test set (ta thấy các điểm xanh lá cây nằm rất xa so với đường xanh dương). Vì sai sót trên test set mới là thứ ta quan tâm sau cùng nên điều này rất tệ. Ngược lại, nếu chọn model đơn giản như hơn đường thẳng đỏ và chấp nhận sai sót một ít trên tập huấn luyện, sai sót trên test set sẽ nhỏ hơn nhiều.
 
-Qua ví dụ này, ta thấy là khi áp dụng Occam's razor vào machine learning, ta không thể tuân thủ nó quá một cách chặt chẽ. Sự xuất hiện của noise làm cho hai tiêu chuẩn của Occam's razor rất khó được bảo toàn: để giải thích được đúng hơn tập huấn luyện vốn chứa noise, ta buộc phải tăng độ phức tạp của model, và ngược lại. Vì thế, điều ta cần làm là cân bằng giữa hai điều kiện, đưa model gần với Occam's razor nhất có thể: chọn một model đơn giản vừa phải và giải thích được tập huấn luyện tương đối đúng, nhằm đạt được sai số nhỏ trên tập kiểm tra.
+Qua ví dụ này, ta thấy là khi áp dụng Occam's razor vào machine learning, ta không thể tuân thủ nó quá một cách chặt chẽ. Sự xuất hiện của noise làm cho hai tiêu chuẩn của Occam's razor rất khó được bảo toàn: để giải thích được đúng hơn tập huấn luyện vốn chứa noise, ta buộc phải tăng độ phức tạp của model, và ngược lại. Vì thế, điều ta cần làm là cân bằng giữa hai điều kiện, đưa model gần với Occam's razor nhất có thể: chọn một model đơn giản vừa phải và giải thích được tập huấn luyện tương đối đúng, nhằm đạt được sai số nhỏ trên test set.
 
 ### Overfitting
 
