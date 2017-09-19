@@ -16,7 +16,7 @@ Chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra m
 
 **Q4** *: Làm sao để không bị overfitting?*
 
-**A4** *: Nếu bạn đang nói về chuyện làm sao để $$\mathcal{L}_{D_{train}}$$ trùng với $$\mathcal{L}_{\mathcal{D}}$$ thì câu trả lời là không thể, trừ phi có vô hạn dữ liệu. Đây không phải là một câu hỏi đúng vì overfitting là một khái niệm tương đối, tùy theo "cảm giác" của bạn. Làm sao để giảm thiểu overfitting mới là câu hỏi đúng!*
+**A4** *: Nếu bạn đang nói về chuyện làm sao để $$\mathcal{L}_{D_{train}}$$ trùng với $$\mathcal{L}_{\mathcal{D}}$$ thì câu trả lời là không thể, trừ phi có vô hạn dữ liệu. Đây không phải là một câu hỏi đúng vì overfitting là một khái niệm tương đối, tùy theo "cảm giác" của bạn. "Làm sao để giảm thiểu overfitting?" mới là câu hỏi đúng!*
 
 ### Nguyên nhân gây ra overfitting
 
