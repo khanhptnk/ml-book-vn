@@ -2,7 +2,7 @@
 
 Trong bài này, ta sẽ tìm hiểu kỹ hơn về training problem. Tại sao chỉ cần tìm model dự đoán "khá" chính xác trên training set? Tại sao một model dự đoán "hoàn toàn" chính xác trên training set lại có thể dự đoán rất tồi trên test set?
 
-Khi nói đến train model, không thể quên [objective function](https://ml-book-vn.khanhxnguyen.com/1_2_objective.html). Ở bài trước, nói rằng objective function thường có dạng:
+Khi nói đến training problem, không thể quên đi [objective function](https://ml-book-vn.khanhxnguyen.com/1_2_objective.html). Nhắc lại, objective function thường có dạng:
 
 $$
     objective = average\_loss + regularizer
@@ -13,13 +13,13 @@ $$
 \mathcal{L}_{D_{train}}(f_w) = \frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y) + \lambda R(f_w)
 $$ với $$\frac{1}{|D_{train}|}  \sum_{(x, y)\in D_{train}} L(f_w(x), y)$$ là trung bình loss function trên training set, $$R(f_w)$$ là regularizer, $$\lambda$$ là regularization constant (một [hyperparameter](https://ml-book-vn.khanhxnguyen.com/terms.html)).
 
-Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ cả model và parameter của model.
-
 Mục tiêu của training là tìm ra model tối thiểu hóa objective function:
 
 $$
 w^* = \arg\min_{w} \mathcal{L}_{D_{train}}(w)
 $$
+
+Để rút gọn ký hiệu, khi model có dạng xác định, ta có thể sử dụng $$w$$ để chỉ cả model (thay cho $$f_w$$) và parameter của model.
 
 Kí hiệu $$\arg\min_x f(x)$$ trả về giá trị của $$x$$ để hàm $$f(x)$$ đạt được giá trị cực tiểu. Ví dụ,  $$\arg\min_x x^2 + 1 = 0$$ bởi vì $$ x^2 + 1$$ đạt giá trị cực tiểu (bằng 1) tại $$x = 0$$. Các bạn sẽ nhìn thấy phương trình này trong đa số các paper (bài báo khoa học) về machine learning.
 
