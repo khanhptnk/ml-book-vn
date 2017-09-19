@@ -45,6 +45,7 @@ Giống như evaluation function, objective function cũng gồm giá trị trun
 Giống với evaluation function, nếu không có regularizer, objective function cũng đảm bảo _tính chất tối ưu_: model nhận được giá trị 0 khi và chỉ khi dự đoán hoàn hảo training set. Vì thế, ta cần thêm regularizer vào objective function để điều này không xảy ra. Bài viết sau sẽ nói rõ hơn về điều này.
 
 **Câu hỏi**: *evaluation function và objective function khác nhau thế nào?*
+
 **Trả lời**: *khác nhau ở loss function và regularizer*.
 
 Đến đây ta phát biểu lại về hai quá trình của supervised learning:  
