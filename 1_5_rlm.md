@@ -78,4 +78,4 @@ tức là tổng của trị tuyệt đối của các thành phần. 1-norm đ�
 
 **squared 2-norm** (L2-norm): $$ R(w) = ||w||_2^2 = \sum_{i = 1}^d w_i^2$$ 
 
-cũng còn biết đến với cái tên *weight decay*, chính là bình phương độ dài của vector $$w$$. Sở dĩ ta phải bình phương là để giúp cho việc tính đạo hàm được dễ hơn khi tối ưu hàm mục tiêu. Lưu ý, đây không thực sự là norm, căn bậc hai của nó mới là norm.
+cũng còn biết đến với cái tên **weight decay**, chính là bình phương độ dài của vector $$w$$. Sở dĩ ta phải bình phương là để giúp cho việc tính đạo hàm được dễ hơn khi tối ưu hàm mục tiêu. Lưu ý, đây không thực sự là norm, căn bậc hai của nó mới là norm.
