@@ -22,7 +22,7 @@ Chúng ta sẽ hoàn tất những hiểu biết về overfitting và đưa ra m
 
 Như chúng ta đã biết, noise không phải là nguyên nhân trực tiếp gây ra overfitting. Vậy những yếu tố nào gây ra overfitting? Overfitting là sản phẩm của sự cộng hưởng giữa các yếu tố sau:
 
-1. **Áp dụng ERM**. Thay vì thực sự tối thiểu hóa $$\mathcal{L}_{\mathcal{D}}$$, một điều không thể, ta chỉ có thể tối thiểu hóa xấp xỉ của đại lượng này trên một tập dữ liệu giới hạn, $$\mathcal{L}_{D_{train}}$$. $$\mathcal{L}_{D_{test}}$$ cũng là xấp xỉ của đại lượng đó, nhưng lại được tính trên một tập dữ liệu khác. Điều này dẫn đến sự khác biệt giữa đại lượng ta muốn tối thiểu vào lúc train và lúc test.
+1. **Áp dụng ERM**. vì objective function và evaluation function có thể rất khác nhau, tối ưu objective function chưa hẳn sẽ tối ưu evaluation function.
 
 2. **Giới hạn về dữ liệu**: khi có thêm các cặp observation-label, hiển nhiên ta có thêm thông tin về mối quan hệ giữa chúng. Cụ thể hơn, ta thấy rằng $$\mathcal{L}_{D_{train}}$$ sẽ hội tụ về $$\mathcal{L}_{\mathcal{D}}$$ khi số lượng phần tử của $$D_{train}$$ tiến đến vô cùng. Khi hai đại lượng này trùng nhau thì overfitting hoàn toàn biến mất (theo định nghĩa). Vì thế, càng có nhiều dữ liệu huấn luyện thì càng ít bị overfitting.
 
