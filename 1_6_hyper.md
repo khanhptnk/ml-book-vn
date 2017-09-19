@@ -13,7 +13,6 @@ Trong bài viết trước, vì chưa nhắc giới thiệu khái niệm develop
 
 ![](http://khanhxnguyen.com/wp-content/uploads/2016/06/early-stopping-2.png)
 
-Trong nghiên cứu, tỉ lệ train:dev:test thường được dùng đó là **7:1:2**. Tức là nếu có 100 điểm dữ liệu, thì lấy 70 điểm để huấn luyện, 10 điểm để phát triển, và 20 điểm để kiểm tra. 
 
 ### k-fold cross-validation
 
