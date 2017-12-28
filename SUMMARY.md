@@ -11,4 +11,7 @@
   * [Tinh chỉnh các hyperparameter](1_6_hyper.md)
   * [Thuật toán supervised learning tổng quát](1_7_supervised_learning.md)
   * [Loss function](1_8_loss_function.md)
+* [Deep Learning](deep-learning.md)
+  * Linear models
+  * [Biểu diễn từ \(word representation\)](deep-learning/bi.md)
 
